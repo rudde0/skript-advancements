@@ -11,10 +11,10 @@ import org.bukkit.event.Event;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.Nullable;
 
-public class EffMakeRoot extends Effect {
+public class EffCompleteAdvancement extends Effect {
 
     static {
-        Skript.registerEffect(EffMakeRoot.class, "(make|set) [the] advancement to [a] root [advancement]");
+        Skript.registerEffect(EffMakeRoot.class, "(create|build|finish|complete) [the] advancement");
     }
 
     @Override
@@ -25,11 +25,11 @@ public class EffMakeRoot extends Effect {
 
     @Override
     protected void execute(@NonNull Event event) {
-        AdvancementHandler.setRoot(true);
+        AdvancementHandler.buildAdvancement();
     }
 
     @Override
     public String toString(@Nullable Event event, boolean debug) {
-        return "make advancement a root advancement";
+        return "complete advancement";
     }
 }

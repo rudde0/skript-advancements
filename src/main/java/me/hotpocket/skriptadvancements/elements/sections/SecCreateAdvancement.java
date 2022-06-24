@@ -17,31 +17,31 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-@Name("Advancement Creator Section")
-@Description({"Creates a new advancement."})
-@Examples({"create a new advancement named \"group/advancement\""})
-@Since("1.3")
+@Name("Root Advancement Creator")
+@Description({"Creates a new root advancement."})
+@Examples({"create an advancement named \"group/advancement\""})
+@Since("1.4")
 
-public class SecMakeAdvancement extends EffectSection {
+public class SecCreateAdvancement extends EffectSection {
 
     static {
-        Skript.registerSection(SecMakeAdvancement.class, "create [a[n]] [new] advancement named %string%");
+        Skript.registerSection(SecCreateAdvancement.class, "(create|make) [a[n]] [new] advancement (named|with [the] name [of]) %string%");
     }
 
-    private Expression<String> name;
+    private Expression<String> advancementName;
 
     @Override
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult,
                         @Nullable SectionNode sectionNode, @Nullable List<TriggerItem> triggerItems) {
-        if(getParser().isCurrentSection(SecMakeAdvancement.class)){
-            Skript.error("The advancement creation section is not meant to be put inside of another advancement creation section.");
+        if(getParser().isCurrentSection(SecCreateAdvancement.class)){
+            Skript.error("You cannot use this section inside itself.");
             return false;
         }
         if(sectionNode != null){
             loadOptionalCode(sectionNode);
         }
-        name = (Expression<String>) exprs[0];
+        advancementName = (Expression<String>) exprs[0];
         return true;
     }
 
@@ -49,12 +49,12 @@ public class SecMakeAdvancement extends EffectSection {
     @Nullable
     @SuppressWarnings({"unchecked", "rawtypes"})
     protected TriggerItem walk(Event event) {
-        AdvancementHandler.setName(name.getSingle(event));
+        AdvancementHandler.setAdvancementName(advancementName.getSingle(event));
         return walk(event, true);
     }
 
     @Override
     public String toString(@Nullable Event event, boolean debug) {
-        return "create an advancement with the name " + name.toString(event, debug);
+        return "create a new advancement named " + advancementName.toString(event, debug);
     }
 }

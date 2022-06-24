@@ -9,23 +9,22 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
 import me.hotpocket.skriptadvancements.elements.AdvancementHandler;
 import me.hotpocket.skriptadvancements.elements.sections.SecCreateAdvancement;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-public class ExprAdvancementFrame extends SimpleExpression<AdvancementFrameType> {
+public class ExprAdvancementToast extends SimpleExpression<Boolean> {
 
     static {
-        Skript.registerExpression(ExprAdvancementFrame.class, AdvancementFrameType.class, ExpressionType.SIMPLE,
-                "[the] frame [of [the]] advancement",
-                "[the] advancement's frame");
+        Skript.registerExpression(ExprAdvancementToast.class, Boolean.class, ExpressionType.SIMPLE,
+                "[the] toast [of [the]] advancement",
+                "[the] advancement's toast");
     }
 
     @Override
-    protected @Nullable AdvancementFrameType[] get(Event e) {
-        return new AdvancementFrameType[]{ AdvancementHandler.getAdvancementFrame() };
+    protected @Nullable Boolean[] get(Event e) {
+        return new Boolean[]{ AdvancementHandler.getShowToast() };
     }
 
     @Override
@@ -34,13 +33,13 @@ public class ExprAdvancementFrame extends SimpleExpression<AdvancementFrameType>
     }
 
     @Override
-    public Class<? extends AdvancementFrameType> getReturnType() {
-        return AdvancementFrameType.class;
+    public Class<? extends Boolean> getReturnType() {
+        return Boolean.class;
     }
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "the advancement's frame";
+        return "the advancement's toast";
     }
 
     @Override
@@ -50,11 +49,11 @@ public class ExprAdvancementFrame extends SimpleExpression<AdvancementFrameType>
 
     @Override
     public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
-        return (mode == Changer.ChangeMode.SET ? CollectionUtils.array(AdvancementFrameType.class) : null);
+        return (mode == Changer.ChangeMode.SET ? CollectionUtils.array(Boolean.class) : null);
     }
 
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
-        AdvancementHandler.setAdvancementFrame((AdvancementFrameType) delta[0]);
+        AdvancementHandler.setShowToast((Boolean) delta[0]);
     }
 }

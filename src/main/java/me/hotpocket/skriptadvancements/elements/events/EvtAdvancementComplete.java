@@ -4,10 +4,13 @@ import ch.njol.skript.Skript;
 import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.jetbrains.annotations.Nullable;
+
+import java.lang.reflect.Field;
 
 public class EvtAdvancementComplete extends SimpleEvent {
     static {
@@ -28,6 +31,14 @@ public class EvtAdvancementComplete extends SimpleEvent {
             @Nullable
             public Player get(PlayerAdvancementDoneEvent e) {
                 return e.getPlayer();
+            }
+
+        }, 0);
+        EventValues.registerEventValue(PlayerAdvancementDoneEvent.class, String.class, new Getter<String, PlayerAdvancementDoneEvent>() {
+            @Override
+            @Nullable
+            public String get(PlayerAdvancementDoneEvent e) {
+                return Bukkit.getUnsafe().legacyComponentSerializer().serialize(e.message());
             }
 
         }, 0);

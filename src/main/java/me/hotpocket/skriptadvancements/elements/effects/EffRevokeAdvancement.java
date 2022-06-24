@@ -54,5 +54,4 @@ public class EffRevokeAdvancement extends Effect {
     public String toString(@Nullable Event event, boolean debug) {
         return "revoke advancement " + advancement.toString(event, debug) + " from " + player.toString(event, debug);
     }
-
 }
