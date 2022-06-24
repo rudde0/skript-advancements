@@ -1,0 +1,10 @@
+# Welcome to Skript-Advancement's config.yml!
+# Here you can enable/disable different things that Skript-Advancements does.
+# Need help? Visit the wiki here: https://github.com/hotpocket184/skript-advancements/wiki
+
+# Should Skript-Advancements reload Bukkit's data when creating/deleting advancements?
+# This is essential for having the advancements load without restarting your server.
+reload:
+  on-create: true
+# Set to false in order to avoid some errors... (The errors, as far as I can tell, don't do anything and are just there to warn you.)
+  on-delete: false

@@ -1,6 +1,7 @@
 package me.hotpocket.skriptadvancements.elements.expressions;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.classes.Changer;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
@@ -10,17 +11,20 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.util.Date;
+import ch.njol.skript.util.Timespan;
 import ch.njol.util.Kleenean;
+import ch.njol.util.coll.CollectionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("All Advancements")
-@Description({"Get all of the advancements."})
-@Examples("all advancements")
-@Since("1.4")
+@Name("Date Awarded")
+@Description({"This expression allows you to get the date awarded of any advancement."})
+@Examples("broadcast \"%date awarded of \"adventure/root\" for player%\"")
+@Since("1.3")
+
 public class ExprDateAwarded extends SimpleExpression<Date> {
 
     static {
@@ -34,7 +38,6 @@ public class ExprDateAwarded extends SimpleExpression<Date> {
     @Override
     protected @Nullable Date[] get(Event e) {
         for(Player player : players.getArray(e)) {
-
             for(Advancement advancement : advancements.getArray(e)) {
                 if(player.getAdvancementProgress(advancement).isDone()) {
                     for(String criteria : Bukkit.getAdvancement(advancement.getKey()).getCriteria()) {

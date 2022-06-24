@@ -3,6 +3,10 @@ package me.hotpocket.skriptadvancements.elements.expressions;
 import ch.njol.skript.Skript;
 import ch.njol.skript.aliases.ItemType;
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -10,16 +14,22 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import me.hotpocket.skriptadvancements.elements.AdvancementHandler;
-import me.hotpocket.skriptadvancements.elements.sections.SecCreateAdvancement;
+import me.hotpocket.skriptadvancements.elements.sections.SecMakeAdvancement;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
+
+@Name("Advancement Background")
+@Description({"Allowed Changers: SET",
+        "This expression allows you to change the background of a custom advancement in the advancement creator section."})
+@Examples("set background of advancement to diamond ore")
+@Since("1.3")
 
 public class ExprAdvancementBackground extends SimpleExpression<ItemType> {
 
     static {
         Skript.registerExpression(ExprAdvancementBackground.class, ItemType.class, ExpressionType.SIMPLE,
-                "[the] background [of [the]] advancement",
-                "[the] advancement's background");
+                "[the] background of [the] [last (created|made)] advancement",
+                "[the] [last (created|made)] advancement's background");
     }
 
     @Override
@@ -39,12 +49,16 @@ public class ExprAdvancementBackground extends SimpleExpression<ItemType> {
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "the advancement's background";
+        return "background of last created advancement";
     }
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        return getParser().isCurrentSection(SecCreateAdvancement.class);
+        if(getParser().isCurrentSection(SecMakeAdvancement.class)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

@@ -1,133 +1,153 @@
 package me.hotpocket.skriptadvancements.elements;
 
-import com.fren_gor.ultimateAdvancementAPI.UltimateAdvancementAPI;
-import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
-import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
-import com.fren_gor.ultimateAdvancementAPI.advancement.RootAdvancement;
-import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
-import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
 import me.hotpocket.skriptadvancements.Skriptadvancements;
+import me.hotpocket.skriptadvancements.advancementcreator.Advancement;
+import me.hotpocket.skriptadvancements.advancementcreator.shared.ItemObject;
+import me.hotpocket.skriptadvancements.advancementcreator.trigger.ImpossibleTrigger;
+import me.hotpocket.skriptadvancements.advancementcreator.trigger.Trigger;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class AdvancementHandler {
 
-    private static UltimateAdvancementAPI api = UltimateAdvancementAPI.getInstance(Skriptadvancements.getInstance());
-
-    private static String advancementName = null;
-    private static Advancement lastCreatedAdvancement;
-    private static boolean isRoot = false;
-    private static String advancementTitle = "New Advancement Name";
+    public static Advancement lastCreatedAdvancement;
+    private static String advancementTitle = "Default Title";
+    private static String advancementDescription = "Default Description";
     private static Material advancementIcon = Material.DIRT;
-    private static AdvancementFrameType advancementFrame = AdvancementFrameType.TASK;
-    private static boolean showToast = true;
-    private static boolean announceToChat = true;
-    private static int floatX = 0;
-    private static int floatY = 0;
-    private static Material advancementBackground = Material.DIRT;
-    private static String advancementDescription = "New Advancement Description";
-    private static int advancementProgression = 0;
+    private static String advancementName = "default";
+    private static String advancementBackground = "block/dirt";
+    public  static Boolean advancementRoot = false;
+    private static Boolean autoUnlock = false;
+    private static Trigger trigger = new ImpossibleTrigger();
+    private static Advancement.Frame frame = Advancement.Frame.TASK;
+    private static NamespacedKey parent = null;
+    private static Boolean hidden = true;
 
-    public static void setAdvancementName(String name) {
-        advancementName = name;
-    }
-    public static String getAdvancementName() {
-        return advancementName;
-    }
-    public static String getTabName() {
-        return advancementName.split("/")[0];
+    public static void setTitle(String title) {
+        advancementTitle = title;
+        lastCreatedAdvancement = new Advancement(new NamespacedKey(Skriptadvancements.getInstance(), getName()), new ItemObject().setItem(getIcon()),
+                new TextComponent(title), new TextComponent(getDescription()));
     }
 
-    public static void setRoot(Boolean root) {
-        isRoot = root;
-    }
-    public static boolean isRoot() {
-        return isRoot;
-    }
-
-    public static void setAdvancementTitle(String name) {
-        advancementTitle = name;
-    }
-    public static String getAdvancementTitle() {
+    public static String getTitle() {
         return advancementTitle;
-    }
-
-    public static String getKeyFromAdvancement(String advancement) {
-        return advancement.split(":")[0];
-    }
-
-    public static Advancement getLastCreatedAdvancement() {
-        return lastCreatedAdvancement;
-    }
-
-    public static void setAdvancementIcon(Material icon) {
-        advancementIcon = icon;
-    }
-    public static Material getAdvancementIcon() {
-        return advancementIcon;
-    }
-
-    public static void setAdvancementFrame(AdvancementFrameType frame) {
-        advancementFrame = frame;
-    }
-    public static AdvancementFrameType getAdvancementFrame() {
-        return advancementFrame;
-    }
-
-    public static void setShowToast(Boolean show) {
-        showToast = show;
-    }
-    public static boolean getShowToast() {
-        return showToast;
-    }
-
-    public static void setAnnounceToChat(Boolean announce) {
-        announceToChat = announce;
-    }
-    public static boolean getAnnounceToChat() {
-        return announceToChat;
-    }
-
-    public static void setBackground(Material background) {
-        advancementBackground = background;
-    }
-    public static Material getBackground() {
-        return advancementBackground;
     }
 
     public static void setDescription(String description) {
         advancementDescription = description;
+        lastCreatedAdvancement = new Advancement(new NamespacedKey(Skriptadvancements.getInstance(), getName()), new ItemObject().setItem(getIcon()),
+                new TextComponent(getTitle()), new TextComponent(description));
     }
+
     public static String getDescription() {
         return advancementDescription;
     }
 
-    public static void setAdvancementProgression(Integer progression) {
-        advancementProgression = progression;
-    }
-    public static int getAdvancementProgression() {
-        return advancementProgression;
+    public static void setIcon(Material icon) {
+        advancementIcon = icon;
+        lastCreatedAdvancement = new Advancement(new NamespacedKey(Skriptadvancements.getInstance(), getName()), new ItemObject().setItem(icon),
+                new TextComponent(getTitle()), new TextComponent(getDescription()));
     }
 
+    public static Material getIcon() {
+        return advancementIcon;
+    }
+
+    public static void setName(String name) {
+        advancementName = name;
+        lastCreatedAdvancement = new Advancement(new NamespacedKey(Skriptadvancements.getInstance(), name), new ItemObject().setItem(getIcon()),
+                new TextComponent(getTitle()), new TextComponent(getDescription()));
+    }
+
+    public static String getName() {
+        return advancementName;
+    }
+
+    public static void setBackground(Material background) {
+        advancementBackground = "block/" + background.translationKey().split("minecraft.")[1];
+    }
+
+    public static Material getBackground() {
+        return Material.valueOf(advancementBackground.split("block/")[1].toUpperCase());
+    }
+
+    public static void makeRoot() {
+        advancementRoot = !advancementRoot;
+    }
+
+    public static Boolean isRoot() {
+        return advancementRoot;
+    }
+
+    public static void autoUnlock(Boolean bool) {
+        autoUnlock = bool;
+    }
+
+    public static Trigger getTrigger() {
+        return trigger;
+    }
+
+    public static void setTrigger(Trigger trig) {
+        trigger = trig;
+    }
+
+    public static Boolean isAutoUnlock() {
+        return autoUnlock;
+    }
+
+    public static Advancement.Frame getFrame() {
+        return frame;
+    }
+
+    public static void setFrame(Advancement.Frame fr) {
+        frame = fr;
+    }
+
+    public static NamespacedKey getParent() { return parent; }
+
+    public static void setParent(org.bukkit.advancement.Advancement p) { parent = p.getKey(); }
+
+    public static Boolean isHidden() { return hidden; }
+
+    public static void setHidden(Boolean b) { hidden = b; }
+
     public static void buildAdvancement() {
+        ArrayList<org.bukkit.advancement.Advancement> advancements = new ArrayList<>();
+        Iterator<org.bukkit.advancement.Advancement> iterator = Bukkit.getServer().advancementIterator();
+        while(iterator.hasNext()) {
+            advancements.add(iterator.next());
+        }
         if(isRoot()) {
-            RootAdvancement advancement = new RootAdvancement(api.getAdvancementTab(getTabName()), getTabName(), new AdvancementDisplay(getAdvancementIcon(), getAdvancementTitle(), getAdvancementFrame(), getShowToast(), getAnnounceToChat(), floatX, floatY, getDescription()), "textures/block/" + getBackground().translationKey() + ".png");
-            api.createAdvancementTab(getTabName()).registerAdvancements(advancement);
+            lastCreatedAdvancement = new Advancement(new NamespacedKey(Skriptadvancements.getInstance(), getName().replaceAll(":", "")), new ItemObject().setItem(getIcon()),
+                    new TextComponent(getTitle()), new TextComponent(getDescription()))
+                    .addTrigger(getName(), new ImpossibleTrigger())
+                    .setFrame(frame);
+            lastCreatedAdvancement.makeRoot("block/" + getBackground().translationKey().split("minecraft.")[1], isAutoUnlock());
+        } else {
+            lastCreatedAdvancement = new Advancement(new NamespacedKey(Skriptadvancements.getInstance(), getName()), new ItemObject().setItem(getIcon()),
+                    new TextComponent(getTitle()), new TextComponent(getDescription()))
+                    .addTrigger(getName(), new ImpossibleTrigger())
+                    .setFrame(frame);
+            if(parent != null) {
+                lastCreatedAdvancement.makeChild(parent);
+            }
         }
-        else {
-            BaseAdvancement advancement = new BaseAdvancement(getAdvancementName(), new AdvancementDisplay(getAdvancementIcon(), getAdvancementTitle(), getAdvancementFrame(), getShowToast(), getAnnounceToChat(), 1.5f, 0, getDescription()), api.getAdvancementTab(getTabName()).getRootAdvancement(), getAdvancementProgression());
-            api.getAdvancementTab(getTabName()).registerAdvancements(api.getAdvancementTab(getTabName()).getRootAdvancement(), advancement);
-        }
-        advancementName = null;
-        isRoot = false;
-        advancementTitle = "New Advancement Name";
+        lastCreatedAdvancement.setHidden(hidden);
+        lastCreatedAdvancement.activate(false);
+        advancementTitle = "Default Title";
+        advancementDescription = "Default Description";
         advancementIcon = Material.DIRT;
-        advancementFrame = AdvancementFrameType.TASK;
-        showToast = true;
-        announceToChat = true;
-        floatX = 0;
-        floatY = 0;
-        advancementBackground = Material.DIRT;
-        advancementDescription = "New Advancement Description";
-        advancementProgression = 0;
+        advancementName = "default";
+        advancementBackground = "block/dirt";
+        advancementRoot = false;
+        autoUnlock = false;
+        frame = Advancement.Frame.TASK;
+        parent = null;
+        hidden = true;
     }
 }

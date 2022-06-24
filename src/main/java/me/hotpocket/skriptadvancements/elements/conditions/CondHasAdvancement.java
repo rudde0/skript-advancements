@@ -13,7 +13,7 @@ import org.bukkit.advancement.Advancement;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
-@Name("Advancements - Has Advancement")
+@Name("Has Advancement")
 @Description({"Checks whether a player has an advancement or not."})
 @Examples({"player has all advancements",
         "player has the advancement \"adventure/root\""})

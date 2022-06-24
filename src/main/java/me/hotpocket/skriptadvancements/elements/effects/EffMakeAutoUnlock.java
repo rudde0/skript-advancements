@@ -15,15 +15,15 @@ import org.bukkit.event.Event;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Make Root Advancement")
-@Description({"Makes the last created advancement a root advancement."})
-@Examples({"make advancement a root advancement"})
+@Name("Auto Unlock Advancement")
+@Description({"Sets the last created root advancement using the advancement creation section automatically unlock (unlocked manually by default)."})
+@Examples({"make the last made advancement automatically unlock"})
 @Since("1.3")
 
-public class EffMakeRoot extends Effect {
+public class EffMakeAutoUnlock extends Effect {
 
     static {
-        Skript.registerEffect(EffMakeRoot.class, "make [the] [last (created|made)] advancement [a] root [advancement]");
+        Skript.registerEffect(EffMakeAutoUnlock.class, "make [the] [last (created|made)] advancement (auto[matically] unlock|unlock auto[matically])");
     }
 
     @Override
@@ -38,11 +38,11 @@ public class EffMakeRoot extends Effect {
 
     @Override
     protected void execute(@NonNull Event event) {
-        AdvancementHandler.makeRoot();
+        AdvancementHandler.autoUnlock(true);
     }
 
     @Override
     public String toString(@Nullable Event event, boolean debug) {
-        return "make " + AdvancementHandler.lastCreatedAdvancement + " a root advancement";
+        return "make " + AdvancementHandler.lastCreatedAdvancement + " automatically unlock";
     }
 }

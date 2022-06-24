@@ -1,5 +1,4 @@
 package me.hotpocket.skriptadvancements;
-
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -34,6 +33,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Metrics {
+
+    // Shading won't work anymore :(
 
     private final Plugin plugin;
 
