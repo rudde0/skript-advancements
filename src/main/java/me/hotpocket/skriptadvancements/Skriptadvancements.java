@@ -52,6 +52,7 @@ public final class Skriptadvancements extends JavaPlugin {
     }
 
     public void onDisable() {
+        main.disable();
         Bukkit.getLogger().info("[skript-advancements] has been disabled.");
     }
 
