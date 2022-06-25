@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 @Name("Date Awarded")
 @Description({"This expression allows you to get the date awarded of any advancement."})
 @Examples("broadcast \"%date awarded of \"adventure/root\" for player%\"")
-@Since("1.3")
+@Since("1.3.1")
 
 public class ExprDateAwarded extends SimpleExpression<Date> {
 

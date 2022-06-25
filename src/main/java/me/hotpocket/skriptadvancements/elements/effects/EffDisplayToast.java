@@ -2,6 +2,10 @@ package me.hotpocket.skriptadvancements.elements.effects;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.aliases.ItemType;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -10,16 +14,23 @@ import com.fren_gor.ultimateAdvancementAPI.UltimateAdvancementAPI;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
 import me.hotpocket.skriptadvancements.Skriptadvancements;
 import me.hotpocket.skriptadvancements.advancementcreator.Advancement;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Display Toast")
+@Description({"This effect displays a custom toast to a player."})
+@Examples({"display toast to player named \"You're So Cool!\" with icon gold ingot with frame challenge"})
+@Since("1.3.1")
+
 public class EffDisplayToast extends Effect {
 
     static {
-        Skript.registerEffect(EffDisplayToast.class, "(send|display) [the] [custom] toast to %players% (named|titled) %string% (with|using) [[the] icon] %itemtype% (with|using) [[the] frame] %frame%");
+        Skript.registerEffect(EffDisplayToast.class,
+                "(send|display|show) [the] [custom] toast to %players% (named|titled) %string% (with|using) [[the] icon] %itemtype% (with|using) [[the] frame] %frame%");
     }
 
     private Expression<Player> players;
