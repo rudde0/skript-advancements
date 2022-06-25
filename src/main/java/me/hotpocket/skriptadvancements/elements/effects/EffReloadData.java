@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 public class EffReloadData extends Effect {
 
     static {
-        Skript.registerEffect(EffReloadData.class, "reload [bukkit] data");
+        Skript.registerEffect(EffReloadData.class, "reload [bukkit['s]] data");
     }
 
     @Override
