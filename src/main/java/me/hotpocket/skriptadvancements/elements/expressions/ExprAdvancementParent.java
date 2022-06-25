@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 @Name("Advancement Parent")
 @Description({"Allowed Changers: SET",
         "This expression allows you to change the parent of a custom advancement in the advancement creator section."})
-@Examples("set parent of advancement to \"skream:group/advancement\"")
+@Examples("set parent of advancement to \"skript-advancements:group/advancement\"")
 @Since("1.3")
 
 public class ExprAdvancementParent extends SimpleExpression<Advancement> {
