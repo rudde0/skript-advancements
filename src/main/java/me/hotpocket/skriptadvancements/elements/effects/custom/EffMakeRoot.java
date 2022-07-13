@@ -1,4 +1,4 @@
-package me.hotpocket.skriptadvancements.elements.effects;
+package me.hotpocket.skriptadvancements.elements.effects.custom;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
@@ -15,24 +15,21 @@ import org.bukkit.event.Event;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Hide Advancement")
-@Description({"Makes the last created advancement with the advancement creation section visible or hidden (hidden by default)."})
-@Examples({"make last created advancement visible"})
+@Name("Make Root Advancement")
+@Description({"Makes the last created advancement a root advancement."})
+@Examples({"make advancement a root advancement"})
 @Since("1.3")
 
-public class EffHideAdvancement extends Effect {
+public class EffMakeRoot extends Effect {
 
     static {
-        Skript.registerEffect(EffHideAdvancement.class, "make [the] [last (created|made)] advancement (1¦visible|2¦hidden)");
+        Skript.registerEffect(EffMakeRoot.class, "make [the] [last (created|made)] advancement [a] root [advancement]");
     }
-
-    private boolean hidden = false;
 
     @Override
     @SuppressWarnings({"unchecked"})
     public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
         if(getParser().isCurrentSection(SecMakeAdvancement.class)) {
-            hidden = parser.mark == 2;
             return true;
         } else {
             return false;
@@ -41,11 +38,11 @@ public class EffHideAdvancement extends Effect {
 
     @Override
     protected void execute(@NonNull Event event) {
-        AdvancementHandler.setHidden(hidden);
+        AdvancementHandler.makeRoot();
     }
 
     @Override
     public String toString(@Nullable Event event, boolean debug) {
-        return "make " + AdvancementHandler.lastCreatedAdvancement + " visible/hidden";
+        return "make " + AdvancementHandler.lastCreatedAdvancement + " a root advancement";
     }
 }

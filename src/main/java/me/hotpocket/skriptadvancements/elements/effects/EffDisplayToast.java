@@ -12,9 +12,8 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import com.fren_gor.ultimateAdvancementAPI.UltimateAdvancementAPI;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
-import me.hotpocket.skriptadvancements.Skriptadvancements;
+import me.hotpocket.skriptadvancements.SkriptAdvancements;
 import me.hotpocket.skriptadvancements.advancementcreator.Advancement;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
@@ -51,7 +50,7 @@ public class EffDisplayToast extends Effect {
     @Override
     protected void execute(@NonNull Event event) {
         for(Player player : players.getArray(event)) {
-            UltimateAdvancementAPI.getInstance(Skriptadvancements.getInstance()).displayCustomToast(player, new ItemStack(icon.getSingle(event).getMaterial()), title.getSingle(event), AdvancementFrameType.valueOf(frame.getSingle(event).toString().toUpperCase()));
+            UltimateAdvancementAPI.getInstance(SkriptAdvancements.getInstance()).displayCustomToast(player, new ItemStack(icon.getSingle(event).getMaterial()), title.getSingle(event), AdvancementFrameType.valueOf(frame.getSingle(event).toString().toUpperCase()));
         }
     }
 

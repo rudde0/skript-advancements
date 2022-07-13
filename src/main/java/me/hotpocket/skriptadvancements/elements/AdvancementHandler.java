@@ -1,6 +1,6 @@
 package me.hotpocket.skriptadvancements.elements;
 
-import me.hotpocket.skriptadvancements.Skriptadvancements;
+import me.hotpocket.skriptadvancements.SkriptAdvancements;
 import me.hotpocket.skriptadvancements.advancementcreator.Advancement;
 import me.hotpocket.skriptadvancements.advancementcreator.shared.ItemObject;
 import me.hotpocket.skriptadvancements.advancementcreator.trigger.ImpossibleTrigger;
@@ -30,7 +30,7 @@ public class AdvancementHandler {
 
     public static void setTitle(String title) {
         advancementTitle = title;
-        lastCreatedAdvancement = new Advancement(new NamespacedKey(Skriptadvancements.getInstance(), getName()), new ItemObject().setItem(getIcon()),
+        lastCreatedAdvancement = new Advancement(new NamespacedKey(SkriptAdvancements.getInstance(), getName()), new ItemObject().setItem(getIcon()),
                 new TextComponent(title), new TextComponent(getDescription()));
     }
 
@@ -40,7 +40,7 @@ public class AdvancementHandler {
 
     public static void setDescription(String description) {
         advancementDescription = description;
-        lastCreatedAdvancement = new Advancement(new NamespacedKey(Skriptadvancements.getInstance(), getName()), new ItemObject().setItem(getIcon()),
+        lastCreatedAdvancement = new Advancement(new NamespacedKey(SkriptAdvancements.getInstance(), getName()), new ItemObject().setItem(getIcon()),
                 new TextComponent(getTitle()), new TextComponent(description));
     }
 
@@ -50,7 +50,7 @@ public class AdvancementHandler {
 
     public static void setIcon(Material icon) {
         advancementIcon = icon;
-        lastCreatedAdvancement = new Advancement(new NamespacedKey(Skriptadvancements.getInstance(), getName()), new ItemObject().setItem(icon),
+        lastCreatedAdvancement = new Advancement(new NamespacedKey(SkriptAdvancements.getInstance(), getName()), new ItemObject().setItem(icon),
                 new TextComponent(getTitle()), new TextComponent(getDescription()));
     }
 
@@ -60,7 +60,7 @@ public class AdvancementHandler {
 
     public static void setName(String name) {
         advancementName = name;
-        lastCreatedAdvancement = new Advancement(new NamespacedKey(Skriptadvancements.getInstance(), name), new ItemObject().setItem(getIcon()),
+        lastCreatedAdvancement = new Advancement(new NamespacedKey(SkriptAdvancements.getInstance(), name), new ItemObject().setItem(getIcon()),
                 new TextComponent(getTitle()), new TextComponent(getDescription()));
     }
 
@@ -123,13 +123,13 @@ public class AdvancementHandler {
             advancements.add(iterator.next());
         }
         if(isRoot()) {
-            lastCreatedAdvancement = new Advancement(new NamespacedKey(Skriptadvancements.getInstance(), getName().replaceAll(":", "")), new ItemObject().setItem(getIcon()),
+            lastCreatedAdvancement = new Advancement(new NamespacedKey(SkriptAdvancements.getInstance(), getName().replaceAll(":", "")), new ItemObject().setItem(getIcon()),
                     new TextComponent(getTitle()), new TextComponent(getDescription()))
                     .addTrigger(getName(), new ImpossibleTrigger())
                     .setFrame(frame);
             lastCreatedAdvancement.makeRoot("block/" + getBackground().translationKey().split("minecraft.")[1], isAutoUnlock());
         } else {
-            lastCreatedAdvancement = new Advancement(new NamespacedKey(Skriptadvancements.getInstance(), getName()), new ItemObject().setItem(getIcon()),
+            lastCreatedAdvancement = new Advancement(new NamespacedKey(SkriptAdvancements.getInstance(), getName()), new ItemObject().setItem(getIcon()),
                     new TextComponent(getTitle()), new TextComponent(getDescription()))
                     .addTrigger(getName(), new ImpossibleTrigger())
                     .setFrame(frame);

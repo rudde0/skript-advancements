@@ -1,4 +1,4 @@
-package me.hotpocket.skriptadvancements.elements.effects;
+package me.hotpocket.skriptadvancements.elements.effects.custom;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
@@ -9,21 +9,23 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
+import me.hotpocket.skriptadvancements.SkriptAdvancements;
 import me.hotpocket.skriptadvancements.elements.AdvancementHandler;
 import me.hotpocket.skriptadvancements.elements.sections.SecMakeAdvancement;
+import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Make Root Advancement")
-@Description({"Makes the last created advancement a root advancement."})
-@Examples({"make advancement a root advancement"})
+@Name("Build Advancement")
+@Description({"Builds the last created advancement made with the advancement creation section."})
+@Examples({"build the last created advancement"})
 @Since("1.3")
 
-public class EffMakeRoot extends Effect {
+public class EffBuildAdvancement extends Effect {
 
     static {
-        Skript.registerEffect(EffMakeRoot.class, "make [the] [last (created|made)] advancement [a] root [advancement]");
+        Skript.registerEffect(EffBuildAdvancement.class, "(build|finish|make|complete|activate) [the] [last (created|made)] advancement");
     }
 
     @Override
@@ -38,11 +40,16 @@ public class EffMakeRoot extends Effect {
 
     @Override
     protected void execute(@NonNull Event event) {
-        AdvancementHandler.makeRoot();
+        if(Bukkit.getAdvancement(AdvancementHandler.lastCreatedAdvancement.getId()) == null) {
+            AdvancementHandler.buildAdvancement();
+            if(SkriptAdvancements.getInstance().getConfig().getConfigurationSection("reload").getBoolean("on-create")) {
+                Bukkit.reloadData();
+            }
+        }
     }
 
     @Override
     public String toString(@Nullable Event event, boolean debug) {
-        return "make " + AdvancementHandler.lastCreatedAdvancement + " a root advancement";
+        return "build the last created advancement";
     }
 }

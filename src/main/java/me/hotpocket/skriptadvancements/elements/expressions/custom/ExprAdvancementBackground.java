@@ -1,4 +1,4 @@
-package me.hotpocket.skriptadvancements.elements.expressions;
+package me.hotpocket.skriptadvancements.elements.expressions.custom;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.aliases.ItemType;

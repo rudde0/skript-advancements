@@ -1,7 +1,6 @@
-package me.hotpocket.skriptadvancements.elements.expressions;
+package me.hotpocket.skriptadvancements.elements.expressions.custom;
 
 import ch.njol.skript.Skript;
-import ch.njol.skript.aliases.ItemType;
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
@@ -18,23 +17,23 @@ import me.hotpocket.skriptadvancements.elements.sections.SecMakeAdvancement;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Advancement Icon")
+@Name("Advancement Description")
 @Description({"Allowed Changers: SET",
-        "This expression allows you to change the icon of a custom advancement in the advancement creator section."})
-@Examples("set icon of advancement to diamond")
+        "This expression allows you to change the description of a custom advancement in the advancement creator section."})
+@Examples("set description of advancement to \"The best advancement.\"")
 @Since("1.3")
 
-public class ExprAdvancementIcon extends SimpleExpression<ItemType> {
+public class ExprAdvancementDescription extends SimpleExpression<String> {
 
     static {
-        Skript.registerExpression(ExprAdvancementIcon.class, ItemType.class, ExpressionType.SIMPLE,
-                "[the] icon of [the] [last (created|made)] advancement",
-                "[the] [last (created|made)] advancement's icon");
+        Skript.registerExpression(ExprAdvancementDescription.class, String.class, ExpressionType.SIMPLE,
+                "[the] des[cription] of [the] [last (created|made)] advancement",
+                "[the] [last (created|made)] advancement's description");
     }
 
     @Override
-    protected @Nullable ItemType[] get(Event e) {
-        return new ItemType[]{ new ItemType(AdvancementHandler.getIcon()) };
+    protected @Nullable String[] get(Event e) {
+        return new String[]{AdvancementHandler.getDescription()};
     }
 
     @Override
@@ -43,13 +42,13 @@ public class ExprAdvancementIcon extends SimpleExpression<ItemType> {
     }
 
     @Override
-    public Class<? extends ItemType> getReturnType() {
-        return ItemType.class;
+    public Class<? extends String> getReturnType() {
+        return String.class;
     }
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "icon of last created advancement";
+        return "description of last created advancement";
     }
 
     @Override
@@ -63,11 +62,11 @@ public class ExprAdvancementIcon extends SimpleExpression<ItemType> {
 
     @Override
     public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
-        return (mode == Changer.ChangeMode.SET ? CollectionUtils.array(ItemType.class) : null);
+        return (mode == Changer.ChangeMode.SET ? CollectionUtils.array(String.class) : null);
     }
 
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
-        AdvancementHandler.setIcon(((ItemType) delta[0]).getMaterial());
+        AdvancementHandler.setDescription((String) delta[0]);
     }
 }

@@ -1,4 +1,4 @@
-package me.hotpocket.skriptadvancements.elements.expressions;
+package me.hotpocket.skriptadvancements.elements.expressions.custom;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
@@ -14,26 +14,28 @@ import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import me.hotpocket.skriptadvancements.elements.AdvancementHandler;
 import me.hotpocket.skriptadvancements.elements.sections.SecMakeAdvancement;
+import org.bukkit.Bukkit;
+import org.bukkit.advancement.Advancement;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Advancement Title")
+@Name("Advancement Parent")
 @Description({"Allowed Changers: SET",
-        "This expression allows you to change the title of a custom advancement in the advancement creator section."})
-@Examples("set title of advancement to \"My Advancement\"")
+        "This expression allows you to change the parent of a custom advancement in the advancement creator section."})
+@Examples("set parent of advancement to \"skript-advancements:group/advancement\"")
 @Since("1.3")
 
-public class ExprAdvancementTitle extends SimpleExpression<String> {
+public class ExprAdvancementParent extends SimpleExpression<Advancement> {
 
     static {
-        Skript.registerExpression(ExprAdvancementTitle.class, String.class, ExpressionType.SIMPLE,
-                "[the] title of [the] [last (created|made)] advancement",
-                "[the] [last (created|made)] advancement's title");
+        Skript.registerExpression(ExprAdvancementParent.class, Advancement.class, ExpressionType.SIMPLE,
+                "[the] parent of [the] [last (created|made)] advancement",
+                "[the] [last (created|made)] advancement's parent");
     }
 
     @Override
-    protected @Nullable String[] get(Event e) {
-        return new String[]{AdvancementHandler.getTitle()};
+    protected @Nullable Advancement[] get(Event e) {
+        return new Advancement[]{Bukkit.getAdvancement(AdvancementHandler.getParent())};
     }
 
     @Override
@@ -42,13 +44,13 @@ public class ExprAdvancementTitle extends SimpleExpression<String> {
     }
 
     @Override
-    public Class<? extends String> getReturnType() {
-        return String.class;
+    public Class<? extends Advancement> getReturnType() {
+        return Advancement.class;
     }
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "title of last created advancement";
+        return "parent of last created advancement";
     }
 
     @Override
@@ -62,11 +64,11 @@ public class ExprAdvancementTitle extends SimpleExpression<String> {
 
     @Override
     public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
-        return (mode == Changer.ChangeMode.SET ? CollectionUtils.array(String.class) : null);
+        return (mode == Changer.ChangeMode.SET ? CollectionUtils.array(Advancement.class) : null);
     }
 
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
-        AdvancementHandler.setTitle((String) delta[0]);
+        AdvancementHandler.setParent((Advancement) delta[0]);
     }
 }

@@ -1,4 +1,4 @@
-package me.hotpocket.skriptadvancements.elements.effects;
+package me.hotpocket.skriptadvancements.elements.effects.custom;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;

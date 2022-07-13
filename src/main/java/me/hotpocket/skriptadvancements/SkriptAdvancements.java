@@ -10,8 +10,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 
-public final class Skriptadvancements extends JavaPlugin {
-    private static Skriptadvancements instance;
+public final class SkriptAdvancements extends JavaPlugin {
+    private static SkriptAdvancements instance;
     private AdvancementMain main;
     private UltimateAdvancementAPI api;
     SkriptAddon addon;
@@ -56,7 +56,7 @@ public final class Skriptadvancements extends JavaPlugin {
         Bukkit.getLogger().info("[skript-advancements] has been disabled.");
     }
 
-    public static Skriptadvancements getInstance() {
+    public static SkriptAdvancements getInstance() {
         return instance;
     }
 }
