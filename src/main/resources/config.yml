@@ -8,3 +8,6 @@ reload:
   on-create: true
 # Set to false in order to avoid some errors... (The errors, as far as I can tell, don't do anything and are just there to warn you.)
   on-delete: false
+
+# Set the key of a custom advancement. Keys are the "minecraft" part of "miencraft:adventure/root"
+custom-key: "skript"

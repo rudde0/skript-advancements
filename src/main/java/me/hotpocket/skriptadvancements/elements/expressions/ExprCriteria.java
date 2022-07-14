@@ -9,7 +9,6 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
-import ch.njol.skript.util.Date;
 import ch.njol.util.Kleenean;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.event.Event;
@@ -17,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Criteria")
 @Description({"This expression allows you to get the criteria of any advancement.",
-"Criteria of custom advancements made with skript-advancements will always be 'impossible'."})
+"Criteria of custom advancements made with skript-advancements will always be the advancement."})
 @Examples("broadcast \"%criteria of \"adventure/very_very_frightening\"%\"")
 @Since("1.3.2")
 public class ExprCriteria extends SimpleExpression<Object> {
@@ -43,8 +42,8 @@ public class ExprCriteria extends SimpleExpression<Object> {
     }
 
     @Override
-    public Class<? extends Date> getReturnType() {
-        return Date.class;
+    public Class<? extends Object> getReturnType() {
+        return Object.class;
     }
 
     @Override

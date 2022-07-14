@@ -9,7 +9,6 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
-import ch.njol.skript.util.Date;
 import ch.njol.util.Kleenean;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.entity.Player;
@@ -19,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 @Name("Remaining Criteria")
 @Description({"This expression allows you to get the remaining criteria of any advancement for a player.",
         "Returns nothing if the advancement is already completed by the player.",
-        "If an advancement has not been completed, the remaining criteria of a custom advancement made with skript-advancements will always be 'impossible'."})
+        "If an advancement has not been completed, the remaining criteria of a custom advancement made with skript-advancements will always be the advancement."})
 @Examples("broadcast \"%remaining criteria of \"adventure/very_very_frightening\" for player%\"")
 @Since("1.3.2")
 public class ExprRemainingCriteria extends SimpleExpression<Object> {
@@ -48,8 +47,8 @@ public class ExprRemainingCriteria extends SimpleExpression<Object> {
     }
 
     @Override
-    public Class<? extends Date> getReturnType() {
-        return Date.class;
+    public Class<? extends Object> getReturnType() {
+        return Object.class;
     }
 
     @Override

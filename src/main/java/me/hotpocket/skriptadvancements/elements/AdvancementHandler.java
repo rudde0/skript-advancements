@@ -6,12 +6,8 @@ import me.hotpocket.skriptadvancements.advancementcreator.shared.ItemObject;
 import me.hotpocket.skriptadvancements.advancementcreator.trigger.ImpossibleTrigger;
 import me.hotpocket.skriptadvancements.advancementcreator.trigger.Trigger;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 
 public class AdvancementHandler {
 
@@ -28,9 +24,11 @@ public class AdvancementHandler {
     private static NamespacedKey parent = null;
     private static Boolean hidden = true;
 
+    private static String namespace = SkriptAdvancements.getInstance().getConfig().getString("custom-key");
+
     public static void setTitle(String title) {
         advancementTitle = title;
-        lastCreatedAdvancement = new Advancement(new NamespacedKey(SkriptAdvancements.getInstance(), getName()), new ItemObject().setItem(getIcon()),
+        lastCreatedAdvancement = new Advancement(new NamespacedKey(namespace, getName()), new ItemObject().setItem(getIcon()),
                 new TextComponent(title), new TextComponent(getDescription()));
     }
 
@@ -40,7 +38,7 @@ public class AdvancementHandler {
 
     public static void setDescription(String description) {
         advancementDescription = description;
-        lastCreatedAdvancement = new Advancement(new NamespacedKey(SkriptAdvancements.getInstance(), getName()), new ItemObject().setItem(getIcon()),
+        lastCreatedAdvancement = new Advancement(new NamespacedKey(namespace, getName()), new ItemObject().setItem(getIcon()),
                 new TextComponent(getTitle()), new TextComponent(description));
     }
 
@@ -50,7 +48,7 @@ public class AdvancementHandler {
 
     public static void setIcon(Material icon) {
         advancementIcon = icon;
-        lastCreatedAdvancement = new Advancement(new NamespacedKey(SkriptAdvancements.getInstance(), getName()), new ItemObject().setItem(icon),
+        lastCreatedAdvancement = new Advancement(new NamespacedKey(namespace, getName()), new ItemObject().setItem(icon),
                 new TextComponent(getTitle()), new TextComponent(getDescription()));
     }
 
@@ -60,7 +58,7 @@ public class AdvancementHandler {
 
     public static void setName(String name) {
         advancementName = name;
-        lastCreatedAdvancement = new Advancement(new NamespacedKey(SkriptAdvancements.getInstance(), name), new ItemObject().setItem(getIcon()),
+        lastCreatedAdvancement = new Advancement(new NamespacedKey(namespace, name), new ItemObject().setItem(getIcon()),
                 new TextComponent(getTitle()), new TextComponent(getDescription()));
     }
 
@@ -117,19 +115,14 @@ public class AdvancementHandler {
     public static void setHidden(Boolean b) { hidden = b; }
 
     public static void buildAdvancement() {
-        ArrayList<org.bukkit.advancement.Advancement> advancements = new ArrayList<>();
-        Iterator<org.bukkit.advancement.Advancement> iterator = Bukkit.getServer().advancementIterator();
-        while(iterator.hasNext()) {
-            advancements.add(iterator.next());
-        }
         if(isRoot()) {
-            lastCreatedAdvancement = new Advancement(new NamespacedKey(SkriptAdvancements.getInstance(), getName().replaceAll(":", "")), new ItemObject().setItem(getIcon()),
+            lastCreatedAdvancement = new Advancement(new NamespacedKey(namespace, getName().replaceAll(":", "")), new ItemObject().setItem(getIcon()),
                     new TextComponent(getTitle()), new TextComponent(getDescription()))
                     .addTrigger(getName(), new ImpossibleTrigger())
                     .setFrame(frame);
             lastCreatedAdvancement.makeRoot("block/" + getBackground().translationKey().split("minecraft.")[1], isAutoUnlock());
         } else {
-            lastCreatedAdvancement = new Advancement(new NamespacedKey(SkriptAdvancements.getInstance(), getName()), new ItemObject().setItem(getIcon()),
+            lastCreatedAdvancement = new Advancement(new NamespacedKey(namespace, getName()), new ItemObject().setItem(getIcon()),
                     new TextComponent(getTitle()), new TextComponent(getDescription()))
                     .addTrigger(getName(), new ImpossibleTrigger())
                     .setFrame(frame);
