@@ -1,6 +1,10 @@
 package me.hotpocket.skriptadvancements.elements.expressions;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -12,6 +16,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+@Name("Remaining Criteria")
+@Description({"This expression allows you to get the remaining criteria of any advancement for a player.",
+        "Returns nothing if the advancement is already completed by the player.",
+        "If an advancement has not been completed, the remaining criteria of a custom advancement made with skript-advancements will always be 'impossible'."})
+@Examples("broadcast \"%remaining criteria of \"adventure/very_very_frightening\" for player%\"")
+@Since("1.3.2")
 public class ExprRemainingCriteria extends SimpleExpression<Object> {
 
     static {
