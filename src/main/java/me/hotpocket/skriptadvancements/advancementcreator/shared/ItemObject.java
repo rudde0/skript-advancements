@@ -1,13 +1,13 @@
 package me.hotpocket.skriptadvancements.advancementcreator.shared;
 
 import com.google.gson.JsonObject;
+import me.hotpocket.skriptadvancements.advancementcreator.util.JsonBuilder;
 import me.hotpocket.skriptadvancements.advancementcreator.util.Validator;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import me.hotpocket.skriptadvancements.advancementcreator.util.JsonBuilder;
 
 import java.util.Collections;
 import java.util.HashSet;

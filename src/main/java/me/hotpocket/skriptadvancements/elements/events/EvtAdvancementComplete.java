@@ -10,8 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.reflect.Field;
-
 public class EvtAdvancementComplete extends SimpleEvent {
     static {
         Skript.registerEvent("Advancement Complete", SimpleEvent.class, PlayerAdvancementDoneEvent.class, "advancement [(done|complete[d]|grant[ed])]")

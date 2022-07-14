@@ -1,11 +1,11 @@
 package me.hotpocket.skriptadvancements.advancementcreator.shared;
 
 import com.google.gson.JsonElement;
+import me.hotpocket.skriptadvancements.advancementcreator.util.JsonBuilder;
 import org.bukkit.enchantments.Enchantment;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import me.hotpocket.skriptadvancements.advancementcreator.util.JsonBuilder;
 
 /**
  * Specifies information about an enchantment applied to an item.

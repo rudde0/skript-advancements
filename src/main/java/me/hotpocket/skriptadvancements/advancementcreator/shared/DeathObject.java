@@ -1,10 +1,10 @@
 package me.hotpocket.skriptadvancements.advancementcreator.shared;
 
 import com.google.gson.JsonObject;
+import me.hotpocket.skriptadvancements.advancementcreator.util.JsonBuilder;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import me.hotpocket.skriptadvancements.advancementcreator.util.JsonBuilder;
 
 /**
  * Specifies information about a death event.
