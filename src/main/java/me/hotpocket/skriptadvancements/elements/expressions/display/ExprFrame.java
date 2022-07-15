@@ -22,8 +22,8 @@ import org.jetbrains.annotations.Nullable;
 public class ExprFrame extends SimpleExpression<me.hotpocket.skriptadvancements.advancementcreator.Advancement.Frame> {
 
     static {
-        Skript.registerExpression(ExprFrame.class, me.hotpocket.skriptadvancements.advancementcreator.Advancement.Frame.class, ExpressionType.SIMPLE, "[the] frame of [[the] advancement[s]] %advancements%",
-                "[[the] advancement[s]] %advancements%'[s] frame");
+        Skript.registerExpression(ExprFrame.class, me.hotpocket.skriptadvancements.advancementcreator.Advancement.Frame.class, ExpressionType.SIMPLE, "[the] displayed frame of [[the] advancement[s]] %advancements%",
+                "[[the] advancement[s]] %advancements%'[s] displayed frame");
     }
 
     private Expression<Advancement> advancements;
