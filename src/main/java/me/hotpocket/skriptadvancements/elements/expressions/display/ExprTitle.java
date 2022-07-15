@@ -1,6 +1,10 @@
 package me.hotpocket.skriptadvancements.elements.expressions.display;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -10,6 +14,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
+
+@Name("Advancement Title")
+@Description({"Allows you to get the title of advancements."})
+@Examples("title of the advancement \"adventure/root\"")
+@Since("1.3.2")
 
 public class ExprTitle extends SimpleExpression<String> {
 

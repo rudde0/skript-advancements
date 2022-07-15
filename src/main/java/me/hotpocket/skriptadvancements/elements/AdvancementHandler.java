@@ -1,5 +1,7 @@
 package me.hotpocket.skriptadvancements.elements;
 
+import ch.njol.skript.aliases.ItemType;
+import de.tr7zw.nbtapi.NBTItem;
 import me.hotpocket.skriptadvancements.SkriptAdvancements;
 import me.hotpocket.skriptadvancements.advancementcreator.Advancement;
 import me.hotpocket.skriptadvancements.advancementcreator.shared.ItemObject;
@@ -8,6 +10,7 @@ import me.hotpocket.skriptadvancements.advancementcreator.trigger.Trigger;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.inventory.ItemStack;
 
 public class AdvancementHandler {
 
@@ -23,6 +26,7 @@ public class AdvancementHandler {
     private static Advancement.Frame frame = Advancement.Frame.TASK;
     private static NamespacedKey parent = null;
     private static Boolean hidden = true;
+    private static String nbt;
 
     private static String namespace = SkriptAdvancements.getInstance().getConfig().getString("custom-key");
 
@@ -46,14 +50,22 @@ public class AdvancementHandler {
         return advancementDescription;
     }
 
-    public static void setIcon(Material icon) {
-        advancementIcon = icon;
-        lastCreatedAdvancement = new Advancement(new NamespacedKey(namespace, getName()), new ItemObject().setItem(icon),
+    public static void setIcon(ItemType icon) {
+        ItemStack itemStack = new ItemStack(icon.getMaterial());
+        itemStack.setItemMeta(icon.getItemMeta());
+        NBTItem nbtItem = new NBTItem(itemStack);
+        advancementIcon = itemStack.getType();
+        nbt = nbtItem.getCompound().toString();
+        lastCreatedAdvancement = new Advancement(new NamespacedKey(namespace, getName()), new ItemObject().setItem(itemStack.getType()).setNbt(nbtItem.getCompound().toString()),
                 new TextComponent(getTitle()), new TextComponent(getDescription()));
     }
 
     public static Material getIcon() {
         return advancementIcon;
+    }
+
+    public static String getNBT() {
+        return nbt;
     }
 
     public static void setName(String name) {
@@ -115,23 +127,20 @@ public class AdvancementHandler {
     public static void setHidden(Boolean b) { hidden = b; }
 
     public static void buildAdvancement() {
-        if(isRoot()) {
-            lastCreatedAdvancement = new Advancement(new NamespacedKey(namespace, getName().replaceAll(":", "")), new ItemObject().setItem(getIcon()),
+            lastCreatedAdvancement = new Advancement(new NamespacedKey(namespace, getName().replaceAll(":", "")), new ItemObject().setItem(getIcon()).setNbt(nbt),
                     new TextComponent(getTitle()), new TextComponent(getDescription()))
                     .addTrigger(getName(), new ImpossibleTrigger())
-                    .setFrame(frame);
-            lastCreatedAdvancement.makeRoot("block/" + getBackground().translationKey().split("minecraft.")[1], isAutoUnlock());
-        } else {
-            lastCreatedAdvancement = new Advancement(new NamespacedKey(namespace, getName()), new ItemObject().setItem(getIcon()),
-                    new TextComponent(getTitle()), new TextComponent(getDescription()))
-                    .addTrigger(getName(), new ImpossibleTrigger())
-                    .setFrame(frame);
-            if(parent != null) {
-                lastCreatedAdvancement.makeChild(parent);
+                    .setFrame(frame)
+                    .setHidden(isHidden());
+            if(isRoot()) {
+                lastCreatedAdvancement.makeRoot("block/" + getBackground().translationKey().split("minecraft.")[1], isAutoUnlock());
+            } else {
+                if(parent != null) {
+                    lastCreatedAdvancement.makeChild(parent);
+                }
             }
-        }
         lastCreatedAdvancement.setHidden(hidden);
-        lastCreatedAdvancement.activate(false);
+        lastCreatedAdvancement.activate(SkriptAdvancements.getInstance().getConfig().getConfigurationSection("reload").getBoolean("on-create"));
         advancementTitle = "Default Title";
         advancementDescription = "Default Description";
         advancementIcon = Material.DIRT;

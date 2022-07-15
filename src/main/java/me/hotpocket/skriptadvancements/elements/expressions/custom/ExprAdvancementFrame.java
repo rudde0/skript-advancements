@@ -19,8 +19,7 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 @Name("Advancement Frame")
-@Description({"Allowed Changers: SET",
-        "This expression allows you to change the frame of a custom advancement in the advancement creator section."})
+@Description({"This expression allows you to change the frame of a custom advancement in the advancement creator section."})
 @Examples({"set frame of advancement to task",
         "set frame of advancement to goal",
         "set frame of advancement to challenge"})
@@ -56,11 +55,7 @@ public class ExprAdvancementFrame extends SimpleExpression<Advancement.Frame> {
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        if(getParser().isCurrentSection(SecMakeAdvancement.class)) {
-            return true;
-        } else {
-            return false;
-        }
+        return getParser().isCurrentSection(SecMakeAdvancement.class);
     }
 
     @Override

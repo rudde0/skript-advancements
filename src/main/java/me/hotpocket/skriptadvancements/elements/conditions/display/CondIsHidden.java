@@ -1,12 +1,21 @@
 package me.hotpocket.skriptadvancements.elements.conditions.display;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.event.Event;
+
+@Name("Advancement Is Hidden")
+@Description({"Gets whether or not an advancement is hidden."})
+@Examples("if \"adventure/kill_a_mob\" is hidden")
+@Since("1.3.2")
 
 public class CondIsHidden extends Condition {
 

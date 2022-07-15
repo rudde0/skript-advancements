@@ -2,6 +2,10 @@ package me.hotpocket.skriptadvancements.elements.expressions;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.expressions.base.EventValueExpression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.util.coll.CollectionUtils;
@@ -10,6 +14,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.jetbrains.annotations.Nullable;
+
+@Name("Advancement Message")
+@Description({"Allows you to get and modify the advancement message in an advancement complete event."})
+@Examples("set advancement message to \"%player% has completed an advancement!\"")
+@Since("1.3.1")
 
 public class ExprAdvancementMessage extends EventValueExpression<String> {
 

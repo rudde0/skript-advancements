@@ -1,6 +1,10 @@
 package me.hotpocket.skriptadvancements.elements.effects;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -9,6 +13,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
+
+@Name("Delete Advancement")
+@Description({"Allows you to delete a custom advancement. (Deleting will also result in the deletion of it's children.)"})
+@Examples({"# This will delete all of the custom advancements.", "delete all advancements", "", "# This will delete one advancement.", "delete the advancement \"skript-advancements:group/advancement\""})
+@Since("1.3.2")
 
 public class EffDeleteAdvancement extends Effect {
 

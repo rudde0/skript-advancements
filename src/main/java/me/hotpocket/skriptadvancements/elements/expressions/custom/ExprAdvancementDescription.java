@@ -18,8 +18,7 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 @Name("Advancement Description")
-@Description({"Allowed Changers: SET",
-        "This expression allows you to change the description of a custom advancement in the advancement creator section."})
+@Description({"This expression allows you to change the description of a custom advancement in the advancement creator section."})
 @Examples("set description of advancement to \"The best advancement.\"")
 @Since("1.3")
 
@@ -53,11 +52,7 @@ public class ExprAdvancementDescription extends SimpleExpression<String> {
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        if(getParser().isCurrentSection(SecMakeAdvancement.class)) {
-            return true;
-        } else {
-            return false;
-        }
+        return getParser().isCurrentSection(SecMakeAdvancement.class);
     }
 
     @Override

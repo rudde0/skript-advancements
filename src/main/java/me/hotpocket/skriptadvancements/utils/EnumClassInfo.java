@@ -1,4 +1,4 @@
-package me.hotpocket.skriptadvancements;
+package me.hotpocket.skriptadvancements.utils;
 
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.EnumSerializer;

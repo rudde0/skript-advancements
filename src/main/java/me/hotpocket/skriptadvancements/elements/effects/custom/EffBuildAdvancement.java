@@ -31,20 +31,13 @@ public class EffBuildAdvancement extends Effect {
     @Override
     @SuppressWarnings({"unchecked"})
     public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
-        if(getParser().isCurrentSection(SecMakeAdvancement.class)) {
-            return true;
-        } else {
-            return false;
-        }
+        return getParser().isCurrentSection(SecMakeAdvancement.class);
     }
 
     @Override
     protected void execute(@NonNull Event event) {
         if(Bukkit.getAdvancement(AdvancementHandler.lastCreatedAdvancement.getId()) == null) {
             AdvancementHandler.buildAdvancement();
-            if(SkriptAdvancements.getInstance().getConfig().getConfigurationSection("reload").getBoolean("on-create")) {
-                Bukkit.reloadData();
-            }
         }
     }
 

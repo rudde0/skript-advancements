@@ -19,8 +19,7 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 @Name("Advancement Background")
-@Description({"Allowed Changers: SET",
-        "This expression allows you to change the background of a custom advancement in the advancement creator section."})
+@Description({"This expression allows you to change the background of a custom advancement in the advancement creator section."})
 @Examples("set background of advancement to diamond ore")
 @Since("1.3")
 
@@ -54,11 +53,7 @@ public class ExprAdvancementBackground extends SimpleExpression<ItemType> {
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        if(getParser().isCurrentSection(SecMakeAdvancement.class)) {
-            return true;
-        } else {
-            return false;
-        }
+        return getParser().isCurrentSection(SecMakeAdvancement.class);
     }
 
     @Override

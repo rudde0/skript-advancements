@@ -1,12 +1,21 @@
 package me.hotpocket.skriptadvancements.elements.conditions.display;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.event.Event;
+
+@Name("Does Show Toast")
+@Description({"Gets whether or not an advancement shows toast or not."})
+@Examples("if \"adventure/root\" shows toast")
+@Since("1.3.2")
 
 public class CondShowsToast extends Condition {
 

@@ -19,8 +19,8 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 @Name("Advancement Icon")
-@Description({"Allowed Changers: SET",
-        "This expression allows you to change the icon of a custom advancement in the advancement creator section."})
+@Description({"This expression allows you to change the icon of a custom advancement in the advancement creator section.",
+        "Some blocks are not accepted. An example of these blocks would be a carrot plant."})
 @Examples("set icon of advancement to diamond")
 @Since("1.3")
 
@@ -68,6 +68,6 @@ public class ExprAdvancementIcon extends SimpleExpression<ItemType> {
 
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
-        AdvancementHandler.setIcon(((ItemType) delta[0]).getMaterial());
+        AdvancementHandler.setIcon(((ItemType) delta[0]));
     }
 }
