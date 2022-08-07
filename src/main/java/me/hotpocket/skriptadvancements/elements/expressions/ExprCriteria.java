@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Criteria")
 @Description({"This expression allows you to get the criteria of any advancement.",
-"Criteria of custom advancements made with skript-advancements will always be the advancement."})
+        "Criteria of custom advancements made with skript-advancements will always be the advancement."})
 @Examples("broadcast \"%criteria of \"adventure/very_very_frightening\"%\"")
 @Since("1.3.2")
 public class ExprCriteria extends SimpleExpression<Object> {
@@ -30,7 +30,7 @@ public class ExprCriteria extends SimpleExpression<Object> {
 
     @Override
     protected @Nullable Object[] get(Event e) {
-        for(Advancement advancement : advancements.getArray(e)) {
+        for (Advancement advancement : advancements.getArray(e)) {
             return advancement.getCriteria().toArray();
         }
         return null;

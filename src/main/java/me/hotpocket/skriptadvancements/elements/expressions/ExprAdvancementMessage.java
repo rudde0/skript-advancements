@@ -54,7 +54,7 @@ public class ExprAdvancementMessage extends EventValueExpression<String> {
     @Nullable
     protected String[] get(Event e) {
         PlayerAdvancementDoneEvent event = (PlayerAdvancementDoneEvent) e;
-        return new String[] { Bukkit.getUnsafe().legacyComponentSerializer().serialize(event.message()) };
+        return new String[]{Bukkit.getUnsafe().legacyComponentSerializer().serialize(event.message())};
     }
 
     @Override

@@ -23,17 +23,17 @@ import org.jetbrains.annotations.Nullable;
 public class ExprTitle extends SimpleExpression<String> {
 
     static {
-        if(Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
+        if (Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
             Skript.registerExpression(ExprTitle.class, String.class, ExpressionType.SIMPLE, "[the] displayed title of [[the] advancement[s]] %advancements%",
-                "[[the] advancement[s]] %advancements%'[s] displayed title");
+                    "[[the] advancement[s]] %advancements%'[s] displayed title");
     }
 
     private Expression<Advancement> advancements;
 
     @Override
     protected @Nullable String[] get(Event e) {
-        for(Advancement advancement : advancements.getArray(e)) {
-            return new String[]{ Bukkit.getUnsafe().legacyComponentSerializer().serialize(advancement.getDisplay().title()) };
+        for (Advancement advancement : advancements.getArray(e)) {
+            return new String[]{Bukkit.getUnsafe().legacyComponentSerializer().serialize(advancement.getDisplay().title())};
         }
         return null;
     }

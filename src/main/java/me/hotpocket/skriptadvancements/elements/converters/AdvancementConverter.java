@@ -14,7 +14,7 @@ public class AdvancementConverter {
             @Nullable
             @Override
             public Advancement convert(String s) {
-                if(s.contains(":")) {
+                if (s.contains(":")) {
                     return Bukkit.getAdvancement(new NamespacedKey(s.split(":")[0], s.split(":")[1]));
                 } else {
                     return Bukkit.getAdvancement(NamespacedKey.minecraft(s));

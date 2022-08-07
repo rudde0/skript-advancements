@@ -20,11 +20,12 @@ import org.bukkit.event.Event;
 public class CondIsHidden extends Condition {
 
     static {
-        if(Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
+        if (Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
             Skript.registerCondition(CondIsHidden.class,
-                "[[the] advancement[s]] %advancements% (is|are) hidden",
-                "[[the] advancement[s]] %advancements% (is(n't| not)|are(n't| not)) hidden");
+                    "[[the] advancement[s]] %advancements% (is|are) hidden",
+                    "[[the] advancement[s]] %advancements% (is(n't| not)|are(n't| not)) hidden");
     }
+
     private Expression<Advancement> advancements;
 
     @Override

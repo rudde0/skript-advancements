@@ -52,7 +52,7 @@ public class EffDisplayToast extends Effect {
         ItemStack item = new ItemStack(icon.getSingle(event).getMaterial());
         item.setItemMeta(icon.getSingle(event).getItemMeta());
 
-        for(Player player : players.getArray(event)) {
+        for (Player player : players.getArray(event)) {
             UltimateAdvancementAPI.getInstance(SkriptAdvancements.getInstance()).displayCustomToast(player, item, title.getSingle(event), AdvancementFrameType.valueOf(frame.getSingle(event).name()));
         }
     }

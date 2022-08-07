@@ -9,8 +9,8 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
 import me.hotpocket.skriptadvancements.elements.sections.SecMakeAdvancement;
+import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.advancement.Advancement;
@@ -26,10 +26,10 @@ import org.jetbrains.annotations.Nullable;
 public class ExprAdvancementParent extends SimpleExpression<Advancement> {
 
     static {
-        if(Skript.methodExists(Material.class, "getTranslationKey"))
+        if (Skript.methodExists(Material.class, "getTranslationKey"))
             Skript.registerExpression(ExprAdvancementParent.class, Advancement.class, ExpressionType.SIMPLE,
-                "[the] parent of [the] [last (created|made)] advancement",
-                "[the] [last (created|made)] advancement's parent");
+                    "[the] parent of [the] [last (created|made)] advancement",
+                    "[the] [last (created|made)] advancement's parent");
     }
 
     @Override

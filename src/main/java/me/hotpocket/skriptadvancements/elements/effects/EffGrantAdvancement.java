@@ -41,7 +41,7 @@ public class EffGrantAdvancement extends Effect {
 
     @Override
     protected void execute(@NonNull Event event) {
-        for(Player player : players.getArray(event)) {
+        for (Player player : players.getArray(event)) {
             for (Advancement advancement : advancements.getArray(event)) {
                 if (player == null || advancement == null) return;
                 AdvancementAPI.grantAdvancement(player, advancement);

@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Reload Data")
 @Description({"This is NOT the same as reloading the entire server, just Minecraft's data. This data includes things like advancements and loot tables.",
-"An example of this effect being used is when you make a mistake and you would like to reload advancements now, rather than later."})
+        "An example of this effect being used is when you make a mistake and you would like to reload advancements now, rather than later."})
 @Examples({"reload bukkit data"})
 @Since("1.3.1")
 

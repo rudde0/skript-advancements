@@ -27,6 +27,7 @@ public final class SkriptAdvancements extends JavaPlugin {
         main = new AdvancementMain(this);
         main.load();
     }
+
     SkriptAddon addon;
 
     public void onEnable() {
@@ -44,7 +45,7 @@ public final class SkriptAdvancements extends JavaPlugin {
         new Metrics(this, id);
 
         File file = new File(getDataFolder() + File.separator + "config.yml");
-        if (!file.exists()){
+        if (!file.exists()) {
             getConfig().options().copyDefaults(true);
             saveDefaultConfig();
         } else {
@@ -59,7 +60,7 @@ public final class SkriptAdvancements extends JavaPlugin {
         }
 
         new UpdateChecker(SkriptAdvancements.getInstance(), 96702).getVersion(version -> {
-            if(!SkriptAdvancements.getInstance().getDescription().getVersion().equals(version)) {
+            if (!SkriptAdvancements.getInstance().getDescription().getVersion().equals(version)) {
                 sendConsole("§eA new version of §lSkript-Advancements §eis available!\n§bDownload Here:§r https://www.spigotmc.org/resources/skript-advancements-skript-addon.96702/");
             }
         });

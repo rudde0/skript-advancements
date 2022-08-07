@@ -29,8 +29,8 @@ public class EffDeleteAdvancement extends Effect {
 
     @Override
     protected void execute(Event e) {
-        for(Advancement advancement : advancements.getArray(e)) {
-            if(Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay")) {
+        for (Advancement advancement : advancements.getArray(e)) {
+            if (Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay")) {
                 for (Advancement child : advancement.getChildren()) {
                     Bukkit.getUnsafe().removeAdvancement(child.getKey());
                 }

@@ -54,7 +54,7 @@ public class ExprAllAdvancements extends SimpleExpression<Advancement> {
     protected Advancement[] get(Event event) {
         ArrayList<Advancement> advancements = new ArrayList<>();
         Iterator<Advancement> iterator = Bukkit.getServer().advancementIterator();
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             advancements.add(iterator.next());
         }
         return advancements.toArray(new Advancement[advancements.size()]);

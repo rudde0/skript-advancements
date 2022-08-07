@@ -24,7 +24,7 @@ import java.util.List;
 public class SecMakeAdvancement extends EffectSection {
 
     static {
-        if(Skript.methodExists(Material.class, "getTranslationKey"))
+        if (Skript.methodExists(Material.class, "getTranslationKey"))
             Skript.registerSection(SecMakeAdvancement.class, "create [a[n]] [new] advancement named %string%");
     }
 
@@ -34,11 +34,11 @@ public class SecMakeAdvancement extends EffectSection {
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult,
                         @Nullable SectionNode sectionNode, @Nullable List<TriggerItem> triggerItems) {
-        if(getParser().isCurrentSection(SecMakeAdvancement.class)){
+        if (getParser().isCurrentSection(SecMakeAdvancement.class)) {
             Skript.error("The advancement creation section is not meant to be put inside of another advancement creation section.");
             return false;
         }
-        if(sectionNode != null){
+        if (sectionNode != null) {
             loadOptionalCode(sectionNode);
         }
         name = (Expression<String>) exprs[0];

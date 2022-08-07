@@ -9,9 +9,9 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
 import me.hotpocket.skriptadvancements.elements.sections.SecMakeAdvancement;
 import me.hotpocket.skriptadvancements.utils.AdvancementAPI;
+import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -27,10 +27,10 @@ import org.jetbrains.annotations.Nullable;
 public class ExprAdvancementFrame extends SimpleExpression<AdvancementAPI.Frame> {
 
     static {
-        if(Skript.methodExists(Material.class, "getTranslationKey"))
+        if (Skript.methodExists(Material.class, "getTranslationKey"))
             Skript.registerExpression(ExprAdvancementFrame.class, AdvancementAPI.Frame.class, ExpressionType.SIMPLE,
-                "[the] frame of [the] [last (created|made)] advancement",
-                "[the] [last (created|made)] advancement's frame");
+                    "[the] frame of [the] [last (created|made)] advancement",
+                    "[the] [last (created|made)] advancement's frame");
     }
 
     @Override

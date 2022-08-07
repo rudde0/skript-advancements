@@ -1,7 +1,6 @@
 package me.hotpocket.skriptadvancements.utils;
 
 import me.hotpocket.skriptadvancements.SkriptAdvancements;
-import me.hotpocket.skriptadvancements.utils.AdvancementAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -26,9 +25,20 @@ public class AdvancementHandler {
         if (Bukkit.getAdvancement(SkriptAdvancements.getKey(name)) == null) {
             if (root) {
                 AdvancementAPI.createRootAdvancement(name, title, description, icon, background, frame, autoUnlock, hidden, toast, announce);
-                return;
+            } else {
+                AdvancementAPI.createAdvancement(name, title, description, icon, parent, frame, hidden, toast, announce);
             }
-            AdvancementAPI.createAdvancement(name, title, description, icon, parent, frame, hidden, toast, announce);
+            root = false;
+            announce = true;
+            toast = true;
+            hidden = true;
+            autoUnlock = true;
+            parent = NamespacedKey.minecraft("adventure/root");
+            frame = AdvancementAPI.Frame.TASK;
+            background = Material.DIRT;
+            icon = new ItemStack(Material.STONE_PICKAXE);
+            description = "Custom advancement made with Skript-Advancements";
+            title = "Advancement";
         }
     }
 }

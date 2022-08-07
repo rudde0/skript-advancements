@@ -34,10 +34,10 @@ public class ExprDateAwarded extends SimpleExpression<Date> {
 
     @Override
     protected @Nullable Date[] get(Event e) {
-        for(Player player : players.getArray(e)) {
-            for(Advancement advancement : advancements.getArray(e)) {
-                if(player.getAdvancementProgress(advancement).isDone()) {
-                    for(String criteria : Bukkit.getAdvancement(advancement.getKey()).getCriteria()) {
+        for (Player player : players.getArray(e)) {
+            for (Advancement advancement : advancements.getArray(e)) {
+                if (player.getAdvancementProgress(advancement).isDone()) {
+                    for (String criteria : Bukkit.getAdvancement(advancement.getKey()).getCriteria()) {
                         return new Date[]{new Date(player.getAdvancementProgress(advancement).getDateAwarded(criteria).getTime())};
                     }
                 }

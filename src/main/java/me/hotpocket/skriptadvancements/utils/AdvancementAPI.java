@@ -15,18 +15,18 @@ import java.util.logging.Level;
 
 public class AdvancementAPI {
 
-    private static String rootJSON = "{\"display\": {\"icon\": {\"item\": \"minecraft:the_icon\",\"nbt\": \"the_nbt\"},\"title\": {\"text\": \"the_title\"}, \"description\": {\"text\": \"the_description\"}, \"background\": \"minecraft:textures/block/the_background.png\", \"frame\": \"the_frame\", \"show_toast\": does_show_toast, \"announce_to_chat\": does_announce, \"hidden\": is_hidden  }, \"criteria\": {\"auto\": {\"trigger\": \"minecraft:is_auto\", \"conditions\": {}}, \"advancement_name\": {\"trigger\": \"minecraft:impossible\", \"conditions\": {}}}}";
-    private static String childJSON = "{\"parent\": \"the_parent\", \"display\": {\"icon\": {\"item\": \"minecraft:the_icon\", \"nbt\": \"the_nbt\"}, \"title\": \"the_title\", \"description\": \"the_description\", \"frame\": \"the_frame\", \"hidden\": is_hidden}, \"criteria\": {\"advancement_name\": {\"trigger\": \"minecraft:impossible\", \"conditions\": {}}}}";
+    private static final String rootJSON = "{\"display\": {\"icon\": {\"item\": \"minecraft:the_icon\",\"nbt\": \"the_nbt\"},\"title\": {\"text\": \"the_title\"}, \"description\": {\"text\": \"the_description\"}, \"background\": \"minecraft:textures/block/the_background.png\", \"frame\": \"the_frame\", \"show_toast\": does_show_toast, \"announce_to_chat\": does_announce, \"hidden\": is_hidden  }, \"criteria\": {\"auto\": {\"trigger\": \"minecraft:is_auto\", \"conditions\": {}}, \"advancement_name\": {\"trigger\": \"minecraft:impossible\", \"conditions\": {}}}}";
+    private static final String childJSON = "{\"parent\": \"the_parent\", \"display\": {\"icon\": {\"item\": \"minecraft:the_icon\", \"nbt\": \"the_nbt\"}, \"title\": \"the_title\", \"description\": \"the_description\", \"frame\": \"the_frame\", \"hidden\": is_hidden}, \"criteria\": {\"advancement_name\": {\"trigger\": \"minecraft:impossible\", \"conditions\": {}}}}";
 
     public static void grantAdvancement(Player player, Advancement advancement) {
         AdvancementProgress progress = player.getAdvancementProgress(advancement);
-        for(String criteria : progress.getRemainingCriteria())
+        for (String criteria : progress.getRemainingCriteria())
             progress.awardCriteria(criteria);
     }
 
     public static void revokeAdvancement(Player player, Advancement advancement) {
         AdvancementProgress progress = player.getAdvancementProgress(advancement);
-        for(String criteria : progress.getAwardedCriteria())
+        for (String criteria : progress.getAwardedCriteria())
             progress.revokeCriteria(criteria);
     }
 
@@ -34,7 +34,7 @@ public class AdvancementAPI {
 
         String key = "skript";
 
-        if(SkriptAdvancements.getInstance().getConfig().getString("custom-key") != null) {
+        if (SkriptAdvancements.getInstance().getConfig().getString("custom-key") != null) {
             key = SkriptAdvancements.getInstance().getConfig().getString("custom-key");
         }
 
@@ -49,7 +49,7 @@ public class AdvancementAPI {
                 .replace("does_announce", String.valueOf(announce))
                 .replace("the_nbt", new NBTItem(icon).getCompound().toString().replace("\"", "\\\""));
 
-        if(unlock) {
+        if (unlock) {
             advancementJSON = advancementJSON.replaceAll("is_auto", "location");
         } else {
             advancementJSON = advancementJSON.replaceAll("is_auto", "impossible");
@@ -61,7 +61,7 @@ public class AdvancementAPI {
         if (!file.exists()) {
             try {
                 Bukkit.getUnsafe().loadAdvancement(new NamespacedKey(key, name), advancementJSON);
-                if(SkriptAdvancements.getInstance().getConfig().getConfigurationSection("reload").getBoolean("on-create")) {
+                if (SkriptAdvancements.getInstance().getConfig().getConfigurationSection("reload").getBoolean("on-create")) {
                     Bukkit.reloadData();
                 }
             } catch (Exception e) {
@@ -74,7 +74,7 @@ public class AdvancementAPI {
 
         String key = "skript";
 
-        if(SkriptAdvancements.getInstance().getConfig().getString("custom-key") != null) {
+        if (SkriptAdvancements.getInstance().getConfig().getString("custom-key") != null) {
             key = SkriptAdvancements.getInstance().getConfig().getString("custom-key");
         }
 
@@ -95,7 +95,7 @@ public class AdvancementAPI {
         if (!file.exists()) {
             try {
                 Bukkit.getUnsafe().loadAdvancement(new NamespacedKey(key, name), advancementJSON);
-                if(SkriptAdvancements.getInstance().getConfig().getConfigurationSection("reload").getBoolean("on-create")) {
+                if (SkriptAdvancements.getInstance().getConfig().getConfigurationSection("reload").getBoolean("on-create")) {
                     Bukkit.reloadData();
                 }
             } catch (Exception e) {

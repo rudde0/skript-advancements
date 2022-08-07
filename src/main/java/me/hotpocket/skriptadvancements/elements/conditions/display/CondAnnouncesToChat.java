@@ -20,11 +20,12 @@ import org.bukkit.event.Event;
 public class CondAnnouncesToChat extends Condition {
 
     static {
-        if(Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
+        if (Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
             Skript.registerCondition(CondAnnouncesToChat.class,
-                "[[the] advancement[s]] %advancements% (does announce|announces) [to [the] chat]",
-                "[[the] advancement[s]] %advancements% does(n't| not) announce [to [the] chat]");
+                    "[[the] advancement[s]] %advancements% (does announce|announces) [to [the] chat]",
+                    "[[the] advancement[s]] %advancements% does(n't| not) announce [to [the] chat]");
     }
+
     private Expression<Advancement> advancements;
 
     @Override

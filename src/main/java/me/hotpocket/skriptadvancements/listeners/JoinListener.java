@@ -15,7 +15,7 @@ public class JoinListener implements Listener {
             @Override
             public void run() {
                 new UpdateChecker(SkriptAdvancements.getInstance(), 96702).getVersion(version -> {
-                    if(!SkriptAdvancements.getInstance().getDescription().getVersion().equals(version)) {
+                    if (!SkriptAdvancements.getInstance().getDescription().getVersion().equals(version)) {
                         event.getPlayer().sendMessage("§eA new version of §lSkript-Advancements §eis available!\n§bDownload Here:§r https://www.spigotmc.org/resources/skript-advancements-skript-addon.96702/");
                     }
                 });

@@ -9,8 +9,8 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
 import me.hotpocket.skriptadvancements.elements.sections.SecMakeAdvancement;
+import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -24,15 +24,15 @@ import org.jetbrains.annotations.Nullable;
 public class ExprAdvancementDescription extends SimpleExpression<String> {
 
     static {
-        if(Skript.methodExists(Material.class, "getTranslationKey"))
+        if (Skript.methodExists(Material.class, "getTranslationKey"))
             Skript.registerExpression(ExprAdvancementDescription.class, String.class, ExpressionType.SIMPLE,
-                "[the] des[cription] of [the] [last (created|made)] advancement",
-                "[the] [last (created|made)] advancement's description");
+                    "[the] des[cription] of [the] [last (created|made)] advancement",
+                    "[the] [last (created|made)] advancement's description");
     }
 
     @Override
     protected @Nullable String[] get(Event e) {
-        return new String[]{ AdvancementHandler.description };
+        return new String[]{AdvancementHandler.description};
     }
 
     @Override

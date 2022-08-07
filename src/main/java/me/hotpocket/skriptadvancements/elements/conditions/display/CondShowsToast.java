@@ -20,11 +20,12 @@ import org.bukkit.event.Event;
 public class CondShowsToast extends Condition {
 
     static {
-        if(Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
+        if (Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
             Skript.registerCondition(CondShowsToast.class,
-                "[[the] advancement[s]] %advancements% (does show|shows) toast",
-                "[[the] advancement[s]] %advancements% does(n't| not) show toast");
+                    "[[the] advancement[s]] %advancements% (does show|shows) toast",
+                    "[[the] advancement[s]] %advancements% does(n't| not) show toast");
     }
+
     private Expression<Advancement> advancements;
 
     @Override

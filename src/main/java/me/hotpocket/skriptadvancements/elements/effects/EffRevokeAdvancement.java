@@ -41,7 +41,7 @@ public class EffRevokeAdvancement extends Effect {
 
     @Override
     protected void execute(@NonNull Event event) {
-        for(Player player : players.getArray(event)) {
+        for (Player player : players.getArray(event)) {
             for (Advancement advancement : advancements.getArray(event)) {
                 if (player == null || advancement == null) return;
                 AdvancementAPI.revokeAdvancement(player, advancement);
@@ -51,6 +51,6 @@ public class EffRevokeAdvancement extends Effect {
 
     @Override
     public String toString(@Nullable Event event, boolean debug) {
-        return "revoke advancement " + advancements .toString(event, debug) + " from " + players.toString(event, debug);
+        return "revoke advancement " + advancements.toString(event, debug) + " from " + players.toString(event, debug);
     }
 }

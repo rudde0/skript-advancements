@@ -10,8 +10,8 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
 import me.hotpocket.skriptadvancements.elements.sections.SecMakeAdvancement;
+import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -25,15 +25,15 @@ import org.jetbrains.annotations.Nullable;
 public class ExprAdvancementBackground extends SimpleExpression<ItemType> {
 
     static {
-        if(Skript.methodExists(Material.class, "getTranslationKey"))
+        if (Skript.methodExists(Material.class, "getTranslationKey"))
             Skript.registerExpression(ExprAdvancementBackground.class, ItemType.class, ExpressionType.SIMPLE,
-                "[the] background of [the] [last (created|made)] advancement",
-                "[the] [last (created|made)] advancement's background");
+                    "[the] background of [the] [last (created|made)] advancement",
+                    "[the] [last (created|made)] advancement's background");
     }
 
     @Override
     protected @Nullable ItemType[] get(Event e) {
-        return new ItemType[]{ new ItemType(AdvancementHandler.background) };
+        return new ItemType[]{new ItemType(AdvancementHandler.background)};
     }
 
     @Override

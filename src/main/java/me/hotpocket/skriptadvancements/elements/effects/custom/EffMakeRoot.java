@@ -6,8 +6,8 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
 import me.hotpocket.skriptadvancements.elements.sections.SecMakeAdvancement;
+import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 public class EffMakeRoot extends Effect {
 
     static {
-        if(Skript.methodExists(Material.class, "getTranslationKey"))
+        if (Skript.methodExists(Material.class, "getTranslationKey"))
             Skript.registerEffect(EffMakeRoot.class, "make [the] [last (created|made)] advancement [a] root [advancement]");
     }
 

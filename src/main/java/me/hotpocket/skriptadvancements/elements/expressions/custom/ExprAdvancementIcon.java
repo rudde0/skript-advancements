@@ -11,8 +11,8 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import me.hotpocket.skriptadvancements.SkriptAdvancements;
-import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
 import me.hotpocket.skriptadvancements.elements.sections.SecMakeAdvancement;
+import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -27,15 +27,15 @@ import org.jetbrains.annotations.Nullable;
 public class ExprAdvancementIcon extends SimpleExpression<ItemType> {
 
     static {
-        if(Skript.methodExists(Material.class, "getTranslationKey"))
+        if (Skript.methodExists(Material.class, "getTranslationKey"))
             Skript.registerExpression(ExprAdvancementIcon.class, ItemType.class, ExpressionType.SIMPLE,
-                "[the] icon of [the] [last (created|made)] advancement",
-                "[the] [last (created|made)] advancement's icon");
+                    "[the] icon of [the] [last (created|made)] advancement",
+                    "[the] [last (created|made)] advancement's icon");
     }
 
     @Override
     protected @Nullable ItemType[] get(Event e) {
-        return new ItemType[]{ new ItemType(AdvancementHandler.icon) };
+        return new ItemType[]{new ItemType(AdvancementHandler.icon)};
     }
 
     @Override
@@ -55,11 +55,7 @@ public class ExprAdvancementIcon extends SimpleExpression<ItemType> {
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        if(getParser().isCurrentSection(SecMakeAdvancement.class)) {
-            return true;
-        } else {
-            return false;
-        }
+        return getParser().isCurrentSection(SecMakeAdvancement.class);
     }
 
     @Override

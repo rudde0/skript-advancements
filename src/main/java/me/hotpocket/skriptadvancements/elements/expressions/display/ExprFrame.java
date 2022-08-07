@@ -23,16 +23,16 @@ import org.jetbrains.annotations.Nullable;
 public class ExprFrame extends SimpleExpression<AdvancementAPI.Frame> {
 
     static {
-        if(Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
+        if (Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
             Skript.registerExpression(ExprFrame.class, AdvancementAPI.Frame.class, ExpressionType.SIMPLE, "[the] displayed frame of [[the] advancement[s]] %advancements%",
-                "[[the] advancement[s]] %advancements%'[s] displayed frame");
+                    "[[the] advancement[s]] %advancements%'[s] displayed frame");
     }
 
     private Expression<Advancement> advancements;
 
     @Override
     protected @Nullable AdvancementAPI.Frame[] get(Event e) {
-        for(Advancement advancement : advancements.getArray(e)) {
+        for (Advancement advancement : advancements.getArray(e)) {
             return new AdvancementAPI.Frame[]{AdvancementAPI.Frame.valueOf(advancement.getDisplay().frame().name())};
         }
         return null;

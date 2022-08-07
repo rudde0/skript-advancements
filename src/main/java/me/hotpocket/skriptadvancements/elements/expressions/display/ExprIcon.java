@@ -23,17 +23,17 @@ import org.jetbrains.annotations.Nullable;
 public class ExprIcon extends SimpleExpression<ItemStack> {
 
     static {
-        if(Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
+        if (Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
             Skript.registerExpression(ExprIcon.class, ItemStack.class, ExpressionType.SIMPLE, "[the] displayed icon of [[the] advancement[s]] %advancements%",
-                "[[the] advancement[s]] %advancements%'[s] displayed icon");
+                    "[[the] advancement[s]] %advancements%'[s] displayed icon");
     }
 
     private Expression<Advancement> advancements;
 
     @Override
     protected @Nullable ItemStack[] get(Event e) {
-        for(Advancement advancement : advancements.getArray(e)) {
-            return new ItemStack[]{  advancement.getDisplay().icon() };
+        for (Advancement advancement : advancements.getArray(e)) {
+            return new ItemStack[]{advancement.getDisplay().icon()};
         }
         return null;
     }
