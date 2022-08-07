@@ -23,7 +23,8 @@ import org.jetbrains.annotations.Nullable;
 public class ExprTitle extends SimpleExpression<String> {
 
     static {
-        Skript.registerExpression(ExprTitle.class, String.class, ExpressionType.SIMPLE, "[the] displayed title of [[the] advancement[s]] %advancements%",
+        if(Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
+            Skript.registerExpression(ExprTitle.class, String.class, ExpressionType.SIMPLE, "[the] displayed title of [[the] advancement[s]] %advancements%",
                 "[[the] advancement[s]] %advancements%'[s] displayed title");
     }
 

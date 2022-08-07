@@ -10,6 +10,7 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import me.hotpocket.skriptadvancements.utils.AdvancementAPI;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -19,19 +20,20 @@ import org.jetbrains.annotations.Nullable;
 @Examples("title of the advancement \"adventure/root\"")
 @Since("1.3.2")
 
-public class ExprFrame extends SimpleExpression<me.hotpocket.skriptadvancements.advancementcreator.Advancement.Frame> {
+public class ExprFrame extends SimpleExpression<AdvancementAPI.Frame> {
 
     static {
-        Skript.registerExpression(ExprFrame.class, me.hotpocket.skriptadvancements.advancementcreator.Advancement.Frame.class, ExpressionType.SIMPLE, "[the] displayed frame of [[the] advancement[s]] %advancements%",
+        if(Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
+            Skript.registerExpression(ExprFrame.class, AdvancementAPI.Frame.class, ExpressionType.SIMPLE, "[the] displayed frame of [[the] advancement[s]] %advancements%",
                 "[[the] advancement[s]] %advancements%'[s] displayed frame");
     }
 
     private Expression<Advancement> advancements;
 
     @Override
-    protected @Nullable me.hotpocket.skriptadvancements.advancementcreator.Advancement.Frame[] get(Event e) {
+    protected @Nullable AdvancementAPI.Frame[] get(Event e) {
         for(Advancement advancement : advancements.getArray(e)) {
-            return new me.hotpocket.skriptadvancements.advancementcreator.Advancement.Frame[]{me.hotpocket.skriptadvancements.advancementcreator.Advancement.Frame.valueOf(advancement.getDisplay().frame().name())};
+            return new AdvancementAPI.Frame[]{AdvancementAPI.Frame.valueOf(advancement.getDisplay().frame().name())};
         }
         return null;
     }
@@ -42,8 +44,8 @@ public class ExprFrame extends SimpleExpression<me.hotpocket.skriptadvancements.
     }
 
     @Override
-    public Class<? extends me.hotpocket.skriptadvancements.advancementcreator.Advancement.Frame> getReturnType() {
-        return me.hotpocket.skriptadvancements.advancementcreator.Advancement.Frame.class;
+    public Class<? extends AdvancementAPI.Frame> getReturnType() {
+        return AdvancementAPI.Frame.class;
     }
 
     @Override

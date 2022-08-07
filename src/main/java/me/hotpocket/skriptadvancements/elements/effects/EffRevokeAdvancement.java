@@ -9,9 +9,8 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-import me.hotpocket.skriptadvancements.utils.AdvancementUtils;
+import me.hotpocket.skriptadvancements.utils.AdvancementAPI;
 import org.bukkit.advancement.Advancement;
-import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -45,7 +44,7 @@ public class EffRevokeAdvancement extends Effect {
         for(Player player : players.getArray(event)) {
             for (Advancement advancement : advancements.getArray(event)) {
                 if (player == null || advancement == null) return;
-                AdvancementUtils.revokeAdvancement(player, advancement);
+                AdvancementAPI.revokeAdvancement(player, advancement);
             }
         }
     }

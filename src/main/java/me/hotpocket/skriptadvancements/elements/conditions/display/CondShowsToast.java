@@ -20,7 +20,8 @@ import org.bukkit.event.Event;
 public class CondShowsToast extends Condition {
 
     static {
-        Skript.registerCondition(CondShowsToast.class,
+        if(Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
+            Skript.registerCondition(CondShowsToast.class,
                 "[[the] advancement[s]] %advancements% (does show|shows) toast",
                 "[[the] advancement[s]] %advancements% does(n't| not) show toast");
     }
