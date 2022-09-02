@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 public class ExprFrame extends SimpleExpression<AdvancementAPI.Frame> {
 
     static {
-        if (Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
+        if (Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay") && Skript.classExists("net.kyori.adventure.text.Component"))
             Skript.registerExpression(ExprFrame.class, AdvancementAPI.Frame.class, ExpressionType.SIMPLE, "[the] displayed frame of [[the] advancement[s]] %advancements%",
                     "[[the] advancement[s]] %advancements%'[s] displayed frame");
     }

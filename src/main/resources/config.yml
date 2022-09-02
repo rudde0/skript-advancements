@@ -6,7 +6,7 @@
 # This is essential for having the advancements load without restarting your server.
 reload:
   # Keep in mind that if advancements are created too fast then errors will appear. If this happens, it is suggested that you use the reload data effect and set the on-create value to false!
-  on-create: true
+  on-create: false
   on-delete: true
 
 # Set the key of a custom advancement. Keys are the "minecraft" part of "miencraft:adventure/root"

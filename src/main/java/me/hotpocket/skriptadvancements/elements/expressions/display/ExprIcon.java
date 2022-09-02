@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 public class ExprIcon extends SimpleExpression<ItemStack> {
 
     static {
-        if (Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay"))
+        if (Skript.classExists("io.papermc.paper.advancement.AdvancementDisplay") && Skript.classExists("net.kyori.adventure.text.Component"))
             Skript.registerExpression(ExprIcon.class, ItemStack.class, ExpressionType.SIMPLE, "[the] displayed icon of [[the] advancement[s]] %advancements%",
                     "[[the] advancement[s]] %advancements%'[s] displayed icon");
     }
