@@ -15,7 +15,7 @@ import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Advancement Description")
+@Name("Custom Advancement Description")
 @Description({"This expression allows you to change the description of a custom advancement in the advancement creator section."})
 @Examples("set description of advancement to \"The best advancement.\"")
 @RequiredPlugins("Paper")

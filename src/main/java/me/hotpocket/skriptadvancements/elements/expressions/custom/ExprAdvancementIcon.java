@@ -17,7 +17,7 @@ import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Advancement Icon")
+@Name("Custom Advancement Icon")
 @Description({"This expression allows you to change the icon of a custom advancement in the advancement creator section.",
         "Some blocks are not accepted. An example of these blocks would be a carrot plant."})
 @Examples("set icon of advancement to diamond")

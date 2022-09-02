@@ -17,7 +17,7 @@ import org.bukkit.advancement.Advancement;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Advancement Parent")
+@Name("Custom Advancement Parent")
 @Description({"This expression allows you to change the parent of a custom advancement in the advancement creator section."})
 @Examples("set parent of advancement to \"skript-advancements:group/advancement\"")
 @RequiredPlugins("Paper")

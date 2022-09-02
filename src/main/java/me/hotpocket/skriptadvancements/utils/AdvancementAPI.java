@@ -11,6 +11,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 
 public class AdvancementAPI {
@@ -28,6 +30,25 @@ public class AdvancementAPI {
         AdvancementProgress progress = player.getAdvancementProgress(advancement);
         for (String criteria : progress.getAwardedCriteria())
             progress.revokeCriteria(criteria);
+    }
+
+    public static ArrayList<Advancement> getAllAdvancements() {
+        ArrayList<Advancement> advancements = new ArrayList<>();
+        Iterator<Advancement> iterator = Bukkit.getServer().advancementIterator();
+        while (iterator.hasNext()) {
+            advancements.add(iterator.next());
+        }
+        return advancements;
+    }
+
+    public static ArrayList<Advancement> getAdvancementsOfPlayer(Player player) {
+        ArrayList<Advancement> advancements = new ArrayList<>();
+        Iterator<Advancement> iterator = Bukkit.getServer().advancementIterator();
+        while (iterator.hasNext()) {
+            if (player.getAdvancementProgress(iterator.next()).isDone())
+                advancements.add(iterator.next());
+        }
+        return advancements;
     }
 
     public static void createRootAdvancement(String name, String title, String description, ItemStack icon, Material background, Frame frame, boolean unlock, boolean hidden, boolean toast, boolean announce) {

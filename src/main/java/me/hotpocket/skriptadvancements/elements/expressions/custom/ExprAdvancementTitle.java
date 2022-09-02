@@ -15,7 +15,7 @@ import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Advancement Title")
+@Name("Custom Advancement Title")
 @Description({"This expression allows you to change the title of a custom advancement in the advancement creator section."})
 @Examples("set title of advancement to \"My Advancement\"")
 @RequiredPlugins("Paper")

@@ -19,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
         "Criteria of custom advancements made with skript-advancements will always be the advancement."})
 @Examples("broadcast \"%criteria of \"adventure/very_very_frightening\"%\"")
 @Since("1.3.2")
+
 public class ExprCriteria extends SimpleExpression<Object> {
 
     static {

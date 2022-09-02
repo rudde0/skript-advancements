@@ -16,7 +16,7 @@ import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Advancement Background")
+@Name("Custom Advancement Background")
 @Description({"This expression allows you to change the background of a custom advancement in the advancement creator section."})
 @Examples("set background of advancement to diamond ore")
 @RequiredPlugins("Paper")

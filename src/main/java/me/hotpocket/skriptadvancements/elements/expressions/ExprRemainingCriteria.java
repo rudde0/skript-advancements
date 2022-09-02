@@ -21,6 +21,7 @@ import org.jetbrains.annotations.Nullable;
         "If an advancement has not been completed, the remaining criteria of a custom advancement made with skript-advancements will always be the advancement."})
 @Examples("broadcast \"%remaining criteria of \"adventure/very_very_frightening\" for player%\"")
 @Since("1.3.2")
+
 public class ExprRemainingCriteria extends SimpleExpression<Object> {
 
     static {

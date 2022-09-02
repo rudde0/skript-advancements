@@ -3,6 +3,7 @@ package me.hotpocket.skriptadvancements.elements.expressions.custom;
 import ch.njol.skript.Skript;
 import ch.njol.skript.aliases.ItemType;
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -14,6 +15,12 @@ import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
+
+@Name("Custom Advancement Announcement")
+@Description({"This expression allows you to change the background of a custom advancement in the advancement creator section."})
+@Examples("set background of advancement to diamond ore")
+@RequiredPlugins("Paper")
+@Since("1.3")
 
 public class ExprAdvancementAnnouncement extends SimpleExpression<Boolean> {
 

@@ -16,7 +16,7 @@ import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Advancement Frame")
+@Name("Custom Advancement Frame")
 @Description({"This expression allows you to change the frame of a custom advancement in the advancement creator section."})
 @Examples({"set frame of advancement to task",
         "set frame of advancement to goal",
