@@ -14,8 +14,9 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 @Name("Disable Vanilla Advancement")
-@Description({"Disables all of the vanilla advancements."})
-@Examples("display toast of the advancement \"adventure/root\" to player")
+@Description({"Disables all of the vanilla advancements. This can be undone by restarting the server by turning it off and back on, just so no one gets confused.",
+"WARNING: This quite literally disables ALL vanilla advancements, including recipes! It will spam your console with warnings as well."})
+@Examples("disable all vanilla advancements")
 @Since("1.4")
 
 public class EffDisableVanillaAdvancements extends Effect {
