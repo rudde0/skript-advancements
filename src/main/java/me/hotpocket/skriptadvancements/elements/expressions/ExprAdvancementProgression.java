@@ -2,6 +2,10 @@ package me.hotpocket.skriptadvancements.elements.expressions;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -16,6 +20,11 @@ import javax.annotation.Nullable;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+
+@Name("Advancement Progression")
+@Description("Allows you to get and set the custom advancement progression for a player.")
+@Examples("set the progress of the custom advancement \"tabName/advancementName\" for player to 3")
+@Since("1.4")
 
 public class ExprAdvancementProgression extends SimpleExpression<Integer> {
 
@@ -37,7 +46,7 @@ public class ExprAdvancementProgression extends SimpleExpression<Integer> {
 
     @Override
     public boolean isSingle() {
-        return false;
+        return true;
     }
 
     @Override

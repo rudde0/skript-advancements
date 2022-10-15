@@ -2,6 +2,10 @@ package me.hotpocket.skriptadvancements.elements.sections;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.config.SectionNode;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.EffectSection;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -13,6 +17,10 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+
+@Name("Advancement Tab Section")
+@Description("Creates a custom advancement tab.")
+@Since("1.4")
 
 public class SecAdvancementTab extends EffectSection {
 

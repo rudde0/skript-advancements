@@ -1,6 +1,10 @@
 package me.hotpocket.skriptadvancements.elements.effects.custom;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -11,10 +15,16 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
+@Name("Creation - Build Advancement Tab")
+@Description({"Builds the last created advancement tab.",
+        "This can only be used inside of the advancement tab section."})
+@Examples("build advancement tab")
+@Since("1.4")
+
 public class EffBuildTab extends Effect {
 
     static {
-        Skript.registerEffect(EffBuildTab.class, "build [[the] last (created|made)] advancement tab");
+        Skript.registerEffect(EffBuildTab.class, "build [[the] last (created|made)] [advancement] tab");
     }
 
     @Override

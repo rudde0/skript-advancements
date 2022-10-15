@@ -1,6 +1,10 @@
 package me.hotpocket.skriptadvancements.elements.effects.custom;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -10,6 +14,12 @@ import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
 import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
+
+@Name("Creation - Build Advancement")
+@Description({"Builds the last created advancement.",
+"This can only be used inside of the advancement section."})
+@Examples("build advancement")
+@Since("1.4")
 
 public class EffBuildAdvancement extends Effect {
 

@@ -2,6 +2,10 @@ package me.hotpocket.skriptadvancements.elements.expressions.custom;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -12,6 +16,12 @@ import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
 import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
+
+@Name("Creation - Advancement Parent")
+@Description({"Sets the parent of a custom advancement to any custom advancement represented as a string.",
+"Remember to NOT use the custom advancement expression, use a string instead!"})
+@Examples("set parent of advancement to \"tabName/advancementName\"")
+@Since("1.4")
 
 public class ExprAdvancementParent extends SimpleExpression<String> {
 

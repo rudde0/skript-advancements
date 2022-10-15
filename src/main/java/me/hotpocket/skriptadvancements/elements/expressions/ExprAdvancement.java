@@ -1,6 +1,10 @@
 package me.hotpocket.skriptadvancements.elements.expressions;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -12,6 +16,11 @@ import org.bukkit.advancement.Advancement;
 import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
+
+@Name("Advancement")
+@Description("Allows you to get a vanilla advancement or an advancement created by a plugin or datapack.")
+@Examples("add the advancement \"adventure/root\" to advancements of player")
+@Since("1.4")
 
 public class ExprAdvancement extends SimpleExpression<Advancement> {
 

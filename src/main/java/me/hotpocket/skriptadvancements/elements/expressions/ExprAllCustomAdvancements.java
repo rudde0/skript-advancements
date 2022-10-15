@@ -1,6 +1,10 @@
 package me.hotpocket.skriptadvancements.elements.expressions;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -11,6 +15,11 @@ import me.hotpocket.skriptadvancements.utils.CustomUtils;
 import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
+
+@Name("All Custom Advancements")
+@Description("Allows you to get all of the custom advancements.")
+@Examples("broadcast all custom advancements")
+@Since("1.4")
 
 public class ExprAllCustomAdvancements extends SimpleExpression<Advancement> {
 
