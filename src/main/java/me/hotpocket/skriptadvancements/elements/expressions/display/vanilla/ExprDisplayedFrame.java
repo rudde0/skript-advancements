@@ -11,7 +11,6 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
-import me.hotpocket.skriptadvancements.elements.expressions.display.custom.ExprCustomDisplayedTitle;
 import org.bukkit.Bukkit;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.event.Event;
@@ -58,6 +57,6 @@ public class ExprDisplayedFrame extends SimpleExpression<AdvancementFrameType> {
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
         advancements = (Expression<Advancement>) exprs[0];
-        return false;
+        return true;
     }
 }
