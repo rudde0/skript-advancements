@@ -18,6 +18,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Name("Vanilla Advancements of Player")
@@ -66,7 +67,7 @@ public class ExprPlayersVanillaAdvancements extends SimpleExpression<Advancement
     @Override
     public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
         return switch (mode) {
-            case SET, ADD, REMOVE, RESET, DELETE -> CollectionUtils.array(Advancement.class);
+            case SET, ADD, REMOVE, RESET, DELETE -> CollectionUtils.array(Advancement[].class);
             default -> null;
         };
     }
@@ -74,18 +75,19 @@ public class ExprPlayersVanillaAdvancements extends SimpleExpression<Advancement
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
+        List<Advancement> advancements = List.of((Advancement[]) delta);
         for (Player player : players.getAll(e)) {
             List<Advancement> playerAdvancements = VanillaUtils.getPlayerAdvancements(player);
             switch (mode) {
                 case SET:
                     playerAdvancements.clear();
-                    playerAdvancements.add((Advancement) delta[0]);
+                    playerAdvancements.addAll(advancements);
                     break;
                 case ADD:
-                    playerAdvancements.add((Advancement) delta[0]);
+                    playerAdvancements.addAll(advancements);
                     break;
                 case REMOVE:
-                    playerAdvancements.remove((Advancement) delta[0]);
+                    playerAdvancements.removeAll(advancements);
                     break;
                 case RESET, DELETE:
                     playerAdvancements.clear();

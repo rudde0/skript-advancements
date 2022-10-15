@@ -1,6 +1,10 @@
 package me.hotpocket.skriptadvancements.elements.effects;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -12,6 +16,11 @@ import org.bukkit.advancement.Advancement;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
+
+@Name("Display Advancement's Toast")
+@Description({"Displays the toast of an advancement."})
+@Examples("display toast of the advancement \"adventure/root\" to player")
+@Since("1.4")
 
 public class EffAdvancementToast extends Effect {
 
