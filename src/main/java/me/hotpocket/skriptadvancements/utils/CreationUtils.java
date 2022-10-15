@@ -84,11 +84,7 @@ public class CreationUtils {
     }
 
     public static void build() {
-        Bukkit.broadcastMessage("Building...");
-        Bukkit.broadcastMessage("Checking initialization...");
-        Bukkit.broadcastMessage(lastCreatedTab.isInitialised() + "");
         if (!lastCreatedTab.isInitialised()) {
-            Bukkit.broadcastMessage("Tab is not initialized, registering advancements...");
             Set<BaseAdvancement> base = new HashSet<>();
             if (baseAdvancements.containsKey(lastCreatedTab))
                 base.addAll(baseAdvancements.get(lastCreatedTab));
@@ -122,7 +118,6 @@ public class CreationUtils {
     public static void disposeTab() {
         if (lastCreatedTab != null) {
             if (lastCreatedTab.isInitialised()) {
-                Bukkit.broadcastMessage("Tab already initialized, attempting to dispose tab...");
                 Set<BaseAdvancement> base = new HashSet<>();
                 RootAdvancement root = null;
 
