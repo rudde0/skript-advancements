@@ -15,8 +15,7 @@ import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
 import org.bukkit.event.Event;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 @Name("Creation - Advancement Background")
 @Description("Sets the background of a custom advancement to any solid block.")

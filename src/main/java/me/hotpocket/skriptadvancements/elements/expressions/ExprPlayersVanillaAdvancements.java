@@ -16,8 +16,8 @@ import me.hotpocket.skriptadvancements.utils.VanillaUtils;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 @Name("Vanilla Advancements of Player")

@@ -15,8 +15,7 @@ import ch.njol.util.coll.CollectionUtils;
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;

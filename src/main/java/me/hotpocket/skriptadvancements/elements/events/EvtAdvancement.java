@@ -8,8 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class EvtAdvancement extends SimpleEvent {
 

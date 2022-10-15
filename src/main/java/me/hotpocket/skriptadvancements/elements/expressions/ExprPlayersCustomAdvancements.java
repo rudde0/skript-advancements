@@ -16,8 +16,8 @@ import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import me.hotpocket.skriptadvancements.utils.CustomUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 @Name("Custom Advancements of Player")

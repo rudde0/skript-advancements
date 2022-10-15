@@ -12,8 +12,7 @@ import ch.njol.util.Kleenean;
 import me.hotpocket.skriptadvancements.elements.sections.SecAdvancement;
 import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
 import org.bukkit.event.Event;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 @Name("Creation - Build Advancement")
 @Description({"Builds the last created advancement.",

@@ -16,8 +16,7 @@ import ch.njol.util.coll.CollectionUtils;
 import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 @Name("Creation - Advancement Icon")
 @Description("Sets the icon of a custom advancement to any item.")

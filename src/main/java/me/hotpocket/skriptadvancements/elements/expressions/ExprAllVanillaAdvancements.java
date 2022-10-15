@@ -13,8 +13,7 @@ import ch.njol.util.Kleenean;
 import me.hotpocket.skriptadvancements.utils.VanillaUtils;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.event.Event;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 @Name("All Vanilla Advancements")
 @Description("Allows you to get all of the vanilla advancements.")

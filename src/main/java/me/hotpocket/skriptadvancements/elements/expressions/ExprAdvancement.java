@@ -14,8 +14,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.event.Event;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 @Name("Advancement")
 @Description("Allows you to get a vanilla advancement or an advancement created by a plugin or datapack.")

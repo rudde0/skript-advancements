@@ -95,7 +95,7 @@ public class CreationUtils {
 
     public static String getTexture(Material block) {
         if (block.isBlock() && block.isSolid())
-            return "textures/block/" + block.translationKey().split("minecraft\\.")[1] + ".png";
+            return "textures/block/" + Bukkit.getUnsafe().getTranslationKey(block).split("minecraft\\.")[1] + ".png";
         return "texture/block/dirt.png";
     }
 

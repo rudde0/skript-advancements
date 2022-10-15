@@ -13,8 +13,7 @@ import ch.njol.util.Kleenean;
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import me.hotpocket.skriptadvancements.utils.CustomUtils;
 import org.bukkit.event.Event;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 @Name("All Custom Advancements")
 @Description("Allows you to get all of the custom advancements.")

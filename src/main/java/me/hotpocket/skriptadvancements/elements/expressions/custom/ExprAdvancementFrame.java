@@ -15,8 +15,7 @@ import ch.njol.util.coll.CollectionUtils;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
 import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
 import org.bukkit.event.Event;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 @Name("Creation - Advancement Frame")
 @Description("Sets the frame of a custom advancement to any advancement frame.")

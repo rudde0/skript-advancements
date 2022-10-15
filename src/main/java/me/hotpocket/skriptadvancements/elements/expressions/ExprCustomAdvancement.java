@@ -16,8 +16,7 @@ import com.fren_gor.ultimateAdvancementAPI.util.AdvancementKey;
 import me.hotpocket.skriptadvancements.SkriptAdvancements;
 import me.hotpocket.skriptadvancements.utils.CustomUtils;
 import org.bukkit.event.Event;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 @Name("Custom Advancement")
 @Description("Allows you to get a custom advancement.")

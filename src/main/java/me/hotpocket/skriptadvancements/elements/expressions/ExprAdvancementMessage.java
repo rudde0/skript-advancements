@@ -9,16 +9,16 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class ExprAdvancementMessage extends EventValueExpression<String> {
 
     static {
-        Skript.registerExpression(ExprAdvancementMessage.class, String.class, ExpressionType.SIMPLE,
-                "[the] advancement message",
-                "advancement's message",
-                "[the] message of [the] advancement");
+        if (Skript.classExists("net.kyori.adventure.text.Component"))
+            Skript.registerExpression(ExprAdvancementMessage.class, String.class, ExpressionType.SIMPLE,
+                    "[the] advancement message",
+                    "advancement's message",
+                    "[the] message of [the] advancement");
     }
 
     public ExprAdvancementMessage() {
