@@ -29,7 +29,7 @@ public class ExprAdvancementProgression extends SimpleExpression<Integer> {
 
     static {
         Skript.registerExpression(ExprAdvancementProgression.class, Integer.class, ExpressionType.SIMPLE,
-                "[the] progress[ion] of %customadvancements% (for|of) %players%");
+                "[the] [advancement] progress[ion] of %customadvancements% (for|of) %players%");
     }
 
     private Expression<Advancement> customAdvancements;
