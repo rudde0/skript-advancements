@@ -13,17 +13,17 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprAdvancementTitle extends SimpleExpression<String> {
+public class ExprAdvancementMaxProgression extends SimpleExpression<Integer> {
 
     static {
-        Skript.registerExpression(ExprAdvancementTitle.class, String.class, ExpressionType.SIMPLE,
-                "[the] title of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s title");
+        Skript.registerExpression(ExprAdvancementMaxProgression.class, Integer.class, ExpressionType.SIMPLE,
+                "[the] max[imum] progression of [the] [last (created|made)] [custom] advancement",
+                "[the] [last (created|made)] [custom] advancement[']s max[imum] progression");
     }
 
     @Override
-    protected @Nullable String[] get(Event e) {
-        return new String[]{CustomAdvancement.title};
+    protected @Nullable Integer[] get(Event e) {
+        return new Integer[]{CustomAdvancement.maxProgression};
     }
 
     @Override
@@ -32,13 +32,13 @@ public class ExprAdvancementTitle extends SimpleExpression<String> {
     }
 
     @Override
-    public Class<? extends String> getReturnType() {
-        return String.class;
+    public Class<? extends Integer> getReturnType() {
+        return Integer.class;
     }
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "the title of the advancement";
+        return "the max progression of the advancement";
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ExprAdvancementTitle extends SimpleExpression<String> {
     @Override
     public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
         return switch (mode) {
-            case SET-> CollectionUtils.array(String.class);
+            case SET-> CollectionUtils.array(Number.class);
             default -> null;
         };
     }
@@ -57,6 +57,6 @@ public class ExprAdvancementTitle extends SimpleExpression<String> {
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        CustomAdvancement.title = (String) delta[0];
+        CustomAdvancement.maxProgression = ((Number) delta[0]).intValue();
     }
 }

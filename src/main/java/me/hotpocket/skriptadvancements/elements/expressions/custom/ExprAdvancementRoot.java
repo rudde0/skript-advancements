@@ -13,32 +13,32 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprAdvancementTitle extends SimpleExpression<String> {
+public class ExprAdvancementRoot extends SimpleExpression<Boolean> {
 
     static {
-        Skript.registerExpression(ExprAdvancementTitle.class, String.class, ExpressionType.SIMPLE,
-                "[the] title of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s title");
+        Skript.registerExpression(ExprAdvancementRoot.class, Boolean.class, ExpressionType.SIMPLE,
+                "[the] root of [the] [last (created|made)] [custom] advancement",
+                "[the] [last (created|made)] [custom] advancement[']s root");
     }
 
     @Override
-    protected @Nullable String[] get(Event e) {
-        return new String[]{CustomAdvancement.title};
+    protected @Nullable Boolean[] get(Event e) {
+        return new Boolean[]{CustomAdvancement.root};
     }
 
     @Override
     public boolean isSingle() {
-        return true;
+        return false;
     }
 
     @Override
-    public Class<? extends String> getReturnType() {
-        return String.class;
+    public Class<? extends Boolean> getReturnType() {
+        return Boolean.class;
     }
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "the title of the advancement";
+        return "the root of the advancement";
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ExprAdvancementTitle extends SimpleExpression<String> {
     @Override
     public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
         return switch (mode) {
-            case SET-> CollectionUtils.array(String.class);
+            case SET -> CollectionUtils.array(Boolean.class);
             default -> null;
         };
     }
@@ -57,6 +57,6 @@ public class ExprAdvancementTitle extends SimpleExpression<String> {
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        CustomAdvancement.title = (String) delta[0];
+        CustomAdvancement.root = (Boolean) delta[0];
     }
 }

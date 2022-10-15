@@ -1,39 +1,29 @@
 package me.hotpocket.skriptadvancements.elements.expressions.custom;
 
 import ch.njol.skript.Skript;
-import ch.njol.skript.aliases.ItemType;
 import ch.njol.skript.classes.Changer;
-import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.hotpocket.skriptadvancements.elements.sections.SecMakeAdvancement;
-import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
-import org.bukkit.Material;
+import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
 import org.bukkit.event.Event;
-import org.jetbrains.annotations.Nullable;
 
-@Name("Custom Advancement Announcement")
-@Description({"This expression allows you to change the background of a custom advancement in the advancement creator section."})
-@Examples("set background of advancement to diamond ore")
-@RequiredPlugins("Paper")
-@Since("1.3")
+import javax.annotation.Nullable;
 
 public class ExprAdvancementAnnouncement extends SimpleExpression<Boolean> {
 
     static {
-        if (Skript.methodExists(Material.class, "getTranslationKey"))
-            Skript.registerExpression(ExprAdvancementAnnouncement.class, Boolean.class, ExpressionType.SIMPLE,
-                    "[the] announcement of [the] [last (created|made)] advancement",
-                    "[the] [last (created|made)] advancement's announcement");
+        Skript.registerExpression(ExprAdvancementAnnouncement.class, Boolean.class, ExpressionType.SIMPLE,
+                "[the] announcement [message] of [the] [last (created|made)] [custom] advancement",
+                "[the] [last (created|made)] [custom] advancement[']s announcement [message]");
     }
 
     @Override
     protected @Nullable Boolean[] get(Event e) {
-        return new Boolean[]{AdvancementHandler.announce};
+        return new Boolean[]{CustomAdvancement.announce};
     }
 
     @Override
@@ -48,21 +38,25 @@ public class ExprAdvancementAnnouncement extends SimpleExpression<Boolean> {
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "announcement of last created advancement";
+        return "the message of the advancement";
     }
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        return getParser().isCurrentSection(SecMakeAdvancement.class);
+        return true;
     }
 
     @Override
     public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
-        return (mode == Changer.ChangeMode.SET ? CollectionUtils.array(Boolean.class) : null);
+        return switch (mode) {
+            case SET -> CollectionUtils.array(Boolean.class);
+            default -> null;
+        };
     }
 
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
-        AdvancementHandler.announce = ((Boolean) delta[0]);
+        assert delta[0] != null;
+        CustomAdvancement.announce = (Boolean) delta[0];
     }
 }

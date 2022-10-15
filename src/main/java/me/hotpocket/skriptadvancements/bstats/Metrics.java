@@ -25,8 +25,6 @@ import java.util.zip.GZIPOutputStream;
 
 public class Metrics {
 
-    // Shading won't work anymore :(
-
     private final Plugin plugin;
 
     private final MetricsBase metricsBase;

@@ -1,10 +1,6 @@
 package me.hotpocket.skriptadvancements.elements.expressions;
 
 import ch.njol.skript.Skript;
-import ch.njol.skript.doc.Description;
-import ch.njol.skript.doc.Examples;
-import ch.njol.skript.doc.Name;
-import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -17,16 +13,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Date Awarded")
-@Description({"This expression allows you to get the date awarded of any advancement."})
-@Examples("broadcast \"%date awarded of \"adventure/root\" for player%\"")
-@Since("1.3.1")
-
 public class ExprDateAwarded extends SimpleExpression<Date> {
 
     static {
         Skript.registerExpression(ExprDateAwarded.class, Date.class, ExpressionType.SIMPLE,
-                "[the] date awarded of %advancements% for %players%");
+                "[the] date awarded of %advancements% for %players%",
+                "%advancements%['[s]] date awarded for %players%");
     }
 
     private Expression<Advancement> advancements;

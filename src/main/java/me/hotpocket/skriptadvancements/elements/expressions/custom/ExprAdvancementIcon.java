@@ -3,39 +3,29 @@ package me.hotpocket.skriptadvancements.elements.expressions.custom;
 import ch.njol.skript.Skript;
 import ch.njol.skript.aliases.ItemType;
 import ch.njol.skript.classes.Changer;
-import ch.njol.skript.doc.*;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.hotpocket.skriptadvancements.SkriptAdvancements;
-import me.hotpocket.skriptadvancements.elements.sections.SecMakeAdvancement;
-import me.hotpocket.skriptadvancements.utils.AdvancementHandler;
-import org.bukkit.Material;
+import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
 import org.bukkit.event.Event;
-import org.jetbrains.annotations.Nullable;
+import org.bukkit.inventory.ItemStack;
 
-@Name("Custom Advancement Icon")
-@Description({"This expression allows you to change the icon of a custom advancement in the advancement creator section.",
-        "Some blocks are not accepted. An example of these blocks would be a carrot plant."})
-@Examples("set icon of advancement to diamond")
-@RequiredPlugins("Paper")
-@Since("1.3")
+import javax.annotation.Nullable;
 
 public class ExprAdvancementIcon extends SimpleExpression<ItemType> {
 
     static {
-        if (Skript.methodExists(Material.class, "getTranslationKey"))
-            Skript.registerExpression(ExprAdvancementIcon.class, ItemType.class, ExpressionType.SIMPLE,
-                    "[the] icon of [the] [last (created|made)] advancement",
-                    "[the] [last (created|made)] advancement's icon");
+        Skript.registerExpression(ExprAdvancementIcon.class, ItemType.class, ExpressionType.SIMPLE,
+                "[the] icon of [the] [last (created|made)] [custom] advancement",
+                "[the] [last (created|made)] [custom] advancement[']s icon");
     }
 
     @Override
     protected @Nullable ItemType[] get(Event e) {
-        return new ItemType[]{new ItemType(AdvancementHandler.icon)};
+        return new ItemType[]{new ItemType(CustomAdvancement.icon)};
     }
 
     @Override
@@ -50,21 +40,28 @@ public class ExprAdvancementIcon extends SimpleExpression<ItemType> {
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "icon of last created advancement";
+        return "the icon of the advancement";
     }
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        return getParser().isCurrentSection(SecMakeAdvancement.class);
+        return true;
     }
 
     @Override
     public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
-        return (mode == Changer.ChangeMode.SET ? CollectionUtils.array(ItemType.class) : null);
+        return switch (mode) {
+            case SET -> CollectionUtils.array(ItemType.class);
+            default -> null;
+        };
     }
 
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
-        AdvancementHandler.icon = SkriptAdvancements.typeToStack((ItemType) delta[0]);
+        assert delta[0] != null;
+        ItemType itemType = (ItemType) delta[0];
+        ItemStack itemStack = new ItemStack(itemType.getMaterial());
+        itemStack.setItemMeta(itemType.getItemMeta());
+        CustomAdvancement.icon = itemStack;
     }
 }

@@ -4,20 +4,20 @@ import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
-import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
-import org.bukkit.advancement.Advancement;
+import com.fren_gor.ultimateAdvancementAPI.UltimateAdvancementAPI;
+import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
+import me.hotpocket.skriptadvancements.SkriptAdvancements;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TypAdvancement {
+public class TypCustomAdvancement {
     static {
         if (Classes.getExactClassInfo(Advancement.class) == null) {
-            Classes.registerClass(new ClassInfo<>(Advancement.class, "advancement")
-                    .user("advancements?")
-                    .name("Advancement")
-                    .description("Represents an advancement.")
+            Classes.registerClass(new ClassInfo<>(Advancement.class, "customadvancement")
+                    .user("customadvancements?")
+                    .name("Custom Advancement")
+                    .description("Represents an advancement made with skript-advancements.")
                     .since("1.4")
                     .parser(new Parser<Advancement>() {
                         private final Pattern pattern = Pattern.compile("\\\"([a-z0-9_/:]+)\\\"");
@@ -25,19 +25,11 @@ public class TypAdvancement {
                         @Override
                         public Advancement parse(String expr, ParseContext ctx) {
                             if (ctx == ParseContext.COMMAND) {
-                                if (expr.contains(":")) {
-                                    return Bukkit.getAdvancement(new NamespacedKey(expr.split(":")[0], expr.split(":")[1]));
-                                } else {
-                                    return Bukkit.getAdvancement(NamespacedKey.minecraft(expr));
-                                }
+                                return UltimateAdvancementAPI.getInstance(SkriptAdvancements.getInstance()).getAdvancement(ctx.name().split("/")[0], ctx.name().split("/")[1]);
                             }
                             Matcher m = pattern.matcher(expr);
                             if (m.matches())
-                                if (m.group(1).contains(":")) {
-                                    return Bukkit.getAdvancement(new NamespacedKey(m.group(1).split(":")[0], m.group(1).split(":")[1]));
-                                } else {
-                                    return Bukkit.getAdvancement(NamespacedKey.minecraft(m.group(1)));
-                                }
+                                return UltimateAdvancementAPI.getInstance(SkriptAdvancements.getInstance()).getAdvancement(m.group(1).split("/")[0], m.group(1).split("/")[1]);
                             return null;
                         }
 
@@ -48,12 +40,12 @@ public class TypAdvancement {
 
                         @Override
                         public String toString(Advancement advancement, int flags) {
-                            return "" + advancement.getKey().getKey();
+                            return advancement.getKey().getNamespace() + "/" + advancement.getKey().getKey();
                         }
 
                         @Override
                         public String toVariableNameString(Advancement advancement) {
-                            return "" + advancement.getKey().getKey();
+                            return advancement.getKey().getNamespace() + "/" + advancement.getKey().getKey();
                         }
                     }));
         }

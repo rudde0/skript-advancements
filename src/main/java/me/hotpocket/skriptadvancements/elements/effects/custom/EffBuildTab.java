@@ -5,30 +5,30 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-import me.hotpocket.skriptadvancements.elements.sections.SecAdvancement;
-import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
+import me.hotpocket.skriptadvancements.elements.sections.SecAdvancementTab;
+import me.hotpocket.skriptadvancements.utils.CreationUtils;
 import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffBuildAdvancement extends Effect {
+public class EffBuildTab extends Effect {
 
     static {
-        Skript.registerEffect(EffBuildAdvancement.class, "build [[the] last (created|made)] [custom] advancement");
+        Skript.registerEffect(EffBuildTab.class, "build [[the] last (created|made)] advancement tab");
     }
 
     @Override
     protected void execute(Event e) {
-        CustomAdvancement.build();
+        CreationUtils.build();
     }
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "build the custom advancement";
+        return "build the advancement tab";
     }
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parseResult) {
-        return getParser().isCurrentSection(SecAdvancement.class);
+        return getParser().isCurrentSection(SecAdvancementTab.class);
     }
 }
