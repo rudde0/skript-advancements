@@ -33,11 +33,11 @@ public class ExprAdvancement extends SimpleExpression<Advancement> {
     @Override
     protected @Nullable Advancement[] get(Event e) {
         if (advancementName.getSingle(e).contains(":")) {
-            if (Bukkit.getAdvancement(new NamespacedKey(advancementName.getSingle(e).split(":")[0], advancementName.getSingle(e).split(":")[1])) != null)
-                return new Advancement[]{Bukkit.getAdvancement(new NamespacedKey(advancementName.getSingle(e).split(":")[0], advancementName.getSingle(e).split(":")[1]))};
+            if (Bukkit.getAdvancement(new NamespacedKey(advancementName.getSingle(e).split(":")[0].toLowerCase(), advancementName.getSingle(e).split(":")[1].toLowerCase())) != null)
+                return new Advancement[]{Bukkit.getAdvancement(new NamespacedKey(advancementName.getSingle(e).split(":")[0].toLowerCase(), advancementName.getSingle(e).split(":")[1].toLowerCase()))};
         } else {
-            if (Bukkit.getAdvancement(NamespacedKey.minecraft(advancementName.getSingle(e))) != null)
-                return new Advancement[]{Bukkit.getAdvancement(NamespacedKey.minecraft(advancementName.getSingle(e)))};
+            if (Bukkit.getAdvancement(NamespacedKey.minecraft(advancementName.getSingle(e).toLowerCase())) != null)
+                return new Advancement[]{Bukkit.getAdvancement(NamespacedKey.minecraft(advancementName.getSingle(e).toLowerCase()))};
         }
         return null;
     }

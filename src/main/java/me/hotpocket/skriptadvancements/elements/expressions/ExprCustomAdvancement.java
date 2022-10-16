@@ -35,7 +35,7 @@ public class ExprCustomAdvancement extends SimpleExpression<Advancement> {
     @Override
     protected @Nullable Advancement[] get(Event e) {
         if (advancementName.getSingle(e).contains("/")) {
-            String[] name = advancementName.getSingle(e).split("/");
+            String[] name = advancementName.getSingle(e).toLowerCase().split("/");
             if (UltimateAdvancementAPI.getInstance(SkriptAdvancements.getInstance()).getAdvancementTab(name[0]) != null) {
                 if (CustomUtils.getAPI().getAdvancement(new AdvancementKey(name[0], name[1])) != null)
                     return new Advancement[]{CustomUtils.getAPI().getAdvancement(new AdvancementKey(name[0], name[1]))};
