@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 public class EvtAdvancementProgression extends SimpleEvent {
 
     static {
-        Skript.registerEvent("Advancement Progression Update", SimpleEvent.class, AdvancementProgressionUpdateEvent.class, "advancement progress[ion] [update]")
+        Skript.registerEvent("Advancement Progression Update", EvtAdvancementProgression.class, AdvancementProgressionUpdateEvent.class, "advancement progress[ion] [update]")
                 .since("1.4")
                 .description("Called when an advancement's progression is changed for a player.")
                 .examples("on advancement progression:");
@@ -23,18 +23,16 @@ public class EvtAdvancementProgression extends SimpleEvent {
             }
 
         }, 0);
-        EventValues.registerEventValue(AdvancementProgressionUpdateEvent.class, Integer.class, new Getter<Integer, AdvancementProgressionUpdateEvent>() {
+        EventValues.registerEventValue(AdvancementProgressionUpdateEvent.class, Number.class, new Getter<Number, AdvancementProgressionUpdateEvent>() {
             @Override
-            @Nullable
-            public Integer get(AdvancementProgressionUpdateEvent e) {
+            public Number get(AdvancementProgressionUpdateEvent e) {
                 return e.getOldProgression();
             }
 
-        }, -1);
-        EventValues.registerEventValue(AdvancementProgressionUpdateEvent.class, Integer.class, new Getter<Integer, AdvancementProgressionUpdateEvent>() {
+        }, 0);
+        EventValues.registerEventValue(AdvancementProgressionUpdateEvent.class, Number.class, new Getter<Number, AdvancementProgressionUpdateEvent>() {
             @Override
-            @Nullable
-            public Integer get(AdvancementProgressionUpdateEvent e) {
+            public Number get(AdvancementProgressionUpdateEvent e) {
                 return e.getNewProgression();
             }
 

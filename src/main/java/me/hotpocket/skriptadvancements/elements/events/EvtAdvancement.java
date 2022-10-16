@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 public class EvtAdvancement extends SimpleEvent {
 
     static {
-        Skript.registerEvent("Advancement Complete", SimpleEvent.class, PlayerAdvancementDoneEvent.class, "advancement [(done|complete[d]|grant[ed])]")
+        Skript.registerEvent("Advancement Complete", EvtAdvancement.class, PlayerAdvancementDoneEvent.class, "advancement [(done|complete[d]|grant[ed])]")
                 .since("1.4")
                 .description("Called when an advancement is completed by a player.")
                 .examples("on advancement:");
