@@ -75,20 +75,22 @@ public class ExprAdvancementProgression extends SimpleExpression<Integer> {
 
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
-        assert delta[0] != null;
         int progression;
-        Number progress = (Number) delta[0];
+        Number progress = 0;
         for (Player player : players.getAll(e)) {
             for (Advancement advancement : customAdvancements.getAll(e)) {
                 progression = advancement.getProgression(player);
                 switch (mode) {
                     case SET:
+                        progress = (Number) delta[0];
                         progression = progress.intValue();
                         break;
                     case ADD:
+                        progress = (Number) delta[0];
                         progression = progression + progress.intValue();
                         break;
                     case REMOVE:
+                        progress = (Number) delta[0];
                         progression = progression - progress.intValue();
                         break;
                     case RESET, DELETE:

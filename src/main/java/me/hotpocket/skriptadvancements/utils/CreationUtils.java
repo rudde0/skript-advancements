@@ -1,5 +1,6 @@
 package me.hotpocket.skriptadvancements.utils;
 
+import com.fren_gor.ultimateAdvancementAPI.AdvancementMain;
 import com.fren_gor.ultimateAdvancementAPI.AdvancementTab;
 import com.fren_gor.ultimateAdvancementAPI.UltimateAdvancementAPI;
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
@@ -7,16 +8,20 @@ import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.RootAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
+import com.fren_gor.ultimateAdvancementAPI.util.AdvancementKey;
 import me.hotpocket.skriptadvancements.SkriptAdvancements;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class CreationUtils {
@@ -80,6 +85,13 @@ public class CreationUtils {
             } else {
                 rootAdvancement.put(lastCreatedTab, advancement);
             }
+            try {
+                Field f = AdvancementTab.class.getDeclaredField("rootAdvancement");
+                f.setAccessible(true);
+                f.set(lastCreatedTab, rootAdvancement.get(lastCreatedTab));
+            } catch (IllegalAccessException | NoSuchFieldException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -115,32 +127,42 @@ public class CreationUtils {
         return a.getKey().getNamespace() + "/" + a.getKey().getKey();
     }
 
-    public static void disposeTab() {
-        if (lastCreatedTab != null) {
-            if (lastCreatedTab.isInitialised()) {
-                Set<BaseAdvancement> base = new HashSet<>();
-                RootAdvancement root = null;
+    public static void disposeTab(AdvancementTab tab) {
 
-                try {
-                    rootAdvancement.remove(lastCreatedTab);
-                    baseAdvancements.remove(lastCreatedTab);
-                    Field f = AdvancementTab.class.getDeclaredField("initialised");
-                    f.setAccessible(true);
-                    f.set(lastCreatedTab, false);
-                    f = AdvancementTab.class.getDeclaredField("rootAdvancement");
-                    f.setAccessible(true);
-                    f.set(lastCreatedTab, null);
-                    f = AdvancementTab.class.getDeclaredField("advsWithoutRoot");
-                    f.setAccessible(true);
-                    f.set(lastCreatedTab, null);
-                    f = Advancement.class.getDeclaredField("advancementTab");
-                    f.setAccessible(true);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                } catch (NoSuchFieldException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+        try {
+            rootAdvancement.remove(tab);
+            baseAdvancements.remove(tab);
+            Field f = AdvancementTab.class.getDeclaredField("updateManager");
+            f.setAccessible(true);
+            f.set(tab, null);
+            f = AdvancementTab.class.getDeclaredField("initialised");
+            f.setAccessible(true);
+            f.set(tab, false);
+            f = AdvancementTab.class.getDeclaredField("advsWithoutRoot");
+            f.setAccessible(true);
+            f.set(tab, null);
+            f = AdvancementTab.class.getDeclaredField("advancements");
+            f.setAccessible(true);
+            f.set(tab, new HashMap<>());
+            f = AdvancementTab.class.getDeclaredField("updateManager");
+            f.setAccessible(true);
+            f.set(tab, null);
+
+            f = AdvancementMain.class.getDeclaredField("tabs");
+            f.setAccessible(true);
+            Map<String, AdvancementTab> tabMap = new HashMap<>();
+            tabMap.putAll((Map<String, AdvancementTab>) f.get(SkriptAdvancements.main));
+            tabMap.remove(tab.getNamespace());
+            f.set(SkriptAdvancements.main, tabMap);
+
+            f = AdvancementMain.class.getDeclaredField("pluginMap");
+            f.setAccessible(true);
+            Map<Plugin, List<AdvancementTab>> pluginMap = new HashMap<>();
+            pluginMap.putAll((Map<Plugin, List<AdvancementTab>>) f.get(SkriptAdvancements.main));
+            pluginMap.get(SkriptAdvancements.getInstance()).remove(tab);
+            f.set(SkriptAdvancements.main, pluginMap);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            throw new RuntimeException(e);
         }
     }
 }

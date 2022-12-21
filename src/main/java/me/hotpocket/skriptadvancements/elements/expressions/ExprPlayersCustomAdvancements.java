@@ -18,6 +18,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Name("Custom Advancements of Player")
@@ -74,27 +76,39 @@ public class ExprPlayersCustomAdvancements extends SimpleExpression<Advancement>
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        List<Advancement> advancements = List.of((Advancement[]) delta);
+        List<Advancement> advancements = new ArrayList<>(Arrays.asList((Advancement[]) delta));
         for (Player player : players.getAll(e)) {
-            List<Advancement> playerAdvancements = CustomUtils.getPlayerAdvancements(player);
             switch (mode) {
                 case SET:
-                    playerAdvancements.clear();
-                    playerAdvancements.addAll(advancements);
+                    for (Advancement advancement : CustomUtils.getPlayerAdvancements(player)) {
+                        advancement.revoke(player);
+                    }
+                    for (Advancement advancement : advancements) {
+                        advancement.grant(player);
+                    }
                     break;
                 case ADD:
-                    playerAdvancements.addAll(advancements);
+                    for (Advancement advancement : advancements) {
+                        if (!advancement.isGranted(player)) {
+                            advancement.grant(player);
+                        }
+                    }
                     break;
                 case REMOVE:
-                    playerAdvancements.removeAll(advancements);
+                    for (Advancement advancement : advancements) {
+                        if (advancement.isGranted(player)) {
+                            advancement.revoke(player);
+                        }
+                    }
                     break;
                 case RESET, DELETE:
-                    playerAdvancements.clear();
+                    for (Advancement advancement : CustomUtils.getPlayerAdvancements(player)) {
+                        advancement.revoke(player);
+                    }
                     break;
                 default:
                     break;
             }
-            CustomUtils.setPlayerAdvancements(playerAdvancements, player);
         }
     }
 }

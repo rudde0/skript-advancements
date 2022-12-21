@@ -11,7 +11,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
-import me.hotpocket.skriptadvancements.utils.CustomUtils;
+import com.fren_gor.ultimateAdvancementAPI.util.AdvancementUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
@@ -38,7 +38,7 @@ public class EffCustomToast extends Effect {
         ItemStack item = new ItemStack(icon.getSingle(e).getMaterial());
         item.setItemMeta(icon.getSingle(e).getItemMeta());
         for (Player player : players.getAll(e))
-            CustomUtils.getAPI().displayCustomToast(player, item, title.getSingle(e), frame.getSingle(e));
+            AdvancementUtils.displayToast(player, item, title.getSingle(e), frame.getSingle(e));
     }
 
     @Override

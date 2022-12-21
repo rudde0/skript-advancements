@@ -4,6 +4,9 @@ import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameT
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 public class CustomAdvancement {
 
     public static String name;
@@ -16,17 +19,17 @@ public class CustomAdvancement {
     public static boolean announce = true;
     public static boolean root = false;
     public static int row = 0;
-    public static int column = 0;
+    public static int column = 1;
     public static int maxProgression = 0;
     public static String parent = null;
 
     public static void build() {
         if (CreationUtils.lastCreatedTab != null) {
             if (root) {
-                CreationUtils.createRootAdvancement(name, icon, background, title, description, frame, showToast, announce, row, column, maxProgression);
+                CreationUtils.createRootAdvancement(name, icon, background, title, description, frame, showToast, announce, min(max(row, 0), 9999999), min(max(column, 1), 9999999), maxProgression);
             } else {
                 if (parent != null)
-                    CreationUtils.createBaseAdvancement(name, icon, title, description, frame, showToast, announce, row, column, maxProgression, parent);
+                    CreationUtils.createBaseAdvancement(name, icon, title, description, frame, showToast, announce, min(max(row, 0), 9999999), min(max(column, 1), 9999999), maxProgression, parent);
             }
             icon = new ItemStack(Material.STICK);
             background = Material.DIRT;
@@ -37,7 +40,7 @@ public class CustomAdvancement {
             announce = true;
             root = false;
             row = 0;
-            column = 0;
+            column = 1;
             maxProgression = 0;
             parent = null;
         }

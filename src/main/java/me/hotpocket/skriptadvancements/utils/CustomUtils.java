@@ -32,15 +32,6 @@ public class CustomUtils {
         return advancementList;
     }
 
-    public static void setPlayerAdvancements(List<Advancement> advancementList, Player player) {
-        for (Advancement advancement : getPlayerAdvancements(player)) {
-            advancement.revoke(player);
-        }
-        for (Advancement advancement : advancementList) {
-            advancement.grant(player);
-        }
-    }
-
     public static UltimateAdvancementAPI getAPI() {
         return api;
     }

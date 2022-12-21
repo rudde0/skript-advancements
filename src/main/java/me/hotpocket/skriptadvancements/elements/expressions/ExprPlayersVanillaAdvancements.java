@@ -76,25 +76,37 @@ public class ExprPlayersVanillaAdvancements extends SimpleExpression<Advancement
         assert delta[0] != null;
         List<Advancement> advancements = List.of((Advancement[]) delta);
         for (Player player : players.getAll(e)) {
-            List<Advancement> playerAdvancements = VanillaUtils.getPlayerAdvancements(player);
             switch (mode) {
                 case SET:
-                    playerAdvancements.clear();
-                    playerAdvancements.addAll(advancements);
+                    for (Advancement advancement : VanillaUtils.getPlayerAdvancements(player)) {
+                        VanillaUtils.revokeAdvancement(player, advancement);
+                    }
+                    for (Advancement advancement : advancements) {
+                        VanillaUtils.grantAdvancement(player, advancement);
+                    }
                     break;
                 case ADD:
-                    playerAdvancements.addAll(advancements);
+                    for (Advancement advancement : advancements) {
+                        if (!player.getAdvancementProgress(advancement).isDone()) {
+                            VanillaUtils.grantAdvancement(player, advancement);
+                        }
+                    }
                     break;
                 case REMOVE:
-                    playerAdvancements.removeAll(advancements);
+                    for (Advancement advancement : advancements) {
+                        if (player.getAdvancementProgress(advancement).isDone()) {
+                            VanillaUtils.revokeAdvancement(player, advancement);
+                        }
+                    }
                     break;
                 case RESET, DELETE:
-                    playerAdvancements.clear();
+                    for (Advancement advancement : VanillaUtils.getPlayerAdvancements(player)) {
+                        VanillaUtils.revokeAdvancement(player, advancement);
+                    }
                     break;
                 default:
                     break;
             }
-            VanillaUtils.setPlayerAdvancements(playerAdvancements, player);
         }
     }
 }
