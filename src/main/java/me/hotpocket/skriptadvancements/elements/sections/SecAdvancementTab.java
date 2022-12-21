@@ -50,7 +50,8 @@ public class SecAdvancementTab extends EffectSection {
     protected TriggerItem walk(Event event) {
         String tab = name.getSingle(event).toLowerCase().replaceAll(" ", "_");
         if (CustomUtils.getAPI().getAdvancementTab(tab) != null && CustomUtils.getAPI().getAdvancementTab(tab).isInitialised()) {
-            CreationUtils.disposeTab(CustomUtils.getAPI().getAdvancementTab(tab));
+            //CreationUtils.disposeTab(CustomUtils.getAPI().getAdvancementTab(tab));
+            CustomUtils.getAPI().unregisterAdvancementTab(tab);
         }
         CustomUtils.getAPI().createAdvancementTab(tab);
         CreationUtils.lastCreatedTab = CustomUtils.getAPI().getAdvancementTab(tab);
