@@ -13,15 +13,15 @@ import me.hotpocket.skriptadvancements.utils.CustomUtils;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Disable Tab")
+@Name("Dispose Tab")
 @Description({"Disables an advancement tab. This can be useful when a tab is registered after you remove an advancement tab creation section from a script."})
-@Examples("disable tab \"myTab\"")
+@Examples("dispose tab \"myTab\"")
 @Since("1.4.1")
 
-public class EffDisableTab extends Effect {
+public class EffDisposeTab extends Effect {
 
     static {
-        Skript.registerEffect(EffDisableTab.class, "(disable|unregister) [the] [advancement] tab [(titled|named)] %string%");
+        Skript.registerEffect(EffDisposeTab.class, "(dispose|disable|unregister) [the] [advancement] tab [(titled|named)] %string%");
     }
 
     private Expression<String> tab;
