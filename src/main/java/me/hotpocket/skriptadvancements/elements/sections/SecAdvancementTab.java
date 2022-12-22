@@ -49,8 +49,7 @@ public class SecAdvancementTab extends EffectSection {
     @SuppressWarnings({"unchecked", "rawtypes"})
     protected TriggerItem walk(Event event) {
         String tab = name.getSingle(event).toLowerCase().replaceAll(" ", "_");
-        if (CustomUtils.getAPI().getAdvancementTab(tab) != null && CustomUtils.getAPI().getAdvancementTab(tab).isInitialised()) {
-            //CreationUtils.disposeTab(CustomUtils.getAPI().getAdvancementTab(tab));
+        if (CustomUtils.getAPI().getAdvancementTab(tab) != null) {
             CustomUtils.getAPI().unregisterAdvancementTab(tab);
         }
         CustomUtils.getAPI().createAdvancementTab(tab);

@@ -1,6 +1,6 @@
 package me.hotpocket.skriptadvancements.utils;
 
-import com.fren_gor.ultimateAdvancementAPI.AdvancementMain;
+import ch.njol.skript.Skript;
 import com.fren_gor.ultimateAdvancementAPI.AdvancementTab;
 import com.fren_gor.ultimateAdvancementAPI.UltimateAdvancementAPI;
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
@@ -8,21 +8,17 @@ import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.RootAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
-import com.fren_gor.ultimateAdvancementAPI.util.AdvancementKey;
 import me.hotpocket.skriptadvancements.SkriptAdvancements;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
 
-import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class CreationUtils {
 
@@ -30,7 +26,7 @@ public class CreationUtils {
     public static AdvancementTab lastCreatedTab;
     public static Advancement lastCreatedAdvancement;
     public static HashMap<AdvancementTab, RootAdvancement> rootAdvancement = new HashMap<>();
-    public static HashMap<AdvancementTab, Set<BaseAdvancement>> baseAdvancements = new HashMap<>();
+    public static HashMap<AdvancementTab, List<BaseAdvancement>> baseAdvancements = new HashMap<>();
 
     public static void createBaseAdvancement(String name, ItemStack icon, String title, String description, AdvancementFrameType frame, boolean toast, boolean announcement, int x, int y, int maxProgression, String parent) {
         if (lastCreatedTab != null && rootAdvancement.get(lastCreatedTab) != null) {
@@ -58,14 +54,12 @@ public class CreationUtils {
                         new AdvancementDisplay(icon, translate(title), frame, toast, announcement, x, y, translate(description)), realParent);
             }
             lastCreatedAdvancement = advancement;
-            Set<BaseAdvancement> set = new HashSet<>();
-            set.add(advancement);
+            List<BaseAdvancement> list = new ArrayList<>();
+            list.add(advancement);
             if (baseAdvancements.containsKey(lastCreatedTab)) {
-                set.addAll(baseAdvancements.get(lastCreatedTab));
-                baseAdvancements.replace(lastCreatedTab, set);
-            } else {
-                baseAdvancements.put(lastCreatedTab, set);
+                baseAdvancements.remove(lastCreatedTab);
             }
+            baseAdvancements.put(lastCreatedTab, list);
         }
     }
 
@@ -90,11 +84,16 @@ public class CreationUtils {
 
     public static void build() {
         if (!lastCreatedTab.isInitialised()) {
-            Set<BaseAdvancement> base = new HashSet<>();
-            if (baseAdvancements.containsKey(lastCreatedTab))
-                base.addAll(baseAdvancements.get(lastCreatedTab));
-            lastCreatedTab.registerAdvancements(rootAdvancement.get(lastCreatedTab), base);
-            updateAdvancements();
+            if (rootAdvancement.get(lastCreatedTab) != null && baseAdvancements.get(lastCreatedTab) != null) {
+                lastCreatedTab.registerAdvancements(rootAdvancement.get(lastCreatedTab), new HashSet<>(baseAdvancements.get(lastCreatedTab)));
+                updateAdvancements();
+            } else {
+                Skript.error("You must have a root advancement and one or more base advancement with a parent in an advancement tab!");
+                RootAdvancement tempRoot = new RootAdvancement(lastCreatedTab, "name", new AdvancementDisplay(Material.DIAMOND, "title", AdvancementFrameType.TASK, false, false, 0, 0, "description"), getTexture(Material.DIAMOND_BLOCK));
+                BaseAdvancement tempBase = new BaseAdvancement("name1", new AdvancementDisplay(Material.DIAMOND, "title", AdvancementFrameType.TASK, false, false, 0, 0, "description"), tempRoot);
+                lastCreatedTab.registerAdvancements(tempRoot, tempBase);
+                CustomUtils.getAPI().unregisterAdvancementTab(lastCreatedTab.getNamespace());
+            }
         }
     }
 

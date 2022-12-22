@@ -68,6 +68,6 @@ public class ExprAdvancementParent extends SimpleExpression<String> {
         assert delta[0] != null;
         String namespace = ((String) delta[0]).split("/")[0];
         String key = ((String) delta[0]).split("/")[1];
-        CustomAdvancement.parent = namespace + "/" + key;
+        CustomAdvancement.parent = namespace.toLowerCase().replaceAll(" ", "_") + "/" + key;
     }
 }
