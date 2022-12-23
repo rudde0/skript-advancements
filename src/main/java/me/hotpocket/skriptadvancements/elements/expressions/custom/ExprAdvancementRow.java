@@ -25,8 +25,8 @@ public class ExprAdvancementRow extends SimpleExpression<Integer> {
 
     static {
         Skript.registerExpression(ExprAdvancementRow.class, Integer.class, ExpressionType.SIMPLE,
-                "[the] row of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s row");
+                "[the] (row|x[-coord[inate]]) of [the] [last (created|made)] [custom] advancement",
+                "[the] [last (created|made)] [custom] advancement[']s (row|x[-coord[inate]])");
     }
 
     @Override
