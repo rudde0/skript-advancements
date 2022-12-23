@@ -31,7 +31,7 @@ public class ExprAdvancementRow extends SimpleExpression<Integer> {
 
     @Override
     protected @Nullable Integer[] get(Event e) {
-        return new Integer[]{Math.round(Creator.lastCreatedAdvancement.getDisplay().getY())};
+        return new Integer[]{Math.round(Creator.lastCreatedAdvancement.getDisplay().getX())};
     }
 
     @Override
@@ -65,6 +65,6 @@ public class ExprAdvancementRow extends SimpleExpression<Integer> {
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        Creator.lastCreatedAdvancement.setY(((Number) delta[0]).intValue());
+        Creator.lastCreatedAdvancement.setX(((Number) delta[0]).intValue());
     }
 }
