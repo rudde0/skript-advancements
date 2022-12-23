@@ -12,7 +12,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
+import me.hotpocket.skriptadvancements.utils.Creator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,7 +32,7 @@ public class ExprAdvancementParent extends SimpleExpression<String> {
 
     @Override
     protected @Nullable String[] get(Event e) {
-        return new String[]{CustomAdvancement.parent};
+        return new String[]{Creator.lastCreatedAdvancement.getParent()};
     }
 
     @Override
@@ -68,6 +68,6 @@ public class ExprAdvancementParent extends SimpleExpression<String> {
         assert delta[0] != null;
         String namespace = ((String) delta[0]).split("/")[0];
         String key = ((String) delta[0]).split("/")[1];
-        CustomAdvancement.parent = namespace.toLowerCase().replaceAll(" ", "_") + "/" + key;
+        Creator.lastCreatedAdvancement.setParent(namespace.toLowerCase().replaceAll(" ", "_") + "/" + key);
     }
 }

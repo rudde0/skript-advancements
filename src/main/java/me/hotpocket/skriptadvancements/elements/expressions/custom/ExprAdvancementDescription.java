@@ -12,9 +12,11 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
+import me.hotpocket.skriptadvancements.utils.Creator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 @Name("Creation - Advancement Description")
 @Description("Sets the description of a custom advancement to a string.")
@@ -31,7 +33,7 @@ public class ExprAdvancementDescription extends SimpleExpression<String> {
 
     @Override
     protected @Nullable String[] get(Event e) {
-        return new String[]{CustomAdvancement.description};
+        return new String[]{Creator.lastCreatedAdvancement.getDisplay().getDescription().get(0)};
     }
 
     @Override
@@ -65,6 +67,6 @@ public class ExprAdvancementDescription extends SimpleExpression<String> {
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        CustomAdvancement.description = (String) delta[0];
+        Creator.lastCreatedAdvancement.setDescription(List.of((String) delta[0]));
     }
 }

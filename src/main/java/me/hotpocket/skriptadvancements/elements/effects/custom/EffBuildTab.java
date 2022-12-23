@@ -10,7 +10,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import me.hotpocket.skriptadvancements.elements.sections.SecAdvancementTab;
-import me.hotpocket.skriptadvancements.utils.CreationUtils;
+import me.hotpocket.skriptadvancements.utils.Creator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,7 +28,7 @@ public class EffBuildTab extends Effect {
 
     @Override
     protected void execute(Event e) {
-        CreationUtils.build();
+        Creator.build();
     }
 
     @Override

@@ -13,7 +13,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
+import me.hotpocket.skriptadvancements.utils.Creator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,7 +32,7 @@ public class ExprAdvancementBackground extends SimpleExpression<ItemType> {
 
     @Override
     protected @Nullable ItemType[] get(Event e) {
-        return new ItemType[]{new ItemType(CustomAdvancement.background)};
+        return new ItemType[]{new ItemType(Creator.lastCreatedAdvancement.getBackground())};
     }
 
     @Override
@@ -66,6 +66,6 @@ public class ExprAdvancementBackground extends SimpleExpression<ItemType> {
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        CustomAdvancement.background = ((ItemType) delta[0]).getMaterial();
+        Creator.lastCreatedAdvancement.setBackground(((ItemType) delta[0]).getMaterial());
     }
 }

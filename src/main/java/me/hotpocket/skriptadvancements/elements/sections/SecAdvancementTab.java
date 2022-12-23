@@ -10,7 +10,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.TriggerItem;
 import ch.njol.util.Kleenean;
-import me.hotpocket.skriptadvancements.utils.CreationUtils;
+import me.hotpocket.skriptadvancements.utils.Creator;
 import me.hotpocket.skriptadvancements.utils.CustomUtils;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -48,12 +48,13 @@ public class SecAdvancementTab extends EffectSection {
     @Nullable
     @SuppressWarnings({"unchecked", "rawtypes"})
     protected TriggerItem walk(Event event) {
-        String tab = name.getSingle(event).toLowerCase().replaceAll(" ", "_");
-        if (CustomUtils.getAPI().getAdvancementTab(tab) != null) {
-            CustomUtils.getAPI().unregisterAdvancementTab(tab);
+        if (Creator.lastCreatedTab != null) {
+            if (CustomUtils.getAPI().getAdvancementTab(Creator.lastCreatedTab) != null && CustomUtils.getAPI().getAdvancementTab(Creator.lastCreatedTab).isInitialised()) {
+                CustomUtils.getAPI().unregisterAdvancementTab(Creator.lastCreatedTab);
+            }
         }
-        CustomUtils.getAPI().createAdvancementTab(tab);
-        CreationUtils.lastCreatedTab = CustomUtils.getAPI().getAdvancementTab(tab);
+        Creator.lastCreatedTab = name.getSingle(event).toLowerCase().replaceAll(" ", "_");
+        CustomUtils.getAPI().createAdvancementTab(Creator.lastCreatedTab);
         return walk(event, true);
     }
 

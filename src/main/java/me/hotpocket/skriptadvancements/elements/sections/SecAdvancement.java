@@ -10,7 +10,11 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.TriggerItem;
 import ch.njol.util.Kleenean;
-import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
+import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
+import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
+import me.hotpocket.skriptadvancements.utils.Creator;
+import me.hotpocket.skriptadvancements.utils.TempAdvancement;
+import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
@@ -51,7 +55,12 @@ public class SecAdvancement extends EffectSection {
     @Nullable
     @SuppressWarnings({"unchecked", "rawtypes"})
     protected TriggerItem walk(Event event) {
-        CustomAdvancement.name = name.getSingle(event).toLowerCase().replaceAll(" ", "_");
+        TempAdvancement advancement = new TempAdvancement(name.getSingle(event).toLowerCase().replaceAll(" ", "_"),
+                Creator.lastCreatedTab,
+                new AdvancementDisplay(Material.STICK, "title", AdvancementFrameType.TASK, true, true, 0, 0, List.of("description")),
+                "", 0, false, Material.STONE);
+        Creator.tempAdvancements.add(advancement);
+        Creator.lastCreatedAdvancement = advancement;
         return walk(event, true);
     }
 

@@ -12,7 +12,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
+import me.hotpocket.skriptadvancements.utils.Creator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,7 +31,7 @@ public class ExprAdvancementToast extends SimpleExpression<Boolean> {
 
     @Override
     protected @Nullable Boolean[] get(Event e) {
-        return new Boolean[]{CustomAdvancement.showToast};
+        return new Boolean[]{Creator.lastCreatedAdvancement.getDisplay().doesShowToast()};
     }
 
     @Override
@@ -65,6 +65,6 @@ public class ExprAdvancementToast extends SimpleExpression<Boolean> {
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        CustomAdvancement.showToast = (Boolean) delta[0];
+        Creator.lastCreatedAdvancement.setToast((Boolean) delta[0]);
     }
 }

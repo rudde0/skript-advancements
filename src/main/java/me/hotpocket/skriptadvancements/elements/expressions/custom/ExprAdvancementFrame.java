@@ -13,7 +13,7 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
-import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
+import me.hotpocket.skriptadvancements.utils.Creator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,7 +32,7 @@ public class ExprAdvancementFrame extends SimpleExpression<AdvancementFrameType>
 
     @Override
     protected @Nullable AdvancementFrameType[] get(Event e) {
-        return new AdvancementFrameType[]{CustomAdvancement.frame};
+        return new AdvancementFrameType[]{Creator.lastCreatedAdvancement.getDisplay().getFrame()};
     }
 
     @Override
@@ -66,6 +66,6 @@ public class ExprAdvancementFrame extends SimpleExpression<AdvancementFrameType>
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        CustomAdvancement.frame = (AdvancementFrameType) delta[0];
+        Creator.lastCreatedAdvancement.setFrame((AdvancementFrameType) delta[0]);
     }
 }

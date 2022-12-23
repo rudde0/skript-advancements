@@ -24,8 +24,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>14</source>
-                    <target>14</target>
+                    <source>16</source>
+                    <target>16</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -74,7 +74,7 @@
         </repository>
         <repository>
             <id>fren_gor</id>
-            <url>https://nexus.frengor.com/repository/public/</url>
+            <url>https://github.com/frengor/UltimateAdvancementAPI.git/</url>
         </repository>
     </repositories>
 

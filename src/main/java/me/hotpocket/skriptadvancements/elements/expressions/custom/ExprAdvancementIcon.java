@@ -13,7 +13,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
+import me.hotpocket.skriptadvancements.utils.Creator;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
@@ -33,7 +33,7 @@ public class ExprAdvancementIcon extends SimpleExpression<ItemType> {
 
     @Override
     protected @Nullable ItemType[] get(Event e) {
-        return new ItemType[]{new ItemType(CustomAdvancement.icon)};
+        return new ItemType[]{new ItemType(Creator.lastCreatedAdvancement.getDisplay().getIcon())};
     }
 
     @Override
@@ -70,6 +70,6 @@ public class ExprAdvancementIcon extends SimpleExpression<ItemType> {
         ItemType itemType = (ItemType) delta[0];
         ItemStack itemStack = new ItemStack(itemType.getMaterial());
         itemStack.setItemMeta(itemType.getItemMeta());
-        CustomAdvancement.icon = itemStack;
+        Creator.lastCreatedAdvancement.setIcon(itemStack);
     }
 }

@@ -12,7 +12,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.hotpocket.skriptadvancements.utils.CustomAdvancement;
+import me.hotpocket.skriptadvancements.utils.Creator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,7 +31,7 @@ public class ExprAdvancementTitle extends SimpleExpression<String> {
 
     @Override
     protected @Nullable String[] get(Event e) {
-        return new String[]{CustomAdvancement.title};
+        return new String[]{Creator.lastCreatedAdvancement.getDisplay().getTitle()};
     }
 
     @Override
@@ -65,6 +65,6 @@ public class ExprAdvancementTitle extends SimpleExpression<String> {
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        CustomAdvancement.title = (String) delta[0];
+        Creator.lastCreatedAdvancement.setTitle((String) delta[0]);
     }
 }
