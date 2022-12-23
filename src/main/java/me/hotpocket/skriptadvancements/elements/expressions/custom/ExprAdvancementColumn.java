@@ -16,6 +16,9 @@ import me.hotpocket.skriptadvancements.utils.Creator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 @Name("Creation - Advancement Column")
 @Description("Sets the column of a custom advancement to an integer.")
 @Examples("set column of advancement to 5")
@@ -65,6 +68,6 @@ public class ExprAdvancementColumn extends SimpleExpression<Integer> {
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        Creator.lastCreatedAdvancement.setY(((Number) delta[0]).intValue());
+        Creator.lastCreatedAdvancement.setY(min(max(((Number) delta[0]).intValue(), 0), 9999999));
     }
 }
