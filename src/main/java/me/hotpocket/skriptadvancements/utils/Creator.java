@@ -10,17 +10,12 @@ import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameT
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-// min(max(row, 0), 9999999), min(max(column, 1), 9999999)
 public class Creator {
 
     public static List<TempAdvancement> tempAdvancements = new ArrayList<>();

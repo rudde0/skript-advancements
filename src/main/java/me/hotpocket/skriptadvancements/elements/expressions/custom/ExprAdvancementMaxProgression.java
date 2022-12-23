@@ -13,7 +13,6 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import me.hotpocket.skriptadvancements.utils.Creator;
-import me.hotpocket.skriptadvancements.utils.TempAdvancement;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
