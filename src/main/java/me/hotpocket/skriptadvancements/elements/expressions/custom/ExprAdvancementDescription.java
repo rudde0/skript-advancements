@@ -16,6 +16,7 @@ import me.hotpocket.skriptadvancements.utils.Creator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Name("Creation - Advancement Description")
@@ -33,12 +34,12 @@ public class ExprAdvancementDescription extends SimpleExpression<String> {
 
     @Override
     protected @Nullable String[] get(Event e) {
-        return new String[]{Creator.lastCreatedAdvancement.getDisplay().getDescription().get(0)};
+        return Creator.lastCreatedAdvancement.getDisplay().getDescription().toArray(new String[Creator.lastCreatedAdvancement.getDisplay().getDescription().size()]);
     }
 
     @Override
     public boolean isSingle() {
-        return true;
+        return false;
     }
 
     @Override
@@ -59,7 +60,7 @@ public class ExprAdvancementDescription extends SimpleExpression<String> {
     @Override
     public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
         return switch (mode) {
-            case SET-> CollectionUtils.array(String.class);
+            case SET-> CollectionUtils.array(String[].class);
             default -> null;
         };
     }
@@ -67,6 +68,6 @@ public class ExprAdvancementDescription extends SimpleExpression<String> {
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        Creator.lastCreatedAdvancement.setDescription(List.of((String) delta[0]));
+        Creator.lastCreatedAdvancement.setDescription(List.of(Arrays.copyOf(delta, delta.length, String[].class)));
     }
 }
