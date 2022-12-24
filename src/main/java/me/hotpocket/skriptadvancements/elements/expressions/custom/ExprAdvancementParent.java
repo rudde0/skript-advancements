@@ -16,6 +16,10 @@ import me.hotpocket.skriptadvancements.utils.Creator;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Name("Creation - Advancement Parent")
 @Description({"Sets the parent of a custom advancement to any custom advancement represented as a string.",
 "Remember to NOT use the custom advancement expression, use a string instead!"})
@@ -32,7 +36,7 @@ public class ExprAdvancementParent extends SimpleExpression<String> {
 
     @Override
     protected @Nullable String[] get(Event e) {
-        return new String[]{Creator.lastCreatedAdvancement.getParent()};
+        return Creator.lastCreatedAdvancement.getParents().toArray(new String[Creator.lastCreatedAdvancement.getParents().size()]);
     }
 
     @Override
@@ -58,7 +62,7 @@ public class ExprAdvancementParent extends SimpleExpression<String> {
     @Override
     public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
         return switch (mode) {
-            case SET -> CollectionUtils.array(String.class);
+            case SET -> CollectionUtils.array(String[].class);
             default -> null;
         };
     }
@@ -66,8 +70,10 @@ public class ExprAdvancementParent extends SimpleExpression<String> {
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        String namespace = ((String) delta[0]).split("/")[0];
-        String key = ((String) delta[0]).split("/")[1];
-        Creator.lastCreatedAdvancement.setParent(namespace.toLowerCase().replaceAll(" ", "_") + "/" + key);
+        List<String> parents = new ArrayList<>();
+        for (String parent : Arrays.copyOf(delta, delta.length, String[].class)) {
+            parents.add(parent.toLowerCase().replaceAll(" ", "_"));
+        }
+        Creator.lastCreatedAdvancement.setParents(parents);
     }
 }

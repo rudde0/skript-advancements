@@ -58,7 +58,7 @@ public class SecAdvancement extends EffectSection {
         TempAdvancement advancement = new TempAdvancement(name.getSingle(event).toLowerCase().replaceAll(" ", "_"),
                 Creator.lastCreatedTab,
                 new AdvancementDisplay(Material.STICK, "title", AdvancementFrameType.TASK, true, true, 0, 0, List.of("description")),
-                "", 0, false, Material.STONE);
+                List.of(""), 0, false, Material.STONE);
         Creator.tempAdvancements.add(advancement);
         Creator.lastCreatedAdvancement = advancement;
         return walk(event, true);

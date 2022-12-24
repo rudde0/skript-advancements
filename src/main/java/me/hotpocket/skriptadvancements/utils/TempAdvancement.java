@@ -5,29 +5,32 @@ import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.RootAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
+import com.fren_gor.ultimateAdvancementAPI.advancement.multiParents.MultiParentsAdvancement;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class TempAdvancement {
 
     private static String name;
     private static String tab;
-    private static String parent;
+    private static List<String> parents;
     private static AdvancementDisplay display;
     private static Integer maxProgression;
     private static Boolean root;
     private static Material background;
 
 
-    public TempAdvancement(String name, String tab, AdvancementDisplay display, String parent, int maxProgression, boolean root, Material background) {
+    public TempAdvancement(String name, String tab, AdvancementDisplay display, List<String> parents, int maxProgression, boolean root, Material background) {
         TempAdvancement.name = name;
         TempAdvancement.tab = tab;
-        TempAdvancement.parent = parent;
+        TempAdvancement.parents = parents;
         TempAdvancement.display = display;
         TempAdvancement.maxProgression = maxProgression;
         TempAdvancement.root = root;
@@ -42,12 +45,12 @@ public class TempAdvancement {
         return tab;
     }
 
-    public void setParent(String parent) {
-        TempAdvancement.parent = parent;
+    public void setParents(List<String> parents) {
+        TempAdvancement.parents = parents;
     }
 
-    public String getParent() {
-        return parent;
+    public List<String> getParents() {
+        return parents;
     }
 
     public AdvancementDisplay getDisplay() {
@@ -145,11 +148,41 @@ public class TempAdvancement {
                     advancement = new RootAdvancement(CustomUtils.getAPI().getAdvancementTab(tab), name, display, getTexture(background));
                 }
             } else {
-                if (fromString(parent) != null) {
-                    if (maxProgression > 0) {
-                        advancement = new BaseAdvancement(name, display, fromString(parent), maxProgression);
+                if (parents.size() > 1) {
+                    Set<BaseAdvancement> parentAdvancements = new HashSet<>();
+                    for (String parent : parents) {
+                        if (fromString(parent) == null) {
+                            parents.remove(parent);
+                        } else {
+                            if (fromString(parent) instanceof RootAdvancement) {
+                                parents.remove(parent);
+                            } else {
+                                parentAdvancements.add((BaseAdvancement) fromString(parent));
+                            }
+                        }
+                    }
+                    if (parentAdvancements.size() > 1) {
+                        if (maxProgression > 0) {
+                            advancement = new MultiParentsAdvancement(name, display, maxProgression, parentAdvancements);
+                        } else {
+                            advancement = new MultiParentsAdvancement(name, display, parentAdvancements);
+                        }
                     } else {
-                        advancement = new BaseAdvancement(name, display, fromString(parent));
+                        if (fromString(parents.get(0)) != null) {
+                            if (maxProgression > 0) {
+                                advancement = new BaseAdvancement(name, display, fromString(parents.get(0)), maxProgression);
+                            } else {
+                                advancement = new BaseAdvancement(name, display, fromString(parents.get(0)));
+                            }
+                        }
+                    }
+                } else {
+                    if (fromString(parents.get(0)) != null) {
+                        if (maxProgression > 0) {
+                            advancement = new BaseAdvancement(name, display, fromString(parents.get(0)), maxProgression);
+                        } else {
+                            advancement = new BaseAdvancement(name, display, fromString(parents.get(0)));
+                        }
                     }
                 }
             }
