@@ -30,8 +30,8 @@ public class ExprAdvancementParent extends SimpleExpression<String> {
 
     static {
         Skript.registerExpression(ExprAdvancementParent.class, String.class, ExpressionType.SIMPLE,
-                "[the] parent of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s parent");
+                "[the] parent[s] of [the] [last (created|made)] [custom] advancement",
+                "[the] [last (created|made)] [custom] advancement[']s parent[s]");
     }
 
     @Override
