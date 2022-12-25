@@ -22,8 +22,8 @@ public class TempAdvancement {
     private static String tab;
     private static List<String> parents;
     private static AdvancementDisplay display;
-    private static Integer maxProgression;
-    private static Boolean root;
+    private static int maxProgression;
+    private static boolean root;
     private static Material background;
 
 
@@ -89,11 +89,11 @@ public class TempAdvancement {
         display = new AdvancementDisplay(display.getIcon(), display.getTitle(), display.getFrame(), display.doesShowToast(), announce, display.getX(), display.getY(), display.getDescription());
     }
 
-    public void setX(int x) {
+    public void setX(float x) {
         display = new AdvancementDisplay(display.getIcon(), display.getTitle(), display.getFrame(), display.doesShowToast(), display.doesAnnounceToChat(), x, display.getY(), display.getDescription());
     }
 
-    public void setY(int y) {
+    public void setY(float y) {
         display = new AdvancementDisplay(display.getIcon(), display.getTitle(), display.getFrame(), display.doesShowToast(), display.doesAnnounceToChat(), display.getX(), y, display.getDescription());
     }
 

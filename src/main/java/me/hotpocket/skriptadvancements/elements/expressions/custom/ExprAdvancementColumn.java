@@ -20,21 +20,21 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 @Name("Creation - Advancement Column")
-@Description("Sets the column of a custom advancement to an integer.")
+@Description("Sets the column of a custom advancement to a number.")
 @Examples("set column of advancement to 5")
 @Since("1.4")
 
-public class ExprAdvancementColumn extends SimpleExpression<Integer> {
+public class ExprAdvancementColumn extends SimpleExpression<Number> {
 
     static {
-        Skript.registerExpression(ExprAdvancementColumn.class, Integer.class, ExpressionType.SIMPLE,
+        Skript.registerExpression(ExprAdvancementColumn.class, Number.class, ExpressionType.SIMPLE,
                 "[the] (column|y[-coord[inate]]) of [the] [last (created|made)] [custom] advancement",
                 "[the] [last (created|made)] [custom] advancement[']s (column|y[-coord[inate]])");
     }
 
     @Override
-    protected @Nullable Integer[] get(Event e) {
-        return new Integer[]{Math.round(Creator.lastCreatedAdvancement.getDisplay().getX())};
+    protected @Nullable Number[] get(Event e) {
+        return new Number[]{Creator.lastCreatedAdvancement.getDisplay().getX()};
     }
 
     @Override
@@ -43,8 +43,8 @@ public class ExprAdvancementColumn extends SimpleExpression<Integer> {
     }
 
     @Override
-    public Class<? extends Integer> getReturnType() {
-        return Integer.class;
+    public Class<? extends Number> getReturnType() {
+        return Number.class;
     }
 
     @Override
@@ -68,6 +68,6 @@ public class ExprAdvancementColumn extends SimpleExpression<Integer> {
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        Creator.lastCreatedAdvancement.setX(min(max(((Number) delta[0]).intValue(), 0), 9999999));
+        Creator.lastCreatedAdvancement.setX(min(max(((Number) delta[0]).floatValue(), 0), 9999999));
     }
 }

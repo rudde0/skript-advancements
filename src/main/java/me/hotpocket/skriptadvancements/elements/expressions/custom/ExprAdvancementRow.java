@@ -20,21 +20,21 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 @Name("Creation - Advancement Row")
-@Description("Sets the row of a custom advancement to an integer.")
+@Description("Sets the row of a custom advancement to a number.")
 @Examples("set row of advancement to 5")
 @Since("1.4")
 
-public class ExprAdvancementRow extends SimpleExpression<Integer> {
+public class ExprAdvancementRow extends SimpleExpression<Number> {
 
     static {
-        Skript.registerExpression(ExprAdvancementRow.class, Integer.class, ExpressionType.SIMPLE,
+        Skript.registerExpression(ExprAdvancementRow.class, Number.class, ExpressionType.SIMPLE,
                 "[the] (row|x[-coord[inate]]) of [the] [last (created|made)] [custom] advancement",
                 "[the] [last (created|made)] [custom] advancement[']s (row|x[-coord[inate]])");
     }
 
     @Override
-    protected @Nullable Integer[] get(Event e) {
-        return new Integer[]{Math.round(Creator.lastCreatedAdvancement.getDisplay().getY())};
+    protected @Nullable Number[] get(Event e) {
+        return new Number[]{Creator.lastCreatedAdvancement.getDisplay().getY()};
     }
 
     @Override
@@ -43,8 +43,8 @@ public class ExprAdvancementRow extends SimpleExpression<Integer> {
     }
 
     @Override
-    public Class<? extends Integer> getReturnType() {
-        return Integer.class;
+    public Class<? extends Number> getReturnType() {
+        return Number.class;
     }
 
     @Override
@@ -68,6 +68,6 @@ public class ExprAdvancementRow extends SimpleExpression<Integer> {
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        Creator.lastCreatedAdvancement.setY(min(max(((Number) delta[0]).intValue(), 0), 9999999));
+        Creator.lastCreatedAdvancement.setY(min(max(((Number) delta[0]).floatValue(), 0), 9999999));
     }
 }
