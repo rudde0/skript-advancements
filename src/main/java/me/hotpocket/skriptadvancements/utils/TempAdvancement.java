@@ -1,5 +1,6 @@
 package me.hotpocket.skriptadvancements.utils;
 
+import ch.njol.skript.Skript;
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.RootAdvancement;
@@ -141,6 +142,10 @@ public class TempAdvancement {
     public void build() {
         if (Creator.lastCreatedTab.equals(tab)) {
             Advancement advancement = null;
+            if (fromString(getTab() + "/" + getName()) != null) {
+                Skript.error("You cannot have duplicate advancements. Found multiple: " + getTab() + "/" + getName());
+                return;
+            }
             if (root) {
                 if (maxProgression > 0) {
                     advancement = new RootAdvancement(CustomUtils.getAPI().getAdvancementTab(tab), name, display, getTexture(background), maxProgression);
