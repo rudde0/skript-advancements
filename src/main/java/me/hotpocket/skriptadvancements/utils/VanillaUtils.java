@@ -6,8 +6,12 @@ import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 public class VanillaUtils {
 
@@ -48,6 +52,40 @@ public class VanillaUtils {
         }
         for (Advancement advancement : advancementList) {
             grantAdvancement(player, advancement);
+        }
+    }
+
+    public static int getProgression(Player player, Advancement advancement) {
+        return player.getAdvancementProgress(advancement).getAdvancement().getCriteria().size();
+    }
+
+    public static void setProgression(Player player, Advancement advancement, int progression) {
+        AdvancementProgress progress = player.getAdvancementProgress(advancement);
+        revokeAdvancement(player, advancement);
+        progression = min(max(progression, 0), progress.getRemainingCriteria().size());
+        List<String> criterion = new ArrayList<>(progress.getRemainingCriteria());
+        for (int i = 0; i < progression; i++) {
+            progress.awardCriteria(criterion.get(i));
+        }
+    }
+
+    public static void addProgression(Player player, Advancement advancement, int progression) {
+        AdvancementProgress progress = player.getAdvancementProgress(advancement);
+        progression = min(max(progression, 0), progress.getRemainingCriteria().size());
+        if (!progress.isDone()) {
+            List<String> criterion = new ArrayList<>(progress.getRemainingCriteria());
+            for (int i = 0; i < progression; i++) {
+                progress.awardCriteria(criterion.get(i));
+            }
+        }
+    }
+
+    public static void removeProgression(Player player, Advancement advancement, int progression) {
+        AdvancementProgress progress = player.getAdvancementProgress(advancement);
+        progression = min(max(progression, 0), progress.getAwardedCriteria().size());
+        List<String> criterion = new ArrayList<>(progress.getAwardedCriteria());
+        for (int i = 0; i < progression; i++) {
+            progress.revokeCriteria(criterion.get(i));
         }
     }
 }
