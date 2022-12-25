@@ -57,7 +57,7 @@ public class SecAdvancement extends EffectSection {
     protected TriggerItem walk(Event event) {
         TempAdvancement advancement = new TempAdvancement(name.getSingle(event).toLowerCase().replaceAll(" ", "_"),
                 Creator.lastCreatedTab,
-                new AdvancementDisplay(Material.STICK, "title", AdvancementFrameType.TASK, true, true, 0, 0, List.of("description")),
+                new AdvancementDisplay(Material.STICK, "", AdvancementFrameType.TASK, true, true, 0, 0, List.of("")),
                 List.of(""), 0, false, Material.STONE);
         Creator.tempAdvancements.add(advancement);
         Creator.lastCreatedAdvancement = advancement;

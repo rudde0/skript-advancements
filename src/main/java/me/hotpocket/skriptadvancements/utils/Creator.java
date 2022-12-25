@@ -38,7 +38,7 @@ public class Creator {
                 }
             }
         }
-        if (root.getKey().equals("temp_root_advancement_name_1289587") || baseAdvancements.size() < 1) {
+        if (root.getKey().getKey().equals("temp_root_advancement_name_1289587") || baseAdvancements.size() < 1) {
             BaseAdvancement tempBase = new BaseAdvancement("name1", new AdvancementDisplay(Material.DIAMOND, "title", AdvancementFrameType.TASK, false, false, 0, 0, "description"), root);
             CustomUtils.getAPI().getAdvancementTab(lastCreatedTab).registerAdvancements(root, tempBase);
             CustomUtils.getAPI().unregisterAdvancementTab(lastCreatedTab);

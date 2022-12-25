@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 public class ExprCustomAdvancementsFromTab extends SimpleExpression<Advancement> {
 
     static {
-        Skript.registerExpression(ExprCustomAdvancementsFromTab.class, Advancement.class, ExpressionType.SIMPLE, "[the] [custom] advancements from [the] tab %string%");
+        Skript.registerExpression(ExprCustomAdvancementsFromTab.class, Advancement.class, ExpressionType.SIMPLE, "[all] [the] [custom] advancements from [the] tab %string%");
     }
 
     private Expression<String> tab;

@@ -49,8 +49,10 @@ public class SecAdvancementTab extends EffectSection {
     @SuppressWarnings({"unchecked", "rawtypes"})
     protected TriggerItem walk(Event event) {
         if (Creator.lastCreatedTab != null) {
-            if (CustomUtils.getAPI().getAdvancementTab(Creator.lastCreatedTab) != null && CustomUtils.getAPI().getAdvancementTab(Creator.lastCreatedTab).isInitialised()) {
-                CustomUtils.getAPI().unregisterAdvancementTab(Creator.lastCreatedTab);
+            if (Creator.lastCreatedTab.equals(name.getSingle(event).toLowerCase().replaceAll(" ", "_"))) {
+                if (CustomUtils.getAPI().getAdvancementTab(Creator.lastCreatedTab) != null && CustomUtils.getAPI().getAdvancementTab(Creator.lastCreatedTab).isInitialised()) {
+                    CustomUtils.getAPI().unregisterAdvancementTab(Creator.lastCreatedTab);
+                }
             }
         }
         Creator.lastCreatedTab = name.getSingle(event).toLowerCase().replaceAll(" ", "_");
