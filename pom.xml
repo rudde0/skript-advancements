@@ -74,7 +74,7 @@
         </repository>
         <repository>
             <id>fren_gor</id>
-            <url>https://github.com/frengor/UltimateAdvancementAPI.git/</url>
+            <url>https://nexus.frengor.com/repository/public/</url>
         </repository>
     </repositories>
 
@@ -105,7 +105,7 @@
         <dependency>
             <groupId>com.frengor</groupId>
             <artifactId>ultimateadvancementapi-shadeable</artifactId>
-            <version>2.2.1</version>
+            <version>2.2.2</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

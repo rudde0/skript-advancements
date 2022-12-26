@@ -1,12 +1,24 @@
 package me.hotpocket.skriptadvancements.utils;
 
+import me.hotpocket.skriptadvancements.SkriptAdvancements;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.BlastingRecipe;
+import org.bukkit.inventory.CampfireRecipe;
+import org.bukkit.inventory.FurnaceRecipe;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.RecipeChoice;
+import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.SmithingRecipe;
+import org.bukkit.inventory.SmokingRecipe;
+import org.bukkit.inventory.StonecuttingRecipe;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -44,15 +56,6 @@ public class VanillaUtils {
             }
         }
         return advancementList;
-    }
-
-    public static void setPlayerAdvancements(List<Advancement> advancementList, Player player) {
-        for (Advancement advancement : getPlayerAdvancements(player)) {
-            revokeAdvancement(player, advancement);
-        }
-        for (Advancement advancement : advancementList) {
-            grantAdvancement(player, advancement);
-        }
     }
 
     public static int getProgression(Player player, Advancement advancement) {
