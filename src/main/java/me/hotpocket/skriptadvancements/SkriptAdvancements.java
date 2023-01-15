@@ -58,16 +58,14 @@ public final class SkriptAdvancements extends JavaPlugin implements Listener {
 
         try {
             this.addon.loadClasses("me.hotpocket.skriptadvancements", "elements");
-        } catch (IOException var2) {
-            var2.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         log("§7[§bSkript-Advancements§7] §fChecking for updates...");
         if (getDescription().getVersion().equals(getVersion())) {
             log("§7[§bSkript-Advancements§7] §aNo updates found!");
-            updated = true;
-        }
-        else {
+        } else {
             log("§7[§bSkript-Advancements§7] §cYou are running an §noutdated version§r §cof skript-advancements!");
             updated = false;
         }

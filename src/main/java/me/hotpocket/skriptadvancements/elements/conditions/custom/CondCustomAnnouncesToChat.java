@@ -30,11 +30,7 @@ public class CondCustomAnnouncesToChat extends Condition {
 
     @Override
     public boolean check(Event e) {
-        return advancements.check(e, advancement -> {
-            if (advancement.getDisplay() != null)
-                return advancement.getDisplay().doesAnnounceToChat();
-            return false;
-        }, isNegated());
+        return advancements.check(e, advancement -> advancement.getDisplay().doesAnnounceToChat(), isNegated());
     }
 
     @Override
