@@ -170,12 +170,12 @@ ul div p {
 }
 
 input {
-    position: absolute;
+    position: relative;
     border-radius: 5px;
     border: none;
     outline: none;
     font-size: 20px;
-    right: 2%;
+    left: 42.9%;
     padding-left: 7px;
     padding-right: 7px;
     padding-top: 2px;
