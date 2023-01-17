@@ -115,7 +115,7 @@ function filterSyntax(str) {
     }
 }
 
-document.onkeydown = function(evt) {
+document.onkeyup = function(evt) {
   if (document.activeElement.id == "search") {
     filterSyntax(document.activeElement.value)
   }
