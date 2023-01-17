@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skript-advancements | Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="loadSyntax();">
+    <div id="header">
+        <a href="index.html" id="logo">skript-advancements</a>
+        <span onclick="location.replace('./generator.html')">Generator</span>
+        <span onclick="location.replace('./docs.html')" style="color: rgb(71, 71, 241);">Documentation</span>
+        <span onclick="location.replace('./examples.html')">Examples</span>
+        <input id="search" type="text" onsubmit="filterSyntax(document.getElementById('search').textContent)" placeholder="Search Elements">
+    </div>
+    <div id="loading"><span>Loading...</span></div>
+    <!-- <li><span id="title"></span><span id="type"></span><span id="syntax"></span></li> -->
+    <ul id="elements">
+    </ul>
+</body>
+<script src="script.js"></script>
+</html>
