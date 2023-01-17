@@ -115,55 +115,7 @@ function filterSyntax(str) {
     }
 }
 
-/*var darkToggled = false;
-
-function setMode(darkT) {
-  if (!darkT) {
-    document.body.style.backgroundColor = "white"
-    document.getElementById("header").style.backgroundColor = "white"
-    for (var i = 0; i < document.getElementsByTagName("p").length; i++) {
-      document.getElementsByTagName("p")[i].style.color = "black"
-      document.getElementsByTagName("p")[i].style.transition = "color 0.1s ease, text-decoration-color 0.1s ease"
-    }
-    for (var i = 0; i < document.getElementsByTagName("span").length; i++) {
-      document.getElementsByTagName("span")[i].style.color = "black"
-      document.getElementsByTagName("span")[i].style.textDecorationColor = "black"
-      document.getElementsByTagName("span")[i].style.transition = "color 0.1s ease, text-decoration-color 0.1s ease"
-    }
-    document.getElementById("logo").style.color = "black"
-    document.getElementById("header").style.boxShadow = "0 0 50px lightgray"
-    if (document.getElementById("caption") != null) {
-      document.getElementById("caption").style.color = "white"
-    }
-  } else {
-    document.body.style.backgroundColor = "rgb(26, 39, 46)"
-    document.body.style.transition = "background-color 0.3s ease"
-    document.getElementById("header").style.backgroundColor = "rgb(26, 39, 46)"
-    for (var i = 0; i < document.getElementsByTagName("p").length; i++) {
-      if (document.getElementsByTagName("p")[i].id != "description" && document.getElementsByTagName("p")[i].id != "syntax") {
-        document.getElementsByTagName("p")[i].style.color = "white"
-        document.getElementsByTagName("p")[i].style.transition = "color 0.1s ease"
-      }
-    }
-    for (var i = 0; i < document.getElementsByTagName("span").length; i++) {
-      document.getElementsByTagName("span")[i].style.color = "white"
-      document.getElementsByTagName("span")[i].style.textDecorationColor = "white"
-      document.getElementsByTagName("span")[i].style.transition = "color 0.1s ease, text-decoration-color 0.1s ease"
-    }
-    document.getElementById("logo").style.color = "white"
-    document.getElementById("header").style.boxShadow = "0 0 50px black"
-    if (document.getElementById("caption") != null) {
-      document.getElementById("caption").style.color = "white"
-    }
-  }
-  darkToggled = darkT
-}
-
-function getToggled() {
-  return darkToggled;
-}*/
-
-document.onkeyup = function(evt) {
+document.onkeydown = function(evt) {
   if (document.activeElement.id == "search") {
     filterSyntax(document.activeElement.value)
   }
