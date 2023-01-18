@@ -81,35 +81,6 @@ function filterSyntax(str) {
         }
       }
     }
-    for (var i = 0; i < jsonData.length; i++) {
-      if (jsonData[i].creator == "2270") {
-        if (jsonData[i].description.toLowerCase().includes(str.toLowerCase())) {
-          let typeTitle = jsonData[i].syntax_type.charAt(0).toUpperCase() + jsonData[i].syntax_type.slice(1);
-          let colorForBackground = "rgb(221, 221, 221)"
-          let colorForSyntax = "rgb(199, 199, 199)"
-          if (typeTitle == "Type") {
-             colorForBackground = "orange"
-             colorForSyntax = "rgb(228, 148, 0)"
-          } else if (typeTitle == "Expression") {
-            colorForBackground = "rgb(55, 204, 122)"
-            colorForSyntax = "rgb(51, 184, 111)"
-          } else if (typeTitle == "Effect") {
-            colorForBackground = "rgb(0, 174, 255)"
-            colorForSyntax = "rgb(0, 156, 228)"
-          } else if (typeTitle == "Condition") {
-            colorForBackground = "rgb(223, 75, 75)"
-            colorForSyntax = "rgb(201, 67, 67)"
-          } else if (typeTitle == "Section") {
-            colorForBackground = "rgb(55, 209, 183)"
-            colorForSyntax = "rgb(51, 192, 169)"
-          } else if (typeTitle == "Event") {
-            colorForBackground = "rgb(224, 95, 214)"
-            colorForSyntax = "rgb(201, 87, 191)"
-          }
-          document.getElementById("elements").insertAdjacentHTML("beforeend", "<div id='content' style='background-color:" + colorForBackground + ";'><h2 id='title'>" + jsonData[i].title + "</h2><h2 id='type'>" + typeTitle + "</h2><p id='description'>" + jsonData[i].description + "</p><p id='syntax' style='background-color:" + colorForSyntax + ";'>" + jsonData[i].syntax_pattern.replace("\n", "<br>") + "</p></div>")
-        }
-      }
-    }
     if (document.getElementById("elements").innerHTML == "") {
       document.getElementById("loading").textContent = "No Results Found!"
     }
