@@ -61,7 +61,7 @@ img::selection {
 
 #advTree {
     position: relative;
-    top: 320px;
+    top: 360px;
     height: 50px;
     width: 545px;
     left: 65%;
@@ -122,8 +122,9 @@ ul {
 ul div {
     height: 100%;
     position: relative;
-    top: 35px;
+    top: 73px;
     margin-top: 25px;
+    left: -25px;
     width: 98%;
     padding-top: 1px;
     padding-left: 15px;
@@ -136,9 +137,10 @@ ul div {
 }
 
 ul div #type {
-    position: absolute;
-    right: 1%;
-    top: 0%;
+    position: relative;
+    text-align: right;
+    right: 20px;
+    top: -48px;
 }
 
 ul div #syntax {
@@ -158,7 +160,7 @@ ul div p {
     text-align: center;
     font-family: 'Comfortaa', cursive;
     font-size: 25px;
-    top: 10%;
+    top: 150px;
     cursor: default;
     color: white;
     width: 100%;
@@ -170,7 +172,7 @@ ul div p {
 }
 
 input {
-    position: fixed;
+    position: relative;
     border-radius: 5px;
     border: none;
     outline: none;
@@ -180,4 +182,5 @@ input {
     padding-right: 7px;
     padding-top: 2px;
     padding-bottom: 2px;
+    right: -40vw;
 }
