@@ -1,4 +1,4 @@
-package me.hotpocket.skriptadvancements.utils;
+package me.hotpocket.skriptadvancements.utils.creation;
 
 import ch.njol.skript.Skript;
 import com.fren_gor.ultimateAdvancementAPI.AdvancementTab;
@@ -7,6 +7,7 @@ import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.RootAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
+import me.hotpocket.skriptadvancements.utils.CustomUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -33,8 +34,8 @@ public class Creator {
             for (Advancement advancement : advancements.get(lastCreatedTab)) {
                 if (advancement instanceof RootAdvancement rootAdvancement) {
                     root = rootAdvancement;
-                } else if (advancement instanceof BaseAdvancement baseAdvancement) {
-                    baseAdvancements.add(baseAdvancement);
+                } else {
+                    baseAdvancements.add((BaseAdvancement) advancement);
                 }
             }
         }

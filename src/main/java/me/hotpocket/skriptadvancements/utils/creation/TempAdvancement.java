@@ -1,4 +1,4 @@
-package me.hotpocket.skriptadvancements.utils;
+package me.hotpocket.skriptadvancements.utils.creation;
 
 import ch.njol.skript.Skript;
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
@@ -7,6 +7,12 @@ import com.fren_gor.ultimateAdvancementAPI.advancement.RootAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
 import com.fren_gor.ultimateAdvancementAPI.advancement.multiParents.MultiParentsAdvancement;
+import me.hotpocket.skriptadvancements.utils.CustomUtils;
+import me.hotpocket.skriptadvancements.utils.advancement.HiddenAdvancement;
+import me.hotpocket.skriptadvancements.utils.advancement.HiddenMultiParentsAdvancement;
+import me.hotpocket.skriptadvancements.utils.advancement.ParentGrantedAdvancement;
+import me.hotpocket.skriptadvancements.utils.advancement.ParentGrantedMultiParentsAdvancement;
+import me.hotpocket.skriptadvancements.utils.advancement.VisibilityType;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -26,9 +32,10 @@ public class TempAdvancement {
     private static int maxProgression;
     private static boolean root;
     private static Material background;
+    private static VisibilityType visibility;
 
 
-    public TempAdvancement(String name, String tab, AdvancementDisplay display, List<String> parents, int maxProgression, boolean root, Material background) {
+    public TempAdvancement(String name, String tab, AdvancementDisplay display, List<String> parents, int maxProgression, boolean root, Material background, VisibilityType visible) {
         TempAdvancement.name = name;
         TempAdvancement.tab = tab;
         TempAdvancement.parents = parents;
@@ -36,6 +43,7 @@ public class TempAdvancement {
         TempAdvancement.maxProgression = maxProgression;
         TempAdvancement.root = root;
         TempAdvancement.background = background;
+        TempAdvancement.visibility = visible;
     }
 
     public String getName() {
@@ -114,6 +122,14 @@ public class TempAdvancement {
         TempAdvancement.background = background;
     }
 
+    public VisibilityType getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(VisibilityType visible) {
+        visibility = visible;
+    }
+
     String translate(String text) {
         return ChatColor.translateAlternateColorCodes('&', text);
     }
@@ -168,25 +184,49 @@ public class TempAdvancement {
                     }
                     if (parentAdvancements.size() > 1) {
                         if (maxProgression > 0) {
-                            advancement = new MultiParentsAdvancement(name, display, maxProgression, parentAdvancements);
+                            switch (getVisibility()) {
+                                case HIDDEN -> advancement = new HiddenMultiParentsAdvancement(name, display, maxProgression, parentAdvancements);
+                                case PARENT_GRANTED -> advancement = new ParentGrantedMultiParentsAdvancement(name, display, maxProgression, parentAdvancements);
+                                default -> advancement = new MultiParentsAdvancement(name, display, maxProgression, parentAdvancements);
+                            }
                         } else {
-                            advancement = new MultiParentsAdvancement(name, display, parentAdvancements);
+                            switch (getVisibility()) {
+                                case HIDDEN -> advancement = new HiddenMultiParentsAdvancement(name, display, parentAdvancements);
+                                case PARENT_GRANTED -> advancement = new ParentGrantedMultiParentsAdvancement(name, display, parentAdvancements);
+                                default -> advancement = new MultiParentsAdvancement(name, display, parentAdvancements);
+                            }
                         }
                     } else {
                         if (fromString(parents.get(0)) != null) {
                             if (maxProgression > 0) {
-                                advancement = new BaseAdvancement(name, display, fromString(parents.get(0)), maxProgression);
+                                switch (getVisibility()) {
+                                    case HIDDEN -> advancement = new HiddenAdvancement(name, display, fromString(parents.get(0)), maxProgression);
+                                    case PARENT_GRANTED -> advancement = new ParentGrantedAdvancement(name, display, fromString(parents.get(0)), maxProgression);
+                                    default -> advancement = new BaseAdvancement(name, display, fromString(parents.get(0)), maxProgression);
+                                }
                             } else {
-                                advancement = new BaseAdvancement(name, display, fromString(parents.get(0)));
+                                switch (getVisibility()) {
+                                    case HIDDEN -> advancement = new HiddenAdvancement(name, display, fromString(parents.get(0)));
+                                    case PARENT_GRANTED -> advancement = new ParentGrantedAdvancement(name, display, fromString(parents.get(0)));
+                                    default -> advancement = new BaseAdvancement(name, display, fromString(parents.get(0)));
+                                }
                             }
                         }
                     }
                 } else {
                     if (fromString(parents.get(0)) != null) {
                         if (maxProgression > 0) {
-                            advancement = new BaseAdvancement(name, display, fromString(parents.get(0)), maxProgression);
+                            switch (getVisibility()) {
+                                case HIDDEN -> advancement = new HiddenAdvancement(name, display, fromString(parents.get(0)), maxProgression);
+                                case PARENT_GRANTED -> advancement = new ParentGrantedAdvancement(name, display, fromString(parents.get(0)), maxProgression);
+                                default -> advancement = new BaseAdvancement(name, display, fromString(parents.get(0)), maxProgression);
+                            }
                         } else {
-                            advancement = new BaseAdvancement(name, display, fromString(parents.get(0)));
+                            switch (getVisibility()) {
+                                case HIDDEN -> advancement = new HiddenAdvancement(name, display, fromString(parents.get(0)));
+                                case PARENT_GRANTED -> advancement = new ParentGrantedAdvancement(name, display, fromString(parents.get(0)));
+                                default -> advancement = new BaseAdvancement(name, display, fromString(parents.get(0)));
+                            }
                         }
                     }
                 }

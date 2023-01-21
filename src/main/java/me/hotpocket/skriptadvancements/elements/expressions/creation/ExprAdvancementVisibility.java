@@ -1,12 +1,7 @@
 package me.hotpocket.skriptadvancements.elements.expressions.creation;
 
 import ch.njol.skript.Skript;
-import ch.njol.skript.aliases.ItemType;
 import ch.njol.skript.classes.Changer;
-import ch.njol.skript.doc.Description;
-import ch.njol.skript.doc.Examples;
-import ch.njol.skript.doc.Name;
-import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -14,25 +9,21 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import me.hotpocket.skriptadvancements.utils.creation.Creator;
+import me.hotpocket.skriptadvancements.utils.advancement.VisibilityType;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-@Name("Creation - Advancement Background")
-@Description("Sets the background of a custom advancement to any solid block.")
-@Examples("set the background of advancement to diamond block")
-@Since("1.4")
-
-public class ExprAdvancementBackground extends SimpleExpression<ItemType> {
+public class ExprAdvancementVisibility extends SimpleExpression<VisibilityType> {
 
     static {
-        Skript.registerExpression(ExprAdvancementBackground.class, ItemType.class, ExpressionType.SIMPLE,
-                "[the] background of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s background");
+        Skript.registerExpression(ExprAdvancementVisibility.class, VisibilityType.class, ExpressionType.SIMPLE,
+                "[the] visibility of [the] [last (created|made)] [custom] advancement",
+                "[the] [last (created|made)] [custom] advancement[']s visibility");
     }
 
     @Override
-    protected @Nullable ItemType[] get(Event e) {
-        return new ItemType[]{new ItemType(Creator.lastCreatedAdvancement.getBackground())};
+    protected @Nullable VisibilityType[] get(Event e) {
+        return new VisibilityType[]{Creator.lastCreatedAdvancement.getVisibility()};
     }
 
     @Override
@@ -41,13 +32,13 @@ public class ExprAdvancementBackground extends SimpleExpression<ItemType> {
     }
 
     @Override
-    public Class<? extends ItemType> getReturnType() {
-        return ItemType.class;
+    public Class<? extends VisibilityType> getReturnType() {
+        return VisibilityType.class;
     }
 
     @Override
     public String toString(@Nullable Event e, boolean debug) {
-        return "the background of the advancement";
+        return "the visibility of the advancement";
     }
 
     @Override
@@ -58,7 +49,7 @@ public class ExprAdvancementBackground extends SimpleExpression<ItemType> {
     @Override
     public @Nullable Class<?>[] acceptChange(Changer.ChangeMode mode) {
         return switch (mode) {
-            case SET -> CollectionUtils.array(ItemType.class);
+            case SET -> CollectionUtils.array(VisibilityType[].class);
             default -> null;
         };
     }
@@ -66,6 +57,6 @@ public class ExprAdvancementBackground extends SimpleExpression<ItemType> {
     @Override
     public void change(Event e, @Nullable Object[] delta, Changer.ChangeMode mode) {
         assert delta[0] != null;
-        Creator.lastCreatedAdvancement.setBackground(((ItemType) delta[0]).getMaterial());
+        Creator.lastCreatedAdvancement.setVisibility((VisibilityType) delta[0]);
     }
 }
