@@ -44,7 +44,7 @@ function loadSyntax() {
                   colorForBackground = "rgb(224, 95, 214)"
                   colorForSyntax = "rgb(201, 87, 191)"
                 }
-                document.getElementById("elements").insertAdjacentHTML("beforeend", "<div id='content' style='background-color:" + colorForBackground + ";'><h2 id='title'>" + data[i].title + "</h2><h2 id='type'>" + typeTitle + "</h2><p id='description'>" + data[i].description + "</p><p id='syntax' style='background-color:" + colorForSyntax + ";'>" + data[i].syntax_pattern.replace("\n", "<br>") + "</p></div>")
+                document.getElementById("elements").insertAdjacentHTML("beforeend", "<div id='content' style='background-color:" + colorForBackground + ";'><h2 id='title'>" + typeTitle + " | " + data[i].title + "</h2><p id='description'>" + data[i].description + "</p><p id='syntax' style='background-color:" + colorForSyntax + ";'>" + data[i].syntax_pattern.replace("\n", "<br>") + "</p></div>")
             }
         }
       });
@@ -77,8 +77,7 @@ function filterSyntax(str) {
             colorForBackground = "rgb(224, 95, 214)"
             colorForSyntax = "rgb(201, 87, 191)"
           }
-          document.getElementById("elements").insertAdjacentHTML("beforeend", "<div id='content' style='background-color:" + colorForBackground + ";'><h2 id='title'>" + jsonData[i].title + "</h2><h2 id='type'>" + typeTitle + "</h2><p id='description'>" + jsonData[i].description + "</p><p id='syntax' style='background-color:" + colorForSyntax + ";'>" + jsonData[i].syntax_pattern.replace("\n", "<br>") + "</p></div>")
-        }
+          document.getElementById("elements").insertAdjacentHTML("beforeend", "<div id='content' style='background-color:" + colorForBackground + ";'><h2 id='title'>" + typeTitle + " | " + jsonData[i].title + "</h2><p id='description'>" + jsonData[i].description + "</p><p id='syntax' style='background-color:" + colorForSyntax + ";'>" + jsonData[i].syntax_pattern.replace("\n", "<br>") + "</p></div>")        }
       }
     }
     if (document.getElementById("elements").innerHTML == "") {
