@@ -79,7 +79,8 @@ public final class SkriptAdvancements extends JavaPlugin implements Listener {
     @EventHandler
     private void onPlayerLoadingCompleted(PlayerLoadingCompletedEvent event) {
         for (AdvancementTab tab : api.getTabs())
-            tab.updateAdvancementsToTeam(event.getPlayer());
+            if (tab.isInitialised())
+                tab.updateAdvancementsToTeam(event.getPlayer());
     }
 
     @EventHandler

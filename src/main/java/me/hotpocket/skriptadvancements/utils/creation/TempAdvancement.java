@@ -27,7 +27,7 @@ public class TempAdvancement {
 
     private static String name;
     private static String tab;
-    private static List<String> parents;
+    private static List<String> parents = new ArrayList<>();
     private static AdvancementDisplay display;
     private static int maxProgression;
     private static boolean root;
@@ -172,15 +172,8 @@ public class TempAdvancement {
                 if (parents.size() > 1) {
                     Set<BaseAdvancement> parentAdvancements = new HashSet<>();
                     for (String parent : parents) {
-                        if (fromString(parent) == null) {
-                            parents.remove(parent);
-                        } else {
-                            if (fromString(parent) instanceof RootAdvancement) {
-                                parents.remove(parent);
-                            } else {
-                                parentAdvancements.add((BaseAdvancement) fromString(parent));
-                            }
-                        }
+                        if (fromString(parent) != null && !(fromString(parent) instanceof RootAdvancement))
+                            parentAdvancements.add((BaseAdvancement) fromString(parent));
                     }
                     if (parentAdvancements.size() > 1) {
                         if (maxProgression > 0) {
