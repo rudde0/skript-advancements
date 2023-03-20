@@ -16,6 +16,7 @@ import me.hotpocket.skriptadvancements.utils.advancement.VisibilityType;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.UnsafeValues;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -135,9 +136,18 @@ public class TempAdvancement {
     }
 
     public static String getTexture(Material block) {
-        if (block.isBlock() && block.isSolid())
-            return "textures/block/" + Bukkit.getUnsafe().getTranslationKey(block).split("minecraft\\.")[1] + ".png";
+        if (block.isBlock() && block.isSolid()) {
+            if (Skript.methodExists(Material.class, "getTranslationKey")) {
+                return "textures/block/" + block.getTranslationKey().split("minecraft\\.")[1] + ".png";
+            } else {
+                return "textures/block/" + getTranslationKey(block).split("minecraft\\.")[1] + ".png";
+            }
+        }
         return "texture/block/dirt.png";
+    }
+
+    private static String getTranslationKey(Material block) {
+        return "minecraft." + block.name().toLowerCase();
     }
 
     static String asString(Advancement a) {
