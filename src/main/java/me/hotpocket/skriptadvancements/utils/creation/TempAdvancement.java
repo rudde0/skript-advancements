@@ -169,8 +169,18 @@ public class TempAdvancement {
         if (Creator.lastCreatedTab.equals(tab)) {
             Advancement advancement = null;
             if (fromString(getTab() + "/" + getName()) != null) {
-                Skript.error("You cannot have duplicate advancements. Found multiple: " + getTab() + "/" + getName());
-                return;
+                Advancement removed = null;
+                for (Advancement adv : Creator.advancements.get(tab)) {
+                    if (asString(adv).equals(getTab() + "/" + getName())) {
+                        removed = adv;
+                    }
+                }
+                if (removed != null) {
+                    Creator.advancements.get(getTab()).remove(removed);
+                } else {
+                    Skript.error("Duplicate advancement found: " + getTab() + "/" + getName());
+                    return;
+                }
             }
             if (root) {
                 if (maxProgression > 0) {
