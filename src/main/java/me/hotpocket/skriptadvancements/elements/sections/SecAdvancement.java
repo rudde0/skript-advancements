@@ -56,7 +56,7 @@ public class SecAdvancement extends EffectSection {
     @Nullable
     @SuppressWarnings({"unchecked", "rawtypes"})
     protected TriggerItem walk(Event event) {
-        TempAdvancement advancement = new TempAdvancement(name.getSingle(event).toLowerCase().replaceAll(" ", "_"),
+        TempAdvancement advancement = new TempAdvancement(name.getSingle(event).toLowerCase().replaceAll(" ", "_").replaceAll("[^a-z0-9/._-]", ""),
                 Creator.lastCreatedTab,
                 new AdvancementDisplay(Material.STICK, "", AdvancementFrameType.TASK, true, true, 0, 0, List.of("")),
                 List.of(""), 0, false, Material.STONE, VisibilityType.VISIBLE);
