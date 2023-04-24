@@ -25,8 +25,8 @@ public class ExprAdvancementAnnouncement extends SimpleExpression<Boolean> {
 
     static {
         Skript.registerExpression(ExprAdvancementAnnouncement.class, Boolean.class, ExpressionType.SIMPLE,
-                "[the] announcement [message] of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s announcement [message]");
+                "[the] announcement [message] [of [the] [last (created|made)] [custom] advancement]",
+                "[the] [[last (created|made)] [custom] advancement[']s] announcement [message]");
     }
 
     @Override

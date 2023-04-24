@@ -25,8 +25,8 @@ public class ExprAdvancementMaxProgression extends SimpleExpression<Integer> {
 
     static {
         Skript.registerExpression(ExprAdvancementMaxProgression.class, Integer.class, ExpressionType.SIMPLE,
-                "[the] max[imum] progression of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s max[imum] progression");
+                "[the] max[imum] progress[ion] [of [the] [last (created|made)] [custom] advancement]",
+                "[the] [[last (created|made)] [custom] advancement[']s] max[imum] progress[ion]");
     }
 
     @Override

@@ -25,8 +25,8 @@ public class ExprAdvancementToast extends SimpleExpression<Boolean> {
 
     static {
         Skript.registerExpression(ExprAdvancementToast.class, Boolean.class, ExpressionType.SIMPLE,
-                "[the] toast of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s toast");
+                "[the] toast [of [the] [last (created|made)] [custom] advancement]",
+                "[the] [[last (created|made)] [custom] advancement[']s] toast");
     }
 
     @Override

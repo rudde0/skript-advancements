@@ -25,8 +25,8 @@ public class ExprAdvancementTitle extends SimpleExpression<String> {
 
     static {
         Skript.registerExpression(ExprAdvancementTitle.class, String.class, ExpressionType.SIMPLE,
-                "[the] title of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s title");
+                "[the] title [of [the] [last (created|made)] [custom] advancement]",
+                "[the] [[last (created|made)] [custom] advancement[']s] title");
     }
 
     @Override

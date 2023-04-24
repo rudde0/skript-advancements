@@ -26,8 +26,8 @@ public class ExprAdvancementBackground extends SimpleExpression<ItemType> {
 
     static {
         Skript.registerExpression(ExprAdvancementBackground.class, ItemType.class, ExpressionType.SIMPLE,
-                "[the] background of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s background");
+                "[the] background [of [the] [last (created|made)] [custom] advancement]",
+                "[the] [[last (created|made)] [custom] advancement[']s] background");
     }
 
     @Override

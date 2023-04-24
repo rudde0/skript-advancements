@@ -28,8 +28,8 @@ public class ExprAdvancementDescription extends SimpleExpression<String> {
 
     static {
         Skript.registerExpression(ExprAdvancementDescription.class, String.class, ExpressionType.SIMPLE,
-                "[the] description of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s description");
+                "[the] description [of [the] [last (created|made)] [custom] advancement]",
+                "[the] [[last (created|made)] [custom] advancement[']s] description");
     }
 
     @Override

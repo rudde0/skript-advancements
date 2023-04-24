@@ -25,8 +25,8 @@ public class ExprAdvancementRoot extends SimpleExpression<Boolean> {
 
     static {
         Skript.registerExpression(ExprAdvancementRoot.class, Boolean.class, ExpressionType.SIMPLE,
-                "[the] root of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s root");
+                "[the] root [of [the] [last (created|made)] [custom] advancement]",
+                "[the] [[last (created|made)] [custom] advancement[']s] root");
     }
 
     @Override

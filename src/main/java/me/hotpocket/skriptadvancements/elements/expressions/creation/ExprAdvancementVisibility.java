@@ -30,8 +30,8 @@ public class ExprAdvancementVisibility extends SimpleExpression<VisibilityType> 
 
     static {
         Skript.registerExpression(ExprAdvancementVisibility.class, VisibilityType.class, ExpressionType.SIMPLE,
-                "[the] visibility of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s visibility");
+                "[the] visibility [of [the] [last (created|made)] [custom] advancement]",
+                "[the] [[last (created|made)] [custom] advancement[']s] visibility");
     }
 
     @Override

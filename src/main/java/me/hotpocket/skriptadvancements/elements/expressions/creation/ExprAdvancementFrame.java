@@ -26,8 +26,8 @@ public class ExprAdvancementFrame extends SimpleExpression<AdvancementFrameType>
 
     static {
         Skript.registerExpression(ExprAdvancementFrame.class, AdvancementFrameType.class, ExpressionType.SIMPLE,
-                "[the] frame of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s frame");
+                "[the] frame [of [the] [last (created|made)] [custom] advancement]",
+                "[the] [[last (created|made)] [custom] advancement[']s] frame");
     }
 
     @Override

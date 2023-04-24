@@ -27,8 +27,8 @@ public class ExprAdvancementIcon extends SimpleExpression<ItemType> {
 
     static {
         Skript.registerExpression(ExprAdvancementIcon.class, ItemType.class, ExpressionType.SIMPLE,
-                "[the] icon of [the] [last (created|made)] [custom] advancement",
-                "[the] [last (created|made)] [custom] advancement[']s icon");
+                "[the] icon [of [the] [last (created|made)] [custom] advancement]",
+                "[the] [[last (created|made)] [custom] advancement[']s] icon");
     }
 
     @Override
