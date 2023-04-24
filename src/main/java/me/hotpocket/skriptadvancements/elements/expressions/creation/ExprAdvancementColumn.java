@@ -28,7 +28,7 @@ public class ExprAdvancementColumn extends SimpleExpression<Number> {
 
     static {
         Skript.registerExpression(ExprAdvancementColumn.class, Number.class, ExpressionType.SIMPLE,
-                "[the] (column|y[-coord[inate]]) [of [the] [last (created|made)] [custom] advancement",
+                "[the] (column|y[-coord[inate]]) [of [the] [last (created|made)] [custom] advancement]",
                 "[the] [[last (created|made)] [custom] advancement[']s] (column|y[-coord[inate]])");
     }
 
