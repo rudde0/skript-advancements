@@ -38,7 +38,7 @@ function loadSyntax() {
                 } else if (typeTitle == "Event") {
                   colorForBackground = "mediumorchid"
                 }
-                document.getElementById("elements").insertAdjacentHTML("beforeend", "<div id='content' style='border-left: 7px solid " + colorForBackground + ";'><h3 id='title'>" + typeTitle + " | " + data[i].title + "</h3><p id='syntax' style='background-color: rgb(235, 235, 235);'>" + data[i].syntax_pattern.replace("\n", "<br>") + "</p><p id='description'>" + data[i].description + "</p></div>")
+                document.getElementById("elements").insertAdjacentHTML("beforeend", "<div id='content' style='border-left: 7px solid " + colorForBackground + ";'><h3 id='title'>" + data[i].title + "</h3><p id='type'>" + typeTitle + "</p><p id='syntax' style='background-color: rgb(235, 235, 235);'>" + data[i].syntax_pattern.replace("\n", "<br>") + "</p><p id='description'>" + data[i].description + "</p></div>")
             }
         }
       });
