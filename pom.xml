@@ -6,7 +6,7 @@
 
     <groupId>me.hotpocket</groupId>
     <artifactId>skriptadvancements</artifactId>
-    <version>1.5.8</version>
+    <version>1.5.9-rudde</version>
     <packaging>jar</packaging>
 
     <name>Skript-Advancements</name>
@@ -104,30 +104,30 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.20-R0.1-SNAPSHOT</version>
+            <version>1.20.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.SkriptLang</groupId>
             <artifactId>Skript</artifactId>
-            <version>2.6.4</version>
+            <version>2.7.3</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>20.1.0</version>
+            <version>24.0.1</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.checkerframework</groupId>
             <artifactId>checker-qual</artifactId>
-            <version>3.19.0</version>
+            <version>3.32.0</version>
         </dependency>
         <dependency>
             <groupId>com.frengor</groupId>
             <artifactId>ultimateadvancementapi-shadeable</artifactId>
-            <version>2.2.6</version>
+            <version>2.2.8</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
